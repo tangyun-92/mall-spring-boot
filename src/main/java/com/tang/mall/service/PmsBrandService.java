@@ -1,6 +1,7 @@
 package com.tang.mall.service;
 
 import com.github.pagehelper.PageInfo;
+import com.tang.mall.model.request.AddPmsBrandReq;
 import com.tang.mall.model.request.PmsBrandListReq;
 
 /**
@@ -8,4 +9,6 @@ import com.tang.mall.model.request.PmsBrandListReq;
  */
 public interface PmsBrandService {
     PageInfo list(PmsBrandListReq pmsBrandListReq);
+
+    void add(AddPmsBrandReq addPmsBrandReq);
 }

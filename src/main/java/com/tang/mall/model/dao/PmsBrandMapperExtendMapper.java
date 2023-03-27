@@ -12,4 +12,6 @@ public interface PmsBrandMapperExtendMapper {
 
     List<PmsBrand> selectList(@Param("query") PmsBrandListQuery query);
 
+    PmsBrand selectByName(String name);
+
 }

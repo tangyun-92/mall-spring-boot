@@ -1,7 +1,9 @@
 package com.tang.mall.model.dao;
 
 import com.tang.mall.model.pojo.PmsBrand;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PmsBrandMapper {
     int deleteByPrimaryKey(Long id);
 

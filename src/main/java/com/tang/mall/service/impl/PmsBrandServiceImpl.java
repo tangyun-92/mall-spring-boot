@@ -2,11 +2,16 @@ package com.tang.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.tang.mall.exception.MallException;
+import com.tang.mall.exception.MallExceptionEnum;
+import com.tang.mall.model.dao.PmsBrandMapper;
 import com.tang.mall.model.dao.PmsBrandMapperExtendMapper;
 import com.tang.mall.model.pojo.PmsBrand;
 import com.tang.mall.model.query.PmsBrandListQuery;
+import com.tang.mall.model.request.AddPmsBrandReq;
 import com.tang.mall.model.request.PmsBrandListReq;
 import com.tang.mall.service.PmsBrandService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -22,8 +27,11 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     @Autowired
     PmsBrandMapperExtendMapper pmsBrandMapperExtendMapper;
 
+    @Autowired
+    PmsBrandMapper pmsBrandMapper;
+
     /**
-     * 获取品牌列表
+     * 后台-获取品牌列表
      * @param pmsBrandListReq
      * @return
      */
@@ -48,6 +56,25 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         List<PmsBrand> brandList = pmsBrandMapperExtendMapper.selectList(brandListQuery);
         PageInfo pageInfo = new PageInfo(brandList);
         return pageInfo;
+    }
+
+    /**
+     * 后台-新增品牌
+     * @param addPmsBrandReq
+     */
+    @Override
+    public void add(AddPmsBrandReq addPmsBrandReq) {
+        PmsBrand pmsBrand = new PmsBrand();
+        BeanUtils.copyProperties(addPmsBrandReq, pmsBrand);
+
+        PmsBrand pmsBrandOld = pmsBrandMapperExtendMapper.selectByName(addPmsBrandReq.getName());
+        if (pmsBrandOld != null) {
+            throw new MallException(MallExceptionEnum.NAME_EXISTED);
+        }
+        int count = pmsBrandMapper.insertSelective(pmsBrand);
+        if (count == 0) {
+            throw new MallException(MallExceptionEnum.CREATE_FAILED);
+        }
     }
 
 }

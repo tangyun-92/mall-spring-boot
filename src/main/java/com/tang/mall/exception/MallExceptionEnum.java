@@ -5,6 +5,8 @@ package com.tang.mall.exception;
  */
 public enum MallExceptionEnum {
     REQUEST_PARAM_ERROR(10001, "参数错误"),
+    NAME_EXISTED(10002, "不允许重名"),
+    CREATE_FAILED(10003, "创建失败"),
     SYSTEM_ERROR(20000, "系统异常");
 
     /**

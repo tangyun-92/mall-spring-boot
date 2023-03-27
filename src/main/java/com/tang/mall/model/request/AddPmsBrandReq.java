@@ -1,28 +1,25 @@
-package com.tang.mall.model.pojo;
+package com.tang.mall.model.request;
 
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotNull;
 
-public class PmsBrand {
-    @NotNull(message = "id不能为空")
-    @ApiModelProperty(value = "id", name = "id", dataType = "Long", required = true)
-    private Long id;
+public class AddPmsBrandReq {
 
     @NotNull(message = "name不能为空")
-    @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String")
+    @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String", required = true)
     private String name;
 
     @NotNull(message = "firstLetter不能为空")
-    @ApiModelProperty(value = "首字母", name = "firstLetter", dataType = "String")
+    @ApiModelProperty(value = "首字母", name = "firstLetter", dataType = "String", required = true)
     private String firstLetter;
 
     @NotNull(message = "sort不能为空")
-    @ApiModelProperty(value = "排序", name = "sort", dataType = "Integer")
+    @ApiModelProperty(value = "排序", name = "sort", dataType = "Integer", required = true)
     private Integer sort;
 
     @NotNull(message = "factoryStatus不能为空")
-    @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "Integer")
+    @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "Integer", required = true)
     private Integer factoryStatus;
 
     @ApiModelProperty(value = "显示状态：0-不显示 1-显示", name = "showStatus", dataType = "Integer")
@@ -42,14 +39,6 @@ public class PmsBrand {
 
     @ApiModelProperty(value = "品牌故事", name = "brandStory", dataType = "String")
     private String brandStory;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
