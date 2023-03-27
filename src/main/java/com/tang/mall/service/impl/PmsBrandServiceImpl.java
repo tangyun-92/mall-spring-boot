@@ -22,16 +22,23 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     @Autowired
     PmsBrandMapperExtendMapper pmsBrandMapperExtendMapper;
 
+    /**
+     * 获取品牌列表
+     * @param pmsBrandListReq
+     * @return
+     */
     @Override
     public PageInfo list(PmsBrandListReq pmsBrandListReq) {
         // 构建Query对象
         PmsBrandListQuery brandListQuery = new PmsBrandListQuery();
 
         // 搜索处理
+        // 品牌名称
         if (!StringUtils.isEmpty(pmsBrandListReq.getName())) {
             String name = new StringBuilder().append("%").append(pmsBrandListReq.getName()).append("%").toString();
             brandListQuery.setName(name);
         }
+        // 是否为品牌制造商：0-不是 1-是
         if (!StringUtils.isEmpty(pmsBrandListReq.getFactoryStatus())) {
             brandListQuery.setFactoryStatus(pmsBrandListReq.getFactoryStatus());
         }
