@@ -20,7 +20,7 @@ import javax.xml.ws.Response;
 @ConditionalOnProperty(name = "swagger.enable", havingValue = "true")
 public class SpringFoxConfig {
 
-    //访问http://localhost:8083/swagger-ui.html可以看到API文档
+    //访问http://localhost:8080/swagger-ui.html可以看到API文档
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
