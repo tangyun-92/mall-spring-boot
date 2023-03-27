@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tang.mall.model.dao.Comment_ReplayMapper">
-  <resultMap id="BaseResultMap" type="com.tang.mall.model.pojo.Comment_Replay">
+<mapper namespace="com.tang.mall.model.dao.CommentReplayMapper">
+  <resultMap id="BaseResultMap" type="com.tang.mall.model.pojo.CommentReplay">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="comment_id" jdbcType="BIGINT" property="commentId" />
     <result column="member_nick_name" jdbcType="VARCHAR" property="memberNickName" />
@@ -23,7 +23,7 @@
     delete from pms_comment_replay
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.tang.mall.model.pojo.Comment_Replay">
+  <insert id="insert" parameterType="com.tang.mall.model.pojo.CommentReplay">
     insert into pms_comment_replay (id, comment_id, member_nick_name, 
       member_icon, content, create_time, 
       `type`)
@@ -31,7 +31,7 @@
       #{memberIcon,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{type,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.tang.mall.model.pojo.Comment_Replay">
+  <insert id="insertSelective" parameterType="com.tang.mall.model.pojo.CommentReplay">
     insert into pms_comment_replay
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tang.mall.model.pojo.Comment_Replay">
+  <update id="updateByPrimaryKeySelective" parameterType="com.tang.mall.model.pojo.CommentReplay">
     update pms_comment_replay
     <set>
       <if test="commentId != null">
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tang.mall.model.pojo.Comment_Replay">
+  <update id="updateByPrimaryKey" parameterType="com.tang.mall.model.pojo.CommentReplay">
     update pms_comment_replay
     set comment_id = #{commentId,jdbcType=BIGINT},
       member_nick_name = #{memberNickName,jdbcType=VARCHAR},

@@ -2,7 +2,7 @@ package com.tang.mall.model.pojo;
 
 import java.util.Date;
 
-public class Comment_Replay {
+public class CommentReplay {
     private Long id;
 
     private Long commentId;

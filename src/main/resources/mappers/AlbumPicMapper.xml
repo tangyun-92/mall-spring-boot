@@ -68,4 +68,71 @@
       pic = #{pic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <resultMap id="BaseResultMap" type="com.tang.mall.model.pojo.AlbumPic">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="album_id" jdbcType="BIGINT" property="albumId" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, album_id, pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pms_album_pic
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pms_album_pic
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tang.mall.model.pojo.AlbumPic">
+    insert into pms_album_pic (id, album_id, pic
+      )
+    values (#{id,jdbcType=BIGINT}, #{albumId,jdbcType=BIGINT}, #{pic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tang.mall.model.pojo.AlbumPic">
+    insert into pms_album_pic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="albumId != null">
+        album_id,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="albumId != null">
+        #{albumId,jdbcType=BIGINT},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tang.mall.model.pojo.AlbumPic">
+    update pms_album_pic
+    <set>
+      <if test="albumId != null">
+        album_id = #{albumId,jdbcType=BIGINT},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tang.mall.model.pojo.AlbumPic">
+    update pms_album_pic
+    set album_id = #{albumId,jdbcType=BIGINT},
+      pic = #{pic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

@@ -142,7 +142,7 @@
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_comment_replay" domainObjectName="Comment_Replay"
+        <table tableName="pms_comment_replay" domainObjectName="CommentReplay"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
