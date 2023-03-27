@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
@@ -7,21 +7,26 @@
     <!-- 数据库驱动个人配置 -->
     <classPathEntry location="D:\java\apache-maven-3.9.0\maven-repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar" />
     <!--    <classPathEntry location="F:\java\apache-maven-3.9.0\MavenRepository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar" />-->
-    <context id="MysqlTables" targetRuntime="MyBatis3">
+    <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
         <property name="autoDelimitKeywords" value="true" />
         <!-- 可以使用``包括字段名，避免字段名与sql保留字冲突报错 -->
         <property name="beginningDelimiter" value="`" />
         <property name="endingDelimiter" value="`" />
+        <!--生成mapper.xml时覆盖原文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <!-- optional，在创建class时，对注释进行控制 -->
         <commentGenerator>
-            <property name="suppressDate" value="true" />
-            <property name="suppressAllComments" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
         </commentGenerator>
         <!-- 数据库链接地址账号密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/mall?useUnicode=true&amp;serverTimezone=Asia/Shanghai&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
                         password="12345678">
+            <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
         <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制 -->
@@ -30,327 +35,319 @@
         </javaTypeResolver>
         <!-- 生成Model类存放位置 -->
         <javaModelGenerator targetPackage="com.tang.mall.model.pojo" targetProject="src/main/java">
-            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
-            <property name="enableSubPackages" value="true" />
-            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
-            <property name="trimStrings" value="true"/>
-            <!-- 建立的Model对象是否 不可改变，即生成的Model对象不会有 setter方法，只有构造方法 -->
-            <property name="immutable" value="false" />
         </javaModelGenerator>
         <!-- 生成mapper映射文件存放位置 -->
         <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
-            <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!-- 生成Dao类存放位置 -->
         <javaClientGenerator targetPackage="com.tang.mall.model.dao" targetProject="src/main/java" type="XMLMAPPER">
-            <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- 生成对应表及类名 -->
-        <table schema="root" tableName="cms_help" domainObjectName="Help"
+        <table schema="root" tableName="cms_help" domainObjectName="CmsHelp"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_help_category" domainObjectName="HelpCategory"
+        <table tableName="cms_help_category" domainObjectName="CmsHelpCategory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_member_report" domainObjectName="MemberReport"
+        <table tableName="cms_member_report" domainObjectName="CmsMemberReport"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_preference_area" domainObjectName="PreferenceArea"
+        <table tableName="cms_preference_area" domainObjectName="CmsPreferenceArea"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_preference_area_product_relation" domainObjectName="PreferenceAreaProductRelation"
+        <table tableName="cms_preference_area_product_relation" domainObjectName="CmsPreferenceAreaProductRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_subject" domainObjectName="Subject"
+        <table tableName="cms_subject" domainObjectName="CmsSubject"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_subject_category" domainObjectName="SubjectCategory"
+        <table tableName="cms_subject_category" domainObjectName="CmsSubjectCategory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_subject_comment" domainObjectName="SubjectComment"
+        <table tableName="cms_subject_comment" domainObjectName="CmsSubjectComment"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_subject_product_relation" domainObjectName="SubjectProductRelation"
+        <table tableName="cms_subject_product_relation" domainObjectName="CmsSubjectProductRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_topic" domainObjectName="Topic"
+        <table tableName="cms_topic" domainObjectName="CmsTopic"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_topic_category" domainObjectName="TopicCategory"
+        <table tableName="cms_topic_category" domainObjectName="CmsTopicCategory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="cms_topic_comment" domainObjectName="TopicComment"
+        <table tableName="cms_topic_comment" domainObjectName="CmsTopicComment"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="oms_cart_item" domainObjectName="CartItem"
+        <table tableName="oms_cart_item" domainObjectName="OmsCartItem"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="oms_company_address" domainObjectName="CompanyAddress"
+        <table tableName="oms_company_address" domainObjectName="OmsCompanyAddress"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="oms_order" domainObjectName="Order"
+        <table tableName="oms_order" domainObjectName="OmsOrder"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="oms_order_item" domainObjectName="OrderItem"
+        <table tableName="oms_order_item" domainObjectName="OmsOrderItem"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="oms_order_operate_history" domainObjectName="OrderOperateHistory"
+        <table tableName="oms_order_operate_history" domainObjectName="OmsOrderOperateHistory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="oms_order_return_apply" domainObjectName="OrderReturnApply"
+        <table tableName="oms_order_return_apply" domainObjectName="OmsOrderReturnApply"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="oms_order_return_reason" domainObjectName="OrderReturnReason"
+        <table tableName="oms_order_return_reason" domainObjectName="OmsOrderReturnReason"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="oms_order_setting" domainObjectName="OrderSetting"
+        <table tableName="oms_order_setting" domainObjectName="OmsOrderSetting"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_album" domainObjectName="Album"
+        <table tableName="pms_album" domainObjectName="PmsAlbum"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_album_pic" domainObjectName="AlbumPic"
+        <table tableName="pms_album_pic" domainObjectName="PmsAlbumPic"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_brand" domainObjectName="Brand"
+        <table tableName="pms_brand" domainObjectName="PmsBrand"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_comment" domainObjectName="Comment"
+        <table tableName="pms_comment" domainObjectName="PmsComment"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_comment_replay" domainObjectName="CommentReplay"
+        <table tableName="pms_comment_replay" domainObjectName="PmsCommentReplay"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_freight_template" domainObjectName="FreightTemplate"
+        <table tableName="pms_freight_template" domainObjectName="PmsFreightTemplate"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_member_price" domainObjectName="MemberPrice"
+        <table tableName="pms_member_price" domainObjectName="PmsMemberPrice"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product" domainObjectName="Product"
+        <table tableName="pms_product" domainObjectName="PmsProduct"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_attribute" domainObjectName="ProductAttribute"
+        <table tableName="pms_product_attribute" domainObjectName="PmsProductAttribute"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_attribute_category" domainObjectName="ProductAttributeCategory"
+        <table tableName="pms_product_attribute_category" domainObjectName="PmsProductAttributeCategory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_attribute_value" domainObjectName="ProductAttributeValue"
+        <table tableName="pms_product_attribute_value" domainObjectName="PmsProductAttributeValue"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_category" domainObjectName="ProductCategory"
+        <table tableName="pms_product_category" domainObjectName="PmsProductCategory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_category_attribute_relation" domainObjectName="ProductCategoryAttributeRelation"
+        <table tableName="pms_product_category_attribute_relation" domainObjectName="PmsProductCategoryAttributeRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_full_reduction" domainObjectName="ProductFullReduction"
+        <table tableName="pms_product_full_reduction" domainObjectName="PmsProductFullReduction"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_ladder" domainObjectName="ProductLadder"
+        <table tableName="pms_product_ladder" domainObjectName="PmsProductLadder"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_operate_log" domainObjectName="ProductOperateLog"
+        <table tableName="pms_product_operate_log" domainObjectName="PmsProductOperateLog"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_product_verify_record" domainObjectName="ProductVerifyRecord"
+        <table tableName="pms_product_verify_record" domainObjectName="PmsProductVerifyRecord"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="pms_sku_stock" domainObjectName="SkuStock"
+        <table tableName="pms_sku_stock" domainObjectName="PmsSkuStock"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_coupon" domainObjectName="Coupon"
+        <table tableName="sms_coupon" domainObjectName="SmsCoupon"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_coupon_history" domainObjectName="CouponHistory"
+        <table tableName="sms_coupon_history" domainObjectName="SmsCouponHistory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_coupon_product_category_relation" domainObjectName="CouponProductCategoryRelation"
+        <table tableName="sms_coupon_product_category_relation" domainObjectName="SmsCouponProductCategoryRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_coupon_product_relation" domainObjectName="CouponProductRelation"
+        <table tableName="sms_coupon_product_relation" domainObjectName="SmsCouponProductRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_flash_promotion" domainObjectName="FlashPromotion"
+        <table tableName="sms_flash_promotion" domainObjectName="SmsFlashPromotion"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_flash_promotion_log" domainObjectName="FlashPromotionLog"
+        <table tableName="sms_flash_promotion_log" domainObjectName="SmsFlashPromotionLog"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_flash_promotion_product_relation" domainObjectName="FlashPromotionProductRelation"
+        <table tableName="sms_flash_promotion_product_relation" domainObjectName="SmsFlashPromotionProductRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_flash_promotion_session" domainObjectName="FlashPromotionProductSession"
+        <table tableName="sms_flash_promotion_session" domainObjectName="SmsFlashPromotionProductSession"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_home_advertise" domainObjectName="HomeAdvertise"
+        <table tableName="sms_home_advertise" domainObjectName="SmsHomeAdvertise"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_home_brand" domainObjectName="HomeBrand"
+        <table tableName="sms_home_brand" domainObjectName="SmsHomeBrand"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_home_new_product" domainObjectName="HomeNewProduct"
+        <table tableName="sms_home_new_product" domainObjectName="SmsHomeNewProduct"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_home_recommend_product" domainObjectName="HomeRecommendProduct"
+        <table tableName="sms_home_recommend_product" domainObjectName="SmsHomeRecommendProduct"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sms_home_recommend_subject" domainObjectName="HomeRecommendSubject"
+        <table tableName="sms_home_recommend_subject" domainObjectName="SmsHomeRecommendSubject"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="sys_area" domainObjectName="Area"
+        <table tableName="sys_area" domainObjectName="SysArea"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_admin" domainObjectName="Admin"
+        <table tableName="ums_admin" domainObjectName="UmsAdmin"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_admin_login_log" domainObjectName="AdminLoginLog"
+        <table tableName="ums_admin_login_log" domainObjectName="UmsAdminLoginLog"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_admin_permission_relation" domainObjectName="AdminPermissionRelation"
+        <table tableName="ums_admin_permission_relation" domainObjectName="UmsAdminPermissionRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_admin_role_relation" domainObjectName="AdminRoleRelation"
+        <table tableName="ums_admin_role_relation" domainObjectName="UmsAdminRoleRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_growth_change_history" domainObjectName="GrowthChangeHistory"
+        <table tableName="ums_growth_change_history" domainObjectName="UmsGrowthChangeHistory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_integration_change_history" domainObjectName="IntegrationChangeHistory"
+        <table tableName="ums_integration_change_history" domainObjectName="UmsIntegrationChangeHistory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_integration_consume_setting" domainObjectName="IntegrationConsumeSetting"
+        <table tableName="ums_integration_consume_setting" domainObjectName="UmsIntegrationConsumeSetting"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member" domainObjectName="Member"
+        <table tableName="ums_member" domainObjectName="UmsMember"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_level" domainObjectName="MemberLevel"
+        <table tableName="ums_member_level" domainObjectName="UmsMemberLevel"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_login_log" domainObjectName="MemberLoginLog"
+        <table tableName="ums_member_login_log" domainObjectName="UmsMemberLoginLog"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_member_tag_relation" domainObjectName="MemberMemberTagRelation"
+        <table tableName="ums_member_member_tag_relation" domainObjectName="UmsMemberMemberTagRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_product_category_relation" domainObjectName="MemberProductCategoryRelation"
+        <table tableName="ums_member_product_category_relation" domainObjectName="UmsMemberProductCategoryRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_receive_address" domainObjectName="MemberReceiveAddress"
+        <table tableName="ums_member_receive_address" domainObjectName="UmsMemberReceiveAddress"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_rule_setting" domainObjectName="MemberRuleSetting"
+        <table tableName="ums_member_rule_setting" domainObjectName="UmsMemberRuleSetting"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_statistics_info" domainObjectName="MemberStatisticsInfo"
+        <table tableName="ums_member_statistics_info" domainObjectName="UmsMemberStatisticsInfo"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_tag" domainObjectName="MemberTag"
+        <table tableName="ums_member_tag" domainObjectName="UmsMemberTag"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_member_task" domainObjectName="MemberTask"
+        <table tableName="ums_member_task" domainObjectName="UmsMemberTask"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_menu" domainObjectName="Menu"
+        <table tableName="ums_menu" domainObjectName="UmsMenu"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_permission" domainObjectName="Permission"
+        <table tableName="ums_permission" domainObjectName="UmsPermission"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_resource" domainObjectName="Resource"
+        <table tableName="ums_resource" domainObjectName="UmsResource"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_resource_category" domainObjectName="ResourceCategory"
+        <table tableName="ums_resource_category" domainObjectName="UmsResourceCategory"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_role" domainObjectName="Role"
+        <table tableName="ums_role" domainObjectName="UmsRole"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_role_menu_relation" domainObjectName="RoleMenuRelation"
+        <table tableName="ums_role_menu_relation" domainObjectName="UmsRoleMenuRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_role_permission_relation" domainObjectName="RolePermissionRelation"
+        <table tableName="ums_role_permission_relation" domainObjectName="UmsRolePermissionRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="ums_role_resource_relation" domainObjectName="RoleResourceRelation"
+        <table tableName="ums_role_resource_relation" domainObjectName="UmsRoleResourceRelation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>

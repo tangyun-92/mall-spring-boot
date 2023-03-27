@@ -36,7 +36,7 @@ public class PmsBrand {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getFirstLetter() {
@@ -44,7 +44,7 @@ public class PmsBrand {
     }
 
     public void setFirstLetter(String firstLetter) {
-        this.firstLetter = firstLetter == null ? null : firstLetter.trim();
+        this.firstLetter = firstLetter;
     }
 
     public Integer getSort() {
@@ -92,7 +92,7 @@ public class PmsBrand {
     }
 
     public void setLogo(String logo) {
-        this.logo = logo == null ? null : logo.trim();
+        this.logo = logo;
     }
 
     public String getBigPic() {
@@ -100,7 +100,7 @@ public class PmsBrand {
     }
 
     public void setBigPic(String bigPic) {
-        this.bigPic = bigPic == null ? null : bigPic.trim();
+        this.bigPic = bigPic;
     }
 
     public String getBrandStory() {
@@ -108,6 +108,6 @@ public class PmsBrand {
     }
 
     public void setBrandStory(String brandStory) {
-        this.brandStory = brandStory == null ? null : brandStory.trim();
+        this.brandStory = brandStory;
     }
 }
