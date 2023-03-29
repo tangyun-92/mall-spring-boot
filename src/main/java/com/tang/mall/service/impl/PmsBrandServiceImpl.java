@@ -77,4 +77,20 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         }
     }
 
+    /**
+     * 后台-更新品牌
+     * @param pmsBrand
+     */
+    @Override
+    public void update(PmsBrand pmsBrand) {
+        PmsBrand pmsBrandOld = pmsBrandMapperExtendMapper.selectByName(pmsBrand.getName());
+        if (pmsBrandOld != null && !pmsBrandOld.getId().equals(pmsBrand.getId())) {
+            throw new MallException(MallExceptionEnum.NAME_EXISTED);
+        }
+        int count = pmsBrandMapper.updateByPrimaryKeySelective(pmsBrand);
+        if (count == 0) {
+            throw new MallException(MallExceptionEnum.UPDATE_FAILED);
+        }
+    }
+
 }

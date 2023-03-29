@@ -9,19 +9,15 @@ public class PmsBrand {
     @ApiModelProperty(value = "id", name = "id", dataType = "Long", required = true)
     private Long id;
 
-    @NotNull(message = "name不能为空")
     @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String")
     private String name;
 
-    @NotNull(message = "firstLetter不能为空")
     @ApiModelProperty(value = "首字母", name = "firstLetter", dataType = "String")
     private String firstLetter;
 
-    @NotNull(message = "sort不能为空")
     @ApiModelProperty(value = "排序", name = "sort", dataType = "Integer")
     private Integer sort;
 
-    @NotNull(message = "factoryStatus不能为空")
     @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "Integer")
     private Integer factoryStatus;
 

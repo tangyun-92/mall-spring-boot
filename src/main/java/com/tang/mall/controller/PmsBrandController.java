@@ -37,4 +37,11 @@ public class PmsBrandController {
         return ApiRestResponse.success();
     }
 
+    @ApiOperation("后台-添加品牌")
+    @PostMapping("/admin/brand/update")
+    public ApiRestResponse update(@Valid @RequestBody PmsBrand pmsBrand) {
+        brandService.update(pmsBrand);
+        return ApiRestResponse.success();
+    }
+
 }
