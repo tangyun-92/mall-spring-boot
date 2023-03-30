@@ -95,4 +95,21 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         }
     }
 
+    /**
+     * 后台-删除品牌
+     * @param id
+     */
+    @Override
+    public void delete(Long id) {
+        PmsBrand pmsBrandOld = pmsBrandMapper.selectByPrimaryKey(id);
+        // 查不到记录，无法删除
+        if (pmsBrandOld == null) {
+            throw new MallException(MallExceptionEnum.DELETE_FAILED);
+        }
+        int count = pmsBrandMapper.deleteByPrimaryKey(id);
+        if (count == 0) {
+            throw new MallException(MallExceptionEnum.DELETE_FAILED);
+        }
+    }
+
 }

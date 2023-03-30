@@ -14,4 +14,6 @@ public interface PmsBrandService {
     void add(AddPmsBrandReq addPmsBrandReq);
 
     void update(PmsBrand pmsBrand);
+
+    void delete(Long id);
 }

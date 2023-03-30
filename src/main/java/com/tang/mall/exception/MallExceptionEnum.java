@@ -8,6 +8,7 @@ public enum MallExceptionEnum {
     NAME_EXISTED(10002, "不允许重名"),
     CREATE_FAILED(10003, "创建失败"),
     UPDATE_FAILED(10003, "更新失败"),
+    DELETE_FAILED(10004, "删除失败"),
     SYSTEM_ERROR(20000, "系统异常");
 
     /**
