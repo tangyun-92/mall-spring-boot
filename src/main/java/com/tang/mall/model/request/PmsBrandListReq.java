@@ -2,6 +2,7 @@ package com.tang.mall.model.request;
 
 import io.swagger.annotations.ApiModelProperty;
 
+// 要想被缓存在redis中，需要实现 Serializable 接口
 public class PmsBrandListReq {
 
     @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String")

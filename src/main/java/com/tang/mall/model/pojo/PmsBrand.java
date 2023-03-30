@@ -3,8 +3,9 @@ package com.tang.mall.model.pojo;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-public class PmsBrand {
+public class PmsBrand implements Serializable {
     @NotNull(message = "id不能为空")
     @ApiModelProperty(value = "id", name = "id", dataType = "Long", required = true)
     private Long id;

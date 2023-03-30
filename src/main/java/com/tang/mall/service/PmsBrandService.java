@@ -6,7 +6,7 @@ import com.tang.mall.model.request.AddPmsBrandReq;
 import com.tang.mall.model.request.PmsBrandListReq;
 
 /**
- * 产品 Service
+ * 品牌 Service
  */
 public interface PmsBrandService {
     PageInfo list(PmsBrandListReq pmsBrandListReq);

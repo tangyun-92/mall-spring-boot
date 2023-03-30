@@ -13,6 +13,7 @@ import com.tang.mall.model.request.PmsBrandListReq;
 import com.tang.mall.service.PmsBrandService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -36,6 +37,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      * @return
      */
     @Override
+    @Cacheable(value = "pmsBrandListForAdmin") // 启用 redis
     public PageInfo list(PmsBrandListReq pmsBrandListReq) {
         // 构建Query对象
         PmsBrandListQuery brandListQuery = new PmsBrandListQuery();
