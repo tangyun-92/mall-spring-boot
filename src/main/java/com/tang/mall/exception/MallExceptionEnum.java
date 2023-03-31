@@ -7,9 +7,13 @@ public enum MallExceptionEnum {
     REQUEST_PARAM_ERROR(10001, "参数错误"),
     NAME_EXISTED(10002, "不允许重名"),
     CREATE_FAILED(10003, "创建失败"),
-    UPDATE_FAILED(10003, "更新失败"),
-    DELETE_FAILED(10004, "删除失败"),
-    SYSTEM_ERROR(20000, "系统异常");
+    UPDATE_FAILED(10004, "更新失败"),
+    DELETE_FAILED(10005, "删除失败"),
+    REGISTER_FAILED(10006, "注册失败"),
+    WRONG_PASSWORD(10007, "用户名或密码错误"),
+    SYSTEM_ERROR(20000, "系统异常"),
+    NOT_AUTH(20001, "没有相关权限，请联系管理员"),
+    TOKEN_LOSE_EFFICACY(20002, "暂未登录或token已经过期");
 
     /**
      * 异常码

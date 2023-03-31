@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,6 +34,7 @@ public class PmsBrandController {
             @ApiImplicitParam(name = "pageSize", value = "每页显示条数", dataType = "Integer", paramType = "query")
     })
     @GetMapping("/admin/brand/list")
+    @PreAuthorize("hasAnyAuthority('pms:brand:read')")
     public ApiRestResponse list(PmsBrandListReq pmsBrandListReq) {
         PageInfo list = brandService.list(pmsBrandListReq);
         return ApiRestResponse.success(list);
@@ -40,6 +42,7 @@ public class PmsBrandController {
 
     @ApiOperation("后台-添加品牌")
     @PostMapping("/admin/brand/add")
+    @PreAuthorize("hasAnyAuthority('pms:brand:create')")
     public ApiRestResponse add(@Valid @RequestBody AddPmsBrandReq addPmsBrandReq) {
         brandService.add(addPmsBrandReq);
         return ApiRestResponse.success();
@@ -47,6 +50,7 @@ public class PmsBrandController {
 
     @ApiOperation("后台-更新品牌")
     @PostMapping("/admin/brand/update")
+    @PreAuthorize("hasAnyAuthority('pms:brand:update')")
     public ApiRestResponse update(@Valid @RequestBody PmsBrand pmsBrand) {
         brandService.update(pmsBrand);
         return ApiRestResponse.success();
@@ -54,6 +58,7 @@ public class PmsBrandController {
 
     @ApiOperation("后台-删除品牌")
     @PostMapping("/admin/brand/delete")
+    @PreAuthorize("hasAnyAuthority('pms:brand:delete')")
     public ApiRestResponse delete(@RequestParam Long id) {
         brandService.delete(id);
         return ApiRestResponse.success();

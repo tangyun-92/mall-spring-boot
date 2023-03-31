@@ -1,7 +1,9 @@
 package com.tang.mall.model.dao;
 
 import com.tang.mall.model.pojo.UmsAdmin;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UmsAdminMapper {
     int deleteByPrimaryKey(Long id);
 
