@@ -1,6 +1,6 @@
 package com.tang.mall.model.dao;
 
-import com.tang.mall.model.pojo.UmsPermission;
+import com.tang.mall.mbg.model.UmsPermission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

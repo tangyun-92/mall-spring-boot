@@ -34,13 +34,13 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成Model类存放位置 -->
-        <javaModelGenerator targetPackage="com.tang.mall.model.pojo" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.tang.mall.mbg.model" targetProject="src/main/java">
         </javaModelGenerator>
         <!-- 生成mapper映射文件存放位置 -->
-        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="com.tang.mall.mbg.mapper" targetProject="src/main/resources">
         </sqlMapGenerator>
-        <!-- 生成Dao类存放位置 -->
-        <javaClientGenerator targetPackage="com.tang.mall.model.dao" targetProject="src/main/java" type="XMLMAPPER">
+        <!-- 生成mapper接口的存放位置 -->
+        <javaClientGenerator targetPackage="com.tang.mall.mbg.mapper" targetProject="src/main/java" type="XMLMAPPER">
         </javaClientGenerator>
         <!-- 生成对应表及类名 -->
         <table schema="root" tableName="cms_help" domainObjectName="CmsHelp"

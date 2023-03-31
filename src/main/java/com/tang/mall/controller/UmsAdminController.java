@@ -2,9 +2,9 @@ package com.tang.mall.controller;
 
 import com.tang.mall.common.ApiRestResponse;
 import com.tang.mall.exception.MallExceptionEnum;
-import com.tang.mall.model.dto.UmsAdminLoginParam;
-import com.tang.mall.model.pojo.UmsAdmin;
-import com.tang.mall.model.pojo.UmsPermission;
+import com.tang.mall.mbg.model.UmsAdmin;
+import com.tang.mall.mbg.model.UmsPermission;
+import com.tang.mall.model.request.UmsAdminLoginReq;
 import com.tang.mall.service.UmsAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,8 +37,8 @@ public class UmsAdminController {
 
     @ApiOperation(value = "登录以后返回token")
     @PostMapping(value = "/login")
-    public ApiRestResponse login(@RequestBody UmsAdminLoginParam umsAdminLoginParam) {
-        String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
+    public ApiRestResponse login(@Valid @RequestBody UmsAdminLoginReq umsAdminLoginReq) {
+        String token = adminService.login(umsAdminLoginReq.getUsername(), umsAdminLoginReq.getPassword());
         if (token == null) {
             return ApiRestResponse.error(MallExceptionEnum.WRONG_PASSWORD);
         }

@@ -1,7 +1,7 @@
 package com.tang.mall.service;
 
-import com.tang.mall.model.pojo.UmsAdmin;
-import com.tang.mall.model.pojo.UmsPermission;
+import com.tang.mall.mbg.model.UmsAdmin;
+import com.tang.mall.mbg.model.UmsPermission;
 
 import java.util.List;
 

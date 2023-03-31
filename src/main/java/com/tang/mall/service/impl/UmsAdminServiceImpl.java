@@ -2,11 +2,11 @@ package com.tang.mall.service.impl;
 
 import com.tang.mall.exception.MallException;
 import com.tang.mall.exception.MallExceptionEnum;
-import com.tang.mall.model.dao.UmsAdminMapper;
+import com.tang.mall.mbg.mapper.UmsAdminMapper;
+import com.tang.mall.mbg.model.UmsAdmin;
+import com.tang.mall.mbg.model.UmsPermission;
 import com.tang.mall.model.dao.UmsAdminMapperExtendMapper;
 import com.tang.mall.model.dao.UmsPermissionMapperDao;
-import com.tang.mall.model.pojo.UmsAdmin;
-import com.tang.mall.model.pojo.UmsPermission;
 import com.tang.mall.service.UmsAdminService;
 import com.tang.mall.util.JwtTokenUtil;
 import org.springframework.beans.BeanUtils;

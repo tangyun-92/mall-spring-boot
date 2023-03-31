@@ -1,7 +1,7 @@
 package com.tang.mall.model.dto;
 
-import com.tang.mall.model.pojo.UmsAdmin;
-import com.tang.mall.model.pojo.UmsPermission;
+import com.tang.mall.mbg.model.UmsAdmin;
+import com.tang.mall.mbg.model.UmsPermission;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
