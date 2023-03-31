@@ -1,6 +1,9 @@
 package com.tang.mall.mbg.model;
 
-public class PmsAlbum {
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+
+public class PmsAlbum implements Serializable {
     private Long id;
 
     private String name;
@@ -12,6 +15,8 @@ public class PmsAlbum {
     private Integer sort;
 
     private String description;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -59,5 +64,22 @@ public class PmsAlbum {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", coverPic=").append(coverPic);
+        sb.append(", picCount=").append(picCount);
+        sb.append(", sort=").append(sort);
+        sb.append(", description=").append(description);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

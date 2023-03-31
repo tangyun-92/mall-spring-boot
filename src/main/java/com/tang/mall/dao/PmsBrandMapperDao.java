@@ -1,16 +1,16 @@
-package com.tang.mall.model.dao;
+package com.tang.mall.dao;
 
+import com.tang.mall.dto.PmsBrandListParam;
 import com.tang.mall.mbg.model.PmsBrand;
-import com.tang.mall.model.query.PmsBrandListQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface PmsBrandMapperExtendMapper {
+public interface PmsBrandMapperDao {
 
-    List<PmsBrand> selectList(@Param("query") PmsBrandListQuery query);
+    List<PmsBrand> selectList(@Param("query") PmsBrandListParam pmsBrandListParam);
 
     PmsBrand selectByName(String name);
 

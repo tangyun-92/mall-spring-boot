@@ -1,8 +1,10 @@
 package com.tang.mall.mbg.model;
 
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Date;
 
-public class PmsCommentReplay {
+public class PmsCommentReplay implements Serializable {
     private Long id;
 
     private Long commentId;
@@ -15,7 +17,10 @@ public class PmsCommentReplay {
 
     private Date createTime;
 
+    @ApiModelProperty(value = "评论人员类型；0->会员；1->管理员")
     private Integer type;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -71,5 +76,23 @@ public class PmsCommentReplay {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", commentId=").append(commentId);
+        sb.append(", memberNickName=").append(memberNickName);
+        sb.append(", memberIcon=").append(memberIcon);
+        sb.append(", content=").append(content);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", type=").append(type);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

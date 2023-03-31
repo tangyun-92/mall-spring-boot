@@ -1,6 +1,9 @@
 package com.tang.mall.mbg.model;
 
-public class SmsHomeNewProduct {
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+
+public class SmsHomeNewProduct implements Serializable {
     private Long id;
 
     private Long productId;
@@ -10,6 +13,8 @@ public class SmsHomeNewProduct {
     private Integer recommendStatus;
 
     private Integer sort;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -49,5 +54,21 @@ public class SmsHomeNewProduct {
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", productId=").append(productId);
+        sb.append(", productName=").append(productName);
+        sb.append(", recommendStatus=").append(recommendStatus);
+        sb.append(", sort=").append(sort);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

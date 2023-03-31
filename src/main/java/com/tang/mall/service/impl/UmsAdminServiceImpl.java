@@ -1,12 +1,13 @@
 package com.tang.mall.service.impl;
 
+import com.tang.mall.dto.UmsAdminRegisterParam;
 import com.tang.mall.exception.MallException;
 import com.tang.mall.exception.MallExceptionEnum;
 import com.tang.mall.mbg.mapper.UmsAdminMapper;
 import com.tang.mall.mbg.model.UmsAdmin;
 import com.tang.mall.mbg.model.UmsPermission;
-import com.tang.mall.model.dao.UmsAdminMapperExtendMapper;
-import com.tang.mall.model.dao.UmsPermissionMapperDao;
+import com.tang.mall.dao.UmsAdminMapperDao;
+import com.tang.mall.dao.UmsPermissionMapperDao;
 import com.tang.mall.service.UmsAdminService;
 import com.tang.mall.util.JwtTokenUtil;
 import org.springframework.beans.BeanUtils;
@@ -26,7 +27,7 @@ import java.util.List;
 public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Autowired
-    UmsAdminMapperExtendMapper umsAdminMapperExtendMapper;
+    UmsAdminMapperDao umsAdminMapperDao;
     @Autowired
     UmsAdminMapper umsAdminMapper;
     @Autowired
@@ -42,7 +43,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {
-        UmsAdmin umsAdmin = umsAdminMapperExtendMapper.selectByName(username);
+        UmsAdmin umsAdmin = umsAdminMapperDao.selectByName(username);
         if (umsAdmin != null) {
             return umsAdmin;
         }
@@ -55,14 +56,14 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
-    public void register(UmsAdmin umsAdminParam) {
-        UmsAdmin umsAdminOld = umsAdminMapperExtendMapper.selectByName(umsAdminParam.getUsername());
+    public void register(UmsAdminRegisterParam umsAdminRegisterParam) {
+        UmsAdmin umsAdminOld = umsAdminMapperDao.selectByName(umsAdminRegisterParam.getUsername());
         if (umsAdminOld != null) {
             throw new MallException(MallExceptionEnum.NAME_EXISTED);
         }
 
         UmsAdmin umsAdmin = new UmsAdmin();
-        BeanUtils.copyProperties(umsAdminParam, umsAdmin);
+        BeanUtils.copyProperties(umsAdminRegisterParam, umsAdmin);
         umsAdmin.setCreateTime(new Date());
         umsAdmin.setStatus(1);
         // 密码加密
@@ -84,7 +85,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         }
 
         // 更新最后一次登录时间
-        UmsAdmin umsAdmin = umsAdminMapperExtendMapper.selectByName(username);
+        UmsAdmin umsAdmin = umsAdminMapperDao.selectByName(username);
         umsAdmin.setLoginTime(new Date());
         umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
 

@@ -1,11 +1,16 @@
 package com.tang.mall.mbg.model;
 
-public class PmsProductCategoryAttributeRelation {
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+
+public class PmsProductCategoryAttributeRelation implements Serializable {
     private Long id;
 
     private Long productCategoryId;
 
     private Long productAttributeId;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -29,5 +34,19 @@ public class PmsProductCategoryAttributeRelation {
 
     public void setProductAttributeId(Long productAttributeId) {
         this.productAttributeId = productAttributeId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", productCategoryId=").append(productCategoryId);
+        sb.append(", productAttributeId=").append(productAttributeId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -2,9 +2,9 @@ package com.tang.mall.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.tang.mall.common.ApiRestResponse;
-import com.tang.mall.mbg.model.PmsBrand;
-import com.tang.mall.model.request.AddPmsBrandReq;
-import com.tang.mall.model.request.PmsBrandListReq;
+import com.tang.mall.dto.PmsBrandUpdateParam;
+import com.tang.mall.dto.PmsBrandAddParam;
+import com.tang.mall.dto.PmsBrandListParam;
 import com.tang.mall.service.PmsBrandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,31 +34,31 @@ public class PmsBrandController {
             @ApiImplicitParam(name = "pageSize", value = "每页显示条数", dataType = "Integer", paramType = "query")
     })
     @GetMapping("/admin/brand/list")
-    @PreAuthorize("hasAnyAuthority('pms:brand:read')")
-    public ApiRestResponse list(PmsBrandListReq pmsBrandListReq) {
-        PageInfo list = brandService.list(pmsBrandListReq);
+    @PreAuthorize("hasAuthority('pms:brand:read')")
+    public ApiRestResponse list(PmsBrandListParam pmsBrandListParam) {
+        PageInfo list = brandService.list(pmsBrandListParam);
         return ApiRestResponse.success(list);
     }
 
     @ApiOperation("后台-添加品牌")
     @PostMapping("/admin/brand/add")
-    @PreAuthorize("hasAnyAuthority('pms:brand:create')")
-    public ApiRestResponse add(@Valid @RequestBody AddPmsBrandReq addPmsBrandReq) {
-        brandService.add(addPmsBrandReq);
+    @PreAuthorize("hasAuthority('pms:brand:create')")
+    public ApiRestResponse add(@Valid @RequestBody PmsBrandAddParam pmsBrandAddParam) {
+        brandService.add(pmsBrandAddParam);
         return ApiRestResponse.success();
     }
 
     @ApiOperation("后台-更新品牌")
     @PostMapping("/admin/brand/update")
-    @PreAuthorize("hasAnyAuthority('pms:brand:update')")
-    public ApiRestResponse update(@Valid @RequestBody PmsBrand pmsBrand) {
-        brandService.update(pmsBrand);
+    @PreAuthorize("hasAuthority('pms:brand:update')")
+    public ApiRestResponse update(@Valid @RequestBody PmsBrandUpdateParam pmsBrandUpdateParam) {
+        brandService.update(pmsBrandUpdateParam);
         return ApiRestResponse.success();
     }
 
     @ApiOperation("后台-删除品牌")
     @PostMapping("/admin/brand/delete")
-    @PreAuthorize("hasAnyAuthority('pms:brand:delete')")
+    @PreAuthorize("hasAuthority('pms:brand:delete')")
     public ApiRestResponse delete(@RequestParam Long id) {
         brandService.delete(id);
         return ApiRestResponse.success();

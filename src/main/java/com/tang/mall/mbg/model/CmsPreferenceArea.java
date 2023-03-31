@@ -1,6 +1,9 @@
 package com.tang.mall.mbg.model;
 
-public class CmsPreferenceArea {
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+
+public class CmsPreferenceArea implements Serializable {
     private Long id;
 
     private String name;
@@ -11,7 +14,10 @@ public class CmsPreferenceArea {
 
     private Integer showStatus;
 
+    @ApiModelProperty(value = "展示图片")
     private byte[] pic;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -59,5 +65,22 @@ public class CmsPreferenceArea {
 
     public void setPic(byte[] pic) {
         this.pic = pic;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", subTitle=").append(subTitle);
+        sb.append(", sort=").append(sort);
+        sb.append(", showStatus=").append(showStatus);
+        sb.append(", pic=").append(pic);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

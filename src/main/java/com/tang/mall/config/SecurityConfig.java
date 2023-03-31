@@ -5,7 +5,7 @@ import com.tang.mall.component.RestAuthenticationEntryPoint;
 import com.tang.mall.component.RestfulAccessDeniedHandler;
 import com.tang.mall.mbg.model.UmsAdmin;
 import com.tang.mall.mbg.model.UmsPermission;
-import com.tang.mall.model.dto.AdminUserDetails;
+import com.tang.mall.dto.AdminUserDetails;
 import com.tang.mall.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

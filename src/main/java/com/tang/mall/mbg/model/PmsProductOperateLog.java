@@ -1,9 +1,11 @@
 package com.tang.mall.mbg.model;
 
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class PmsProductOperateLog {
+public class PmsProductOperateLog implements Serializable {
     private Long id;
 
     private Long productId;
@@ -16,6 +18,7 @@ public class PmsProductOperateLog {
 
     private BigDecimal salePriceNew;
 
+    @ApiModelProperty(value = "赠送的积分")
     private Integer giftPointOld;
 
     private Integer giftPointNew;
@@ -24,9 +27,12 @@ public class PmsProductOperateLog {
 
     private Integer usePointLimitNew;
 
+    @ApiModelProperty(value = "操作人")
     private String operateMan;
 
     private Date createTime;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -122,5 +128,28 @@ public class PmsProductOperateLog {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", productId=").append(productId);
+        sb.append(", priceOld=").append(priceOld);
+        sb.append(", priceNew=").append(priceNew);
+        sb.append(", salePriceOld=").append(salePriceOld);
+        sb.append(", salePriceNew=").append(salePriceNew);
+        sb.append(", giftPointOld=").append(giftPointOld);
+        sb.append(", giftPointNew=").append(giftPointNew);
+        sb.append(", usePointLimitOld=").append(usePointLimitOld);
+        sb.append(", usePointLimitNew=").append(usePointLimitNew);
+        sb.append(", operateMan=").append(operateMan);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

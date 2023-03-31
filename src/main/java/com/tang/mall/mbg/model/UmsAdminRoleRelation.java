@@ -1,11 +1,16 @@
 package com.tang.mall.mbg.model;
 
-public class UmsAdminRoleRelation {
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+
+public class UmsAdminRoleRelation implements Serializable {
     private Long id;
 
     private Long adminId;
 
     private Long roleId;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -29,5 +34,19 @@ public class UmsAdminRoleRelation {
 
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", adminId=").append(adminId);
+        sb.append(", roleId=").append(roleId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

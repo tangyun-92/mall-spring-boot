@@ -1,8 +1,10 @@
 package com.tang.mall.mbg.model;
 
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class PmsProductFullReduction {
+public class PmsProductFullReduction implements Serializable {
     private Long id;
 
     private Long productId;
@@ -10,6 +12,8 @@ public class PmsProductFullReduction {
     private BigDecimal fullPrice;
 
     private BigDecimal reducePrice;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -41,5 +45,20 @@ public class PmsProductFullReduction {
 
     public void setReducePrice(BigDecimal reducePrice) {
         this.reducePrice = reducePrice;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", productId=").append(productId);
+        sb.append(", fullPrice=").append(fullPrice);
+        sb.append(", reducePrice=").append(reducePrice);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

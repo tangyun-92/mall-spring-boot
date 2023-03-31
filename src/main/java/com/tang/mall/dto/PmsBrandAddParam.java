@@ -1,48 +1,44 @@
-package com.tang.mall.mbg.model;
+package com.tang.mall.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 
-public class PmsBrand implements Serializable {
-    private Long id;
+import javax.validation.constraints.NotNull;
 
+public class PmsBrandAddParam {
+
+    @NotNull(message = "name不能为空")
+    @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String", required = true)
     private String name;
 
-    @ApiModelProperty(value = "首字母")
+    @NotNull(message = "firstLetter不能为空")
+    @ApiModelProperty(value = "首字母", name = "firstLetter", dataType = "String", required = true)
     private String firstLetter;
 
+    @NotNull(message = "sort不能为空")
+    @ApiModelProperty(value = "排序", name = "sort", dataType = "Integer", required = true)
     private Integer sort;
 
-    @ApiModelProperty(value = "是否为品牌制造商：0->不是；1->是")
+    @NotNull(message = "factoryStatus不能为空")
+    @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "Integer", required = true)
     private Integer factoryStatus;
 
-    @ApiModelProperty(value = "显示状态：0-不显示 1-显示")
+    @ApiModelProperty(value = "显示状态：0-不显示 1-显示", name = "showStatus", dataType = "Integer")
     private Integer showStatus;
 
-    @ApiModelProperty(value = "产品数量")
+    @ApiModelProperty(value = "产品数量", name = "productCount", dataType = "Integer")
     private Integer productCount;
 
-    @ApiModelProperty(value = "产品评论数量")
+    @ApiModelProperty(value = "产品评论数量", name = "productCommentCount", dataType = "Integer")
     private Integer productCommentCount;
 
-    @ApiModelProperty(value = "品牌logo")
+    @ApiModelProperty(value = "品牌logo", name = "logo", dataType = "String")
     private String logo;
 
-    @ApiModelProperty(value = "专区大图")
+    @ApiModelProperty(value = "专区大图", name = "bigPic", dataType = "String")
     private String bigPic;
 
-    @ApiModelProperty(value = "品牌故事")
+    @ApiModelProperty(value = "品牌故事", name = "brandStory", dataType = "String")
     private String brandStory;
-
-    private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -122,27 +118,5 @@ public class PmsBrand implements Serializable {
 
     public void setBrandStory(String brandStory) {
         this.brandStory = brandStory;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", firstLetter=").append(firstLetter);
-        sb.append(", sort=").append(sort);
-        sb.append(", factoryStatus=").append(factoryStatus);
-        sb.append(", showStatus=").append(showStatus);
-        sb.append(", productCount=").append(productCount);
-        sb.append(", productCommentCount=").append(productCommentCount);
-        sb.append(", logo=").append(logo);
-        sb.append(", bigPic=").append(bigPic);
-        sb.append(", brandStory=").append(brandStory);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
     }
 }

@@ -1,8 +1,10 @@
 package com.tang.mall.mbg.model;
 
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Date;
 
-public class UmsAdminLoginLog {
+public class UmsAdminLoginLog implements Serializable {
     private Long id;
 
     private Long adminId;
@@ -13,7 +15,10 @@ public class UmsAdminLoginLog {
 
     private String address;
 
+    @ApiModelProperty(value = "浏览器登录类型")
     private String userAgent;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -61,5 +66,22 @@ public class UmsAdminLoginLog {
 
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", adminId=").append(adminId);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", ip=").append(ip);
+        sb.append(", address=").append(address);
+        sb.append(", userAgent=").append(userAgent);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

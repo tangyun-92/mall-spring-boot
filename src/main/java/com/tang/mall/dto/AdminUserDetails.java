@@ -1,4 +1,4 @@
-package com.tang.mall.model.dto;
+package com.tang.mall.dto;
 
 import com.tang.mall.mbg.model.UmsAdmin;
 import com.tang.mall.mbg.model.UmsPermission;

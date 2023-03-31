@@ -1,7 +1,9 @@
 package com.tang.mall.mbg.mapper;
 
 import com.tang.mall.mbg.model.UmsAdmin;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UmsAdminMapper {
     int deleteByPrimaryKey(Long id);
 

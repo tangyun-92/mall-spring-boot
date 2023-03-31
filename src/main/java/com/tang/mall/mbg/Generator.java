@@ -1,4 +1,4 @@
-package com.tang.mall.util;
+package com.tang.mall.mbg;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;

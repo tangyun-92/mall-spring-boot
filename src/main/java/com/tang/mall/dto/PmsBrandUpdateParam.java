@@ -1,44 +1,51 @@
-package com.tang.mall.model.request;
+package com.tang.mall.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-public class AddPmsBrandReq {
+public class PmsBrandUpdateParam implements Serializable {
+    @NotNull(message = "id不能为空")
+    @ApiModelProperty(value = "id", required = true)
+    private Long id;
 
-    @NotNull(message = "name不能为空")
-    @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String", required = true)
+    @ApiModelProperty(value = "品牌名称")
     private String name;
 
-    @NotNull(message = "firstLetter不能为空")
-    @ApiModelProperty(value = "首字母", name = "firstLetter", dataType = "String", required = true)
+    @ApiModelProperty(value = "首字母")
     private String firstLetter;
 
-    @NotNull(message = "sort不能为空")
-    @ApiModelProperty(value = "排序", name = "sort", dataType = "Integer", required = true)
     private Integer sort;
 
-    @NotNull(message = "factoryStatus不能为空")
-    @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "Integer", required = true)
+    @ApiModelProperty(value = "是否为品牌制造商：0->不是；1->是")
     private Integer factoryStatus;
 
-    @ApiModelProperty(value = "显示状态：0-不显示 1-显示", name = "showStatus", dataType = "Integer")
+    @ApiModelProperty(value = "显示状态：0-不显示 1-显示")
     private Integer showStatus;
 
-    @ApiModelProperty(value = "产品数量", name = "productCount", dataType = "Integer")
+    @ApiModelProperty(value = "产品数量")
     private Integer productCount;
 
-    @ApiModelProperty(value = "产品评论数量", name = "productCommentCount", dataType = "Integer")
+    @ApiModelProperty(value = "产品评论数量")
     private Integer productCommentCount;
 
-    @ApiModelProperty(value = "品牌logo", name = "logo", dataType = "String")
+    @ApiModelProperty(value = "品牌logo")
     private String logo;
 
-    @ApiModelProperty(value = "专区大图", name = "bigPic", dataType = "String")
+    @ApiModelProperty(value = "专区大图")
     private String bigPic;
 
-    @ApiModelProperty(value = "品牌故事", name = "brandStory", dataType = "String")
+    @ApiModelProperty(value = "品牌故事")
     private String brandStory;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -118,5 +125,26 @@ public class AddPmsBrandReq {
 
     public void setBrandStory(String brandStory) {
         this.brandStory = brandStory;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", firstLetter=").append(firstLetter);
+        sb.append(", sort=").append(sort);
+        sb.append(", factoryStatus=").append(factoryStatus);
+        sb.append(", showStatus=").append(showStatus);
+        sb.append(", productCount=").append(productCount);
+        sb.append(", productCommentCount=").append(productCommentCount);
+        sb.append(", logo=").append(logo);
+        sb.append(", bigPic=").append(bigPic);
+        sb.append(", brandStory=").append(brandStory);
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -1,5 +1,6 @@
 package com.tang.mall.service;
 
+import com.tang.mall.dto.UmsAdminRegisterParam;
 import com.tang.mall.mbg.model.UmsAdmin;
 import com.tang.mall.mbg.model.UmsPermission;
 
@@ -11,7 +12,7 @@ public interface UmsAdminService {
 
     List<UmsPermission> getPermissionList(Long adminId);
 
-    void register(UmsAdmin umsAdminParam);
+    void register(UmsAdminRegisterParam umsAdminRegisterParam);
 
     String login(String username, String password);
 }

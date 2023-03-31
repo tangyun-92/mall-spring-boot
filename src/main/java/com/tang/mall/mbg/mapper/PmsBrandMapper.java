@@ -1,7 +1,9 @@
 package com.tang.mall.mbg.mapper;
 
 import com.tang.mall.mbg.model.PmsBrand;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PmsBrandMapper {
     int deleteByPrimaryKey(Long id);
 

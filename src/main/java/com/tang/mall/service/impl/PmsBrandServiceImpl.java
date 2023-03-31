@@ -2,14 +2,14 @@ package com.tang.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.tang.mall.dto.PmsBrandUpdateParam;
 import com.tang.mall.exception.MallException;
 import com.tang.mall.exception.MallExceptionEnum;
 import com.tang.mall.mbg.mapper.PmsBrandMapper;
 import com.tang.mall.mbg.model.PmsBrand;
-import com.tang.mall.model.dao.PmsBrandMapperExtendMapper;
-import com.tang.mall.model.query.PmsBrandListQuery;
-import com.tang.mall.model.request.AddPmsBrandReq;
-import com.tang.mall.model.request.PmsBrandListReq;
+import com.tang.mall.dao.PmsBrandMapperDao;
+import com.tang.mall.dto.PmsBrandAddParam;
+import com.tang.mall.dto.PmsBrandListParam;
 import com.tang.mall.service.PmsBrandService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,50 +26,43 @@ import java.util.List;
 public class PmsBrandServiceImpl implements PmsBrandService {
 
     @Autowired
-    PmsBrandMapperExtendMapper pmsBrandMapperExtendMapper;
+    PmsBrandMapperDao pmsBrandMapperDao;
 
     @Autowired
     PmsBrandMapper pmsBrandMapper;
 
     /**
      * 后台-获取品牌列表
-     * @param pmsBrandListReq
+     * @param pmsBrandListParam
      * @return
      */
     @Override
     @Cacheable(value = "pmsBrandListForAdmin") // 启用 redis
-    public PageInfo list(PmsBrandListReq pmsBrandListReq) {
-        // 构建Query对象
-        PmsBrandListQuery brandListQuery = new PmsBrandListQuery();
-
+    public PageInfo list(PmsBrandListParam pmsBrandListParam) {
         // 搜索处理
-        // 品牌名称
-        if (!StringUtils.isEmpty(pmsBrandListReq.getName())) {
-            String name = new StringBuilder().append("%").append(pmsBrandListReq.getName()).append("%").toString();
-            brandListQuery.setName(name);
-        }
-        // 是否为品牌制造商：0-不是 1-是
-        if (!StringUtils.isEmpty(pmsBrandListReq.getFactoryStatus())) {
-            brandListQuery.setFactoryStatus(pmsBrandListReq.getFactoryStatus());
+        // 品牌名称模糊查询
+        if (!StringUtils.isEmpty(pmsBrandListParam.getName())) {
+            String name = new StringBuilder().append("%").append(pmsBrandListParam.getName()).append("%").toString();
+            pmsBrandListParam.setName(name);
         }
 
-        PageHelper.startPage(pmsBrandListReq.getPageNum(), pmsBrandListReq.getPageSize());
+        PageHelper.startPage(pmsBrandListParam.getPageNum(), pmsBrandListParam.getPageSize());
 
-        List<PmsBrand> brandList = pmsBrandMapperExtendMapper.selectList(brandListQuery);
+        List<PmsBrand> brandList = pmsBrandMapperDao.selectList(pmsBrandListParam);
         PageInfo pageInfo = new PageInfo(brandList);
         return pageInfo;
     }
 
     /**
      * 后台-新增品牌
-     * @param addPmsBrandReq
+     * @param pmsBrandAddParam
      */
     @Override
-    public void add(AddPmsBrandReq addPmsBrandReq) {
+    public void add(PmsBrandAddParam pmsBrandAddParam) {
         PmsBrand pmsBrand = new PmsBrand();
-        BeanUtils.copyProperties(addPmsBrandReq, pmsBrand);
+        BeanUtils.copyProperties(pmsBrandAddParam, pmsBrand);
 
-        PmsBrand pmsBrandOld = pmsBrandMapperExtendMapper.selectByName(addPmsBrandReq.getName());
+        PmsBrand pmsBrandOld = pmsBrandMapperDao.selectByName(pmsBrandAddParam.getName());
         if (pmsBrandOld != null) {
             throw new MallException(MallExceptionEnum.NAME_EXISTED);
         }
@@ -81,15 +74,14 @@ public class PmsBrandServiceImpl implements PmsBrandService {
 
     /**
      * 后台-更新品牌
-     * @param pmsBrand
      */
     @Override
-    public void update(PmsBrand pmsBrand) {
-        PmsBrand pmsBrandOld = pmsBrandMapperExtendMapper.selectByName(pmsBrand.getName());
-        if (pmsBrandOld != null && !pmsBrandOld.getId().equals(pmsBrand.getId())) {
+    public void update(PmsBrandUpdateParam pmsBrandUpdateParam) {
+        PmsBrand pmsBrandOld = pmsBrandMapperDao.selectByName(pmsBrandUpdateParam.getName());
+        if (pmsBrandOld != null && !pmsBrandOld.getId().equals(pmsBrandUpdateParam.getId())) {
             throw new MallException(MallExceptionEnum.NAME_EXISTED);
         }
-        int count = pmsBrandMapper.updateByPrimaryKeySelective(pmsBrand);
+        int count = pmsBrandMapper.updateByPrimaryKeySelective(pmsBrandOld);
         if (count == 0) {
             throw new MallException(MallExceptionEnum.UPDATE_FAILED);
         }

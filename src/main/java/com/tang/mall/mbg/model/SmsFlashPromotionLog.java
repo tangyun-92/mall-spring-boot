@@ -1,8 +1,10 @@
 package com.tang.mall.mbg.model;
 
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Date;
 
-public class SmsFlashPromotionLog {
+public class SmsFlashPromotionLog implements Serializable {
     private Integer id;
 
     private Integer memberId;
@@ -13,9 +15,12 @@ public class SmsFlashPromotionLog {
 
     private String productName;
 
+    @ApiModelProperty(value = "会员订阅时间")
     private Date subscribeTime;
 
     private Date sendTime;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
@@ -71,5 +76,23 @@ public class SmsFlashPromotionLog {
 
     public void setSendTime(Date sendTime) {
         this.sendTime = sendTime;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", memberId=").append(memberId);
+        sb.append(", productId=").append(productId);
+        sb.append(", memberPhone=").append(memberPhone);
+        sb.append(", productName=").append(productName);
+        sb.append(", subscribeTime=").append(subscribeTime);
+        sb.append(", sendTime=").append(sendTime);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

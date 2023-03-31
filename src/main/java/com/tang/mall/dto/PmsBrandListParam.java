@@ -1,8 +1,8 @@
-package com.tang.mall.model.request;
+package com.tang.mall.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class PmsBrandListReq {
+public class PmsBrandListParam {
 
     @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String")
     private String name;

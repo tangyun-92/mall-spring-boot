@@ -5,8 +5,8 @@
 
 <generatorConfiguration>
     <!-- 数据库驱动个人配置 -->
-    <classPathEntry location="D:\java\apache-maven-3.9.0\maven-repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar" />
-    <!--    <classPathEntry location="F:\java\apache-maven-3.9.0\MavenRepository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar" />-->
+<!--    <classPathEntry location="D:\java\apache-maven-3.9.0\maven-repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar" />-->
+        <classPathEntry location="F:\java\apache-maven-3.9.0\MavenRepository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar" />
     <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
         <property name="autoDelimitKeywords" value="true" />
         <!-- 可以使用``包括字段名，避免字段名与sql保留字冲突报错 -->
@@ -14,8 +14,12 @@
         <property name="endingDelimiter" value="`" />
         <!--生成mapper.xml时覆盖原文件-->
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        <!-- 为模型生成序列化方法-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <!-- optional，在创建class时，对注释进行控制 -->
-        <commentGenerator>
+        <commentGenerator type="com.tang.mall.mbg.CommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>

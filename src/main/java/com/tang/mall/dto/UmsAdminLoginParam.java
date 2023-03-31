@@ -1,4 +1,4 @@
-package com.tang.mall.model.request;
+package com.tang.mall.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotNull;
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 /**
  * 用户登录参数
  */
-public class UmsAdminLoginReq {
+public class UmsAdminLoginParam {
     @ApiModelProperty(value = "用户名", name = "username", dataType = "String", required = true)
     @NotNull(message = "用户名不能为空")
     private String username;

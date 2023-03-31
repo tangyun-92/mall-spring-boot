@@ -1,4 +1,4 @@
-package com.tang.mall.model.dao;
+package com.tang.mall.dao;
 
 import com.tang.mall.mbg.model.UmsPermission;
 import org.apache.ibatis.annotations.Param;

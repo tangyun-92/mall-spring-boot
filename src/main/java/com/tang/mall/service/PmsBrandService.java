@@ -1,19 +1,19 @@
 package com.tang.mall.service;
 
 import com.github.pagehelper.PageInfo;
-import com.tang.mall.mbg.model.PmsBrand;
-import com.tang.mall.model.request.AddPmsBrandReq;
-import com.tang.mall.model.request.PmsBrandListReq;
+import com.tang.mall.dto.PmsBrandUpdateParam;
+import com.tang.mall.dto.PmsBrandAddParam;
+import com.tang.mall.dto.PmsBrandListParam;
 
 /**
  * 品牌 Service
  */
 public interface PmsBrandService {
-    PageInfo list(PmsBrandListReq pmsBrandListReq);
+    PageInfo list(PmsBrandListParam pmsBrandListParam);
 
-    void add(AddPmsBrandReq addPmsBrandReq);
+    void add(PmsBrandAddParam pmsBrandAddParam);
 
-    void update(PmsBrand pmsBrand);
+    void update(PmsBrandUpdateParam pmsBrandUpdateParam);
 
     void delete(Long id);
 }
