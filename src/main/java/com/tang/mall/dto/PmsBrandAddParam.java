@@ -2,15 +2,16 @@ package com.tang.mall.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class PmsBrandAddParam {
 
-    @NotNull(message = "name不能为空")
+    @NotBlank(message = "name不能为空")
     @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String", required = true)
     private String name;
 
-    @NotNull(message = "firstLetter不能为空")
+    @NotBlank(message = "firstLetter不能为空")
     @ApiModelProperty(value = "首字母", name = "firstLetter", dataType = "String", required = true)
     private String firstLetter;
 

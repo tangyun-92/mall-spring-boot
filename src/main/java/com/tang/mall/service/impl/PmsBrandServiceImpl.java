@@ -14,6 +14,7 @@ import com.tang.mall.service.PmsBrandService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -77,11 +78,14 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      */
     @Override
     public void update(PmsBrandUpdateParam pmsBrandUpdateParam) {
+        PmsBrand pmsBrand = new PmsBrand();
+        BeanUtils.copyProperties(pmsBrandUpdateParam, pmsBrand);
+
         PmsBrand pmsBrandOld = pmsBrandMapperDao.selectByName(pmsBrandUpdateParam.getName());
         if (pmsBrandOld != null && !pmsBrandOld.getId().equals(pmsBrandUpdateParam.getId())) {
             throw new MallException(MallExceptionEnum.NAME_EXISTED);
         }
-        int count = pmsBrandMapper.updateByPrimaryKeySelective(pmsBrandOld);
+        int count = pmsBrandMapper.updateByPrimaryKeySelective(pmsBrand);
         if (count == 0) {
             throw new MallException(MallExceptionEnum.UPDATE_FAILED);
         }
