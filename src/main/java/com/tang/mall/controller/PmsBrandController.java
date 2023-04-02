@@ -7,8 +7,6 @@ import com.tang.mall.dto.PmsBrandAddParam;
 import com.tang.mall.dto.PmsBrandListParam;
 import com.tang.mall.service.PmsBrandService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +17,7 @@ import javax.validation.Valid;
 /**
  * 品牌Controller
  */
-@Api(tags = "品牌管理")
+@Api(tags = "brand-management-admin")
 @RestController
 public class PmsBrandController {
 
@@ -27,12 +25,12 @@ public class PmsBrandController {
     PmsBrandService brandService;
 
     @ApiOperation("后台-品牌列表")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "name", value = "品牌名称", dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "factoryStatus", value = "是否为品牌制造商：0-不是 1-是", dataType = "Integer", paramType = "query"),
-            @ApiImplicitParam(name = "pageNum", value = "当前第几页", dataType = "Integer", paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "每页显示条数", dataType = "Integer", paramType = "query")
-    })
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "name", value = "品牌名称", dataType = "String", paramType = "query"),
+//            @ApiImplicitParam(name = "factoryStatus", value = "是否为品牌制造商：0-不是 1-是", dataType = "Long", paramType = "query"),
+//            @ApiImplicitParam(name = "pageNum", value = "当前第几页", dataType = "Long", paramType = "query"),
+//            @ApiImplicitParam(name = "pageSize", value = "每页显示条数", dataType = "Long", paramType = "query")
+//    })
     @GetMapping("/admin/brand/list")
     @PreAuthorize("hasAuthority('pms:brand:read')")
     public ApiRestResponse list(PmsBrandListParam pmsBrandListParam) {

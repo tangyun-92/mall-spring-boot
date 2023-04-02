@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@Api(tags = "后台-用户管理")
+@Api(tags = "user-management-admin")
 @RequestMapping("/admin")
 public class UmsAdminController {
     @Autowired
