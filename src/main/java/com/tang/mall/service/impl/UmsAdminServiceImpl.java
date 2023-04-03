@@ -14,9 +14,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -79,19 +81,23 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     public String login(String username, String password) {
         String token = null;
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+        try {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+                throw new MallException(MallExceptionEnum.WRONG_PASSWORD);
+            }
+
+            // 更新最后一次登录时间
+            UmsAdmin umsAdmin = umsAdminMapperDao.selectByName(username);
+            umsAdmin.setLoginTime(new Date());
+            umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
+
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            token = jwtTokenUtil.generateToken(userDetails);
+        } catch (AuthenticationException e) {
             throw new MallException(MallExceptionEnum.WRONG_PASSWORD);
         }
-
-        // 更新最后一次登录时间
-        UmsAdmin umsAdmin = umsAdminMapperDao.selectByName(username);
-        umsAdmin.setLoginTime(new Date());
-        umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
-
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        token = jwtTokenUtil.generateToken(userDetails);
         return token;
     }
 

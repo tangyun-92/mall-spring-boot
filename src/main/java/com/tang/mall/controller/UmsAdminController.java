@@ -7,15 +7,20 @@ import com.tang.mall.mbg.model.UmsAdmin;
 import com.tang.mall.mbg.model.UmsPermission;
 import com.tang.mall.dto.UmsAdminLoginParam;
 import com.tang.mall.service.UmsAdminService;
+import com.tang.mall.util.JwtTokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,5 +61,21 @@ public class UmsAdminController {
     public ApiRestResponse getPermissionList(@RequestParam Long adminId) {
         List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
         return ApiRestResponse.success(permissionList);
+    }
+
+    @ApiOperation("获取登录用户的详细信息与权限列表")
+    @GetMapping(value = "/userInfo")
+    public ApiRestResponse getUserInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        UmsAdmin umsAdmin = adminService.getAdminByUsername(username);
+        umsAdmin.setPassword(null);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        List<UmsPermission> permissionList = adminService.getPermissionList(umsAdmin.getId());
+        hashMap.put("permissionList", permissionList);
+        hashMap.put("info", umsAdmin);
+
+        return ApiRestResponse.success(hashMap);
     }
 }

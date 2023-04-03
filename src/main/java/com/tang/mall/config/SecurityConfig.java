@@ -1,8 +1,10 @@
 package com.tang.mall.config;
 
+import com.tang.mall.common.ApiRestResponse;
 import com.tang.mall.component.JwtAuthenticationTokenFilter;
 import com.tang.mall.component.RestAuthenticationEntryPoint;
 import com.tang.mall.component.RestfulAccessDeniedHandler;
+import com.tang.mall.exception.MallExceptionEnum;
 import com.tang.mall.mbg.model.UmsAdmin;
 import com.tang.mall.mbg.model.UmsPermission;
 import com.tang.mall.dto.AdminUserDetails;
@@ -98,6 +100,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 List<UmsPermission> permissionList = umsAdminService.getPermissionList(admin.getId());
                 return new AdminUserDetails(admin,permissionList);
             }
+            ApiRestResponse.error(MallExceptionEnum.WRONG_PASSWORD);
             throw new UsernameNotFoundException("用户名或密码错误");
         };
     }
