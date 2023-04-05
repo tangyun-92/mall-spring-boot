@@ -47,7 +47,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
             pmsBrandListParam.setName(name);
         }
 
-        PageHelper.startPage(pmsBrandListParam.getPageNum(), pmsBrandListParam.getPageSize());
+        PageHelper.startPage(pmsBrandListParam.getCurrent(), pmsBrandListParam.getPageSize());
 
         List<PmsBrand> brandList = pmsBrandMapperDao.selectList(pmsBrandListParam);
         PageInfo pageInfo = new PageInfo(brandList);

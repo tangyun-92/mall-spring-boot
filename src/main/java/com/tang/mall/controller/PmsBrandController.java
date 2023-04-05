@@ -33,7 +33,7 @@ public class PmsBrandController {
 //    })
     @GetMapping("/admin/brand/list")
     @PreAuthorize("hasAuthority('pms:brand:read')")
-    public ApiRestResponse list(PmsBrandListParam pmsBrandListParam) {
+    public ApiRestResponse getBrandList(PmsBrandListParam pmsBrandListParam) {
         PageInfo list = brandService.list(pmsBrandListParam);
         return ApiRestResponse.success(list);
     }
@@ -41,7 +41,7 @@ public class PmsBrandController {
     @ApiOperation("后台-添加品牌")
     @PostMapping("/admin/brand/add")
     @PreAuthorize("hasAuthority('pms:brand:create')")
-    public ApiRestResponse add(@Valid @RequestBody PmsBrandAddParam pmsBrandAddParam) {
+    public ApiRestResponse addBrand(@Valid @RequestBody PmsBrandAddParam pmsBrandAddParam) {
         brandService.add(pmsBrandAddParam);
         return ApiRestResponse.success();
     }
@@ -49,7 +49,7 @@ public class PmsBrandController {
     @ApiOperation("后台-更新品牌")
     @PostMapping("/admin/brand/update")
     @PreAuthorize("hasAuthority('pms:brand:update')")
-    public ApiRestResponse update(@Valid @RequestBody PmsBrandUpdateParam pmsBrandUpdateParam) {
+    public ApiRestResponse updateBrand(@Valid @RequestBody PmsBrandUpdateParam pmsBrandUpdateParam) {
         brandService.update(pmsBrandUpdateParam);
         return ApiRestResponse.success();
     }
@@ -57,7 +57,7 @@ public class PmsBrandController {
     @ApiOperation("后台-删除品牌")
     @PostMapping("/admin/brand/delete")
     @PreAuthorize("hasAuthority('pms:brand:delete')")
-    public ApiRestResponse delete(@RequestParam Long id) {
+    public ApiRestResponse deleteBrand(@RequestParam Long id) {
         brandService.delete(id);
         return ApiRestResponse.success();
     }

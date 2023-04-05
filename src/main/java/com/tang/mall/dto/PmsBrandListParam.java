@@ -11,7 +11,7 @@ public class PmsBrandListParam {
     private Integer factoryStatus;
 
     @ApiModelProperty(value = "当前第几页", name = "pageNum", dataType = "Integer")
-    private Integer pageNum=1;
+    private Integer current=1;
 
     @ApiModelProperty(value = "每页显示条数", name = "pageSize", dataType = "Integer")
     private Integer pageSize=10;
@@ -21,7 +21,7 @@ public class PmsBrandListParam {
         return "PmsBrandListReq{" +
                 "name='" + name + '\'' +
                 ", factoryStatus=" + factoryStatus +
-                ", pageNum=" + pageNum +
+                ", pageNum=" + current +
                 ", pageSize=" + pageSize +
                 '}';
     }
@@ -42,12 +42,12 @@ public class PmsBrandListParam {
         this.factoryStatus = factoryStatus;
     }
 
-    public Integer getPageNum() {
-        return pageNum;
+    public Integer getCurrent() {
+        return current;
     }
 
-    public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
+    public void setCurrent(Integer current) {
+        this.current = current;
     }
 
     public Integer getPageSize() {
