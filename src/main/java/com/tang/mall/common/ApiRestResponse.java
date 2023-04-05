@@ -1,5 +1,6 @@
 package com.tang.mall.common;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.tang.mall.exception.MallExceptionEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,6 +15,8 @@ public class ApiRestResponse<T> {
     @ApiModelProperty(value = "状态：200-成功", name = "status", dataType = "Integer")
     private Integer status;
 
+    private Boolean success;
+
     @ApiModelProperty(value = "信息提示", name = "msg", dataType = "Integer")
     private String msg;
 
@@ -22,6 +25,7 @@ public class ApiRestResponse<T> {
 
     private static final int OK_CODE = 200;
     private static final String OK_MSG = "SUCCESS";
+    private static final Boolean OK_SUCCESS = true;
 
     public ApiRestResponse(Integer status, String msg, T data) {
         this.status = status;
@@ -29,13 +33,14 @@ public class ApiRestResponse<T> {
         this.data = data;
     }
 
-    public ApiRestResponse(Integer status, String msg) {
+    public ApiRestResponse(Integer status, Boolean success, String msg) {
         this.status = status;
         this.msg = msg;
+        this.success = success;
     }
 
     public ApiRestResponse() {
-        this(OK_CODE, OK_MSG);
+        this(OK_CODE, OK_SUCCESS, OK_MSG);
     }
 
     public static <T> ApiRestResponse<T> success() {
@@ -49,11 +54,11 @@ public class ApiRestResponse<T> {
     }
 
     public static <T> ApiRestResponse error(MallExceptionEnum ex) {
-        return new ApiRestResponse<>(ex.getCode(), ex.getMsg());
+        return new ApiRestResponse<>(ex.getCode(), false, ex.getMsg());
     }
 
-    public static ApiRestResponse error(Integer code, String message) {
-        return new ApiRestResponse(code, message);
+    public static ApiRestResponse error(Integer code, Boolean success, String message) {
+        return new ApiRestResponse(code, false, message);
     }
 
     @Override
@@ -87,5 +92,13 @@ public class ApiRestResponse<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
     }
 }

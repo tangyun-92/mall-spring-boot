@@ -1,15 +1,15 @@
 package com.tang.mall.service;
 
-import com.github.pagehelper.PageInfo;
 import com.tang.mall.dto.PmsBrandUpdateParam;
 import com.tang.mall.dto.PmsBrandAddParam;
 import com.tang.mall.dto.PmsBrandListParam;
+import com.tang.mall.service.impl.PageBean;
 
 /**
  * 品牌 Service
  */
 public interface PmsBrandService {
-    PageInfo list(PmsBrandListParam pmsBrandListParam);
+    PageBean list(PmsBrandListParam pmsBrandListParam);
 
     void add(PmsBrandAddParam pmsBrandAddParam);
 

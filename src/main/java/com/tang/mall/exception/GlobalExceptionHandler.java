@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ApiRestResponse handleMallException(MallException e) {
         log.error("MallException: ", e);
-        return ApiRestResponse.error(e.getCode(), e.getMessage());
+        return ApiRestResponse.error(e.getCode(), false, e.getMessage());
     }
 
     // 参数异常
@@ -71,7 +71,7 @@ public class GlobalExceptionHandler {
         if (list.size() == 0) {
             return ApiRestResponse.error(MallExceptionEnum.REQUEST_PARAM_ERROR);
         }
-        return ApiRestResponse.error(MallExceptionEnum.REQUEST_PARAM_ERROR.getCode(), list.toString());
+        return ApiRestResponse.error(MallExceptionEnum.REQUEST_PARAM_ERROR.getCode(), false, list.toString());
     }
 
 }

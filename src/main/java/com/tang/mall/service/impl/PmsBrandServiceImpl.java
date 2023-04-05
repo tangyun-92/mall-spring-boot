@@ -1,7 +1,6 @@
 package com.tang.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.tang.mall.dto.PmsBrandUpdateParam;
 import com.tang.mall.exception.MallException;
 import com.tang.mall.exception.MallExceptionEnum;
@@ -14,7 +13,6 @@ import com.tang.mall.service.PmsBrandService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -39,7 +37,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      */
     @Override
     @Cacheable(value = "pmsBrandListForAdmin") // 启用 redis
-    public PageInfo list(PmsBrandListParam pmsBrandListParam) {
+    public PageBean list(PmsBrandListParam pmsBrandListParam) {
         // 搜索处理
         // 品牌名称模糊查询
         if (!StringUtils.isEmpty(pmsBrandListParam.getName())) {
@@ -50,8 +48,10 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         PageHelper.startPage(pmsBrandListParam.getCurrent(), pmsBrandListParam.getPageSize());
 
         List<PmsBrand> brandList = pmsBrandMapperDao.selectList(pmsBrandListParam);
-        PageInfo pageInfo = new PageInfo(brandList);
-        return pageInfo;
+//        PageInfo pageInfo = new PageInfo(brandList);
+//        return pageInfo;
+//        PageBean pageInfo = new PageBean<>(brandList);
+        return new PageBean<>(brandList);
     }
 
     /**

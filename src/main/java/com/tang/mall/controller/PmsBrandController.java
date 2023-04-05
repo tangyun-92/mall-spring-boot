@@ -6,6 +6,7 @@ import com.tang.mall.dto.PmsBrandUpdateParam;
 import com.tang.mall.dto.PmsBrandAddParam;
 import com.tang.mall.dto.PmsBrandListParam;
 import com.tang.mall.service.PmsBrandService;
+import com.tang.mall.service.impl.PageBean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class PmsBrandController {
     @GetMapping("/admin/brand/list")
     @PreAuthorize("hasAuthority('pms:brand:read')")
     public ApiRestResponse getBrandList(PmsBrandListParam pmsBrandListParam) {
-        PageInfo list = brandService.list(pmsBrandListParam);
+        PageBean list = brandService.list(pmsBrandListParam);
         return ApiRestResponse.success(list);
     }
 
