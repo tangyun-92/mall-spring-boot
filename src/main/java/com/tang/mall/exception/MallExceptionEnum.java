@@ -11,6 +11,8 @@ public enum MallExceptionEnum {
     DELETE_FAILED(10005, "删除失败"),
     REGISTER_FAILED(10006, "注册失败"),
     WRONG_PASSWORD(10007, "用户名或密码错误"),
+    MKDIR_FAILED(10008, "文件夹创建失败"),
+    UPLOAD_FAILED(10009, "上传失败"),
     SYSTEM_ERROR(20000, "系统异常"),
     NOT_AUTH(20001, "没有相关权限，请联系管理员"),
     TOKEN_LOSE_EFFICACY(20002, "暂未登录或token已经过期");
