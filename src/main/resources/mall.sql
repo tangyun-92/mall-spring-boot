@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80032
 File Encoding         : 65001
 
-Date: 2023-03-27 14:02:45
+Date: 2023-04-07 15:13:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,9 +24,9 @@ CREATE TABLE `cms_help` (
   `category_id` bigint DEFAULT NULL,
   `icon` varchar(500) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
-  `show_status` int DEFAULT NULL,
+  `show_status` varchar(10) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
-  `read_count` int DEFAULT NULL,
+  `read_count` int DEFAULT NULL COMMENT '阅读次数',
   `content` text,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='帮助表';
@@ -44,7 +44,7 @@ CREATE TABLE `cms_help_category` (
   `name` varchar(100) DEFAULT NULL,
   `icon` varchar(500) DEFAULT NULL COMMENT '分类图标',
   `help_count` int DEFAULT NULL COMMENT '专题数量',
-  `show_status` int DEFAULT NULL,
+  `show_status` varchar(10) DEFAULT NULL,
   `sort` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='帮助分类表';
@@ -59,12 +59,12 @@ CREATE TABLE `cms_help_category` (
 DROP TABLE IF EXISTS `cms_member_report`;
 CREATE TABLE `cms_member_report` (
   `id` bigint DEFAULT NULL,
-  `report_type` int DEFAULT NULL COMMENT '举报类型：0->商品评价；1->话题内容；2->用户评论',
+  `report_type` varchar(10) DEFAULT NULL COMMENT '举报类型：0->商品评价；1->话题内容；2->用户评论',
   `report_member_name` varchar(100) DEFAULT NULL COMMENT '举报人',
   `create_time` datetime DEFAULT NULL,
   `report_object` varchar(100) DEFAULT NULL,
-  `report_status` int DEFAULT NULL COMMENT '举报状态：0->未处理；1->已处理',
-  `handle_status` int DEFAULT NULL COMMENT '处理结果：0->无效；1->有效；2->恶意',
+  `report_status` varchar(10) DEFAULT NULL COMMENT '举报状态：0->未处理；1->已处理',
+  `handle_status` varchar(10) DEFAULT NULL COMMENT '处理结果：0->无效；1->有效；2->恶意',
   `note` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='用户举报表';
 
@@ -82,7 +82,7 @@ CREATE TABLE `cms_preference_area` (
   `sub_title` varchar(255) DEFAULT NULL,
   `pic` varbinary(500) DEFAULT NULL COMMENT '展示图片',
   `sort` int DEFAULT NULL,
-  `show_status` int DEFAULT NULL,
+  `show_status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='优选专区';
 
@@ -127,14 +127,14 @@ CREATE TABLE `cms_subject` (
   `title` varchar(100) DEFAULT NULL,
   `pic` varchar(500) DEFAULT NULL COMMENT '专题主图',
   `product_count` int DEFAULT NULL COMMENT '关联产品数量',
-  `recommend_status` int DEFAULT NULL,
+  `recommend_status` varchar(10) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `collect_count` int DEFAULT NULL,
   `read_count` int DEFAULT NULL,
   `comment_count` int DEFAULT NULL,
   `album_pics` varchar(1000) DEFAULT NULL COMMENT '画册图片用逗号分割',
   `description` varchar(1000) DEFAULT NULL,
-  `show_status` int DEFAULT NULL COMMENT '显示状态：0->不显示；1->显示',
+  `show_status` varchar(10) DEFAULT NULL COMMENT '显示状态：0->不显示；1->显示',
   `content` text,
   `forward_count` int DEFAULT NULL COMMENT '转发数',
   `category_name` varchar(200) DEFAULT NULL COMMENT '专题分类名称',
@@ -160,7 +160,7 @@ CREATE TABLE `cms_subject_category` (
   `name` varchar(100) DEFAULT NULL,
   `icon` varchar(500) DEFAULT NULL COMMENT '分类图标',
   `subject_count` int DEFAULT NULL COMMENT '专题数量',
-  `show_status` int DEFAULT NULL,
+  `show_status` varchar(10) DEFAULT NULL,
   `sort` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='专题分类表';
@@ -182,7 +182,7 @@ CREATE TABLE `cms_subject_comment` (
   `member_icon` varchar(255) DEFAULT NULL,
   `content` varchar(1000) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
-  `show_status` int DEFAULT NULL,
+  `show_status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='专题评论表';
 
@@ -251,7 +251,7 @@ CREATE TABLE `cms_topic_category` (
   `name` varchar(100) DEFAULT NULL,
   `icon` varchar(500) DEFAULT NULL COMMENT '分类图标',
   `subject_count` int DEFAULT NULL COMMENT '专题数量',
-  `show_status` int DEFAULT NULL,
+  `show_status` varchar(10) DEFAULT NULL,
   `sort` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='话题分类表';
@@ -271,7 +271,7 @@ CREATE TABLE `cms_topic_comment` (
   `member_icon` varchar(255) DEFAULT NULL,
   `content` varchar(1000) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
-  `show_status` int DEFAULT NULL,
+  `show_status` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='专题评论表';
 
@@ -297,7 +297,7 @@ CREATE TABLE `oms_cart_item` (
   `member_nickname` varchar(500) DEFAULT NULL COMMENT '会员昵称',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_date` datetime DEFAULT NULL COMMENT '修改时间',
-  `delete_status` int DEFAULT '0' COMMENT '是否删除',
+  `delete_status` varchar(10) DEFAULT '0' COMMENT '是否删除 0-未删除 1-已删除',
   `product_category_id` bigint DEFAULT NULL COMMENT '商品分类',
   `product_brand` varchar(200) DEFAULT NULL,
   `product_sn` varchar(200) DEFAULT NULL,
@@ -404,8 +404,8 @@ DROP TABLE IF EXISTS `oms_company_address`;
 CREATE TABLE `oms_company_address` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `address_name` varchar(200) DEFAULT NULL COMMENT '地址名称',
-  `send_status` int DEFAULT NULL COMMENT '默认发货地址：0->否；1->是',
-  `receive_status` int DEFAULT NULL COMMENT '是否默认收货地址：0->否；1->是',
+  `send_status` varchar(10) DEFAULT NULL COMMENT '默认发货地址：0->否；1->是',
+  `receive_status` varchar(10) DEFAULT NULL COMMENT '是否默认收货地址：0->否；1->是',
   `name` varchar(64) DEFAULT NULL COMMENT '收发货人姓名',
   `phone` varchar(64) DEFAULT NULL COMMENT '收货人电话',
   `province` varchar(64) DEFAULT NULL COMMENT '省/直辖市',
@@ -440,17 +440,17 @@ CREATE TABLE `oms_order` (
   `integration_amount` decimal(10,2) DEFAULT NULL COMMENT '积分抵扣金额',
   `coupon_amount` decimal(10,2) DEFAULT NULL COMMENT '优惠券抵扣金额',
   `discount_amount` decimal(10,2) DEFAULT NULL COMMENT '管理员后台调整订单使用的折扣金额',
-  `pay_type` int DEFAULT NULL COMMENT '支付方式：0->未支付；1->支付宝；2->微信',
-  `source_type` int DEFAULT NULL COMMENT '订单来源：0->PC订单；1->app订单',
-  `status` int DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
-  `order_type` int DEFAULT NULL COMMENT '订单类型：0->正常订单；1->秒杀订单',
+  `pay_type` varchar(10) DEFAULT NULL COMMENT '支付方式：0->未支付；1->支付宝；2->微信',
+  `source_type` varchar(10) DEFAULT NULL COMMENT '订单来源：0->PC订单；1->app订单',
+  `status` varchar(10) DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
+  `order_type` varchar(10) DEFAULT NULL COMMENT '订单类型：0->正常订单；1->秒杀订单',
   `delivery_company` varchar(64) DEFAULT NULL COMMENT '物流公司(配送方式)',
   `delivery_sn` varchar(64) DEFAULT NULL COMMENT '物流单号',
   `auto_confirm_day` int DEFAULT NULL COMMENT '自动确认时间（天）',
   `integration` int DEFAULT NULL COMMENT '可以获得的积分',
   `growth` int DEFAULT NULL COMMENT '可以活动的成长值',
   `promotion_info` varchar(100) DEFAULT NULL COMMENT '活动信息',
-  `bill_type` int DEFAULT NULL COMMENT '发票类型：0->不开发票；1->电子发票；2->纸质发票',
+  `bill_type` varchar(10) DEFAULT NULL COMMENT '发票类型：0->不开发票；1->电子发票；2->纸质发票',
   `bill_header` varchar(200) DEFAULT NULL COMMENT '发票抬头',
   `bill_content` varchar(200) DEFAULT NULL COMMENT '发票内容',
   `bill_receiver_phone` varchar(32) DEFAULT NULL COMMENT '收票人电话',
@@ -463,8 +463,8 @@ CREATE TABLE `oms_order` (
   `receiver_region` varchar(32) DEFAULT NULL COMMENT '区',
   `receiver_detail_address` varchar(200) DEFAULT NULL COMMENT '详细地址',
   `note` varchar(500) DEFAULT NULL COMMENT '订单备注',
-  `confirm_status` int DEFAULT NULL COMMENT '确认收货状态：0->未确认；1->已确认',
-  `delete_status` int NOT NULL DEFAULT '0' COMMENT '删除状态：0->未删除；1->已删除',
+  `confirm_status` varchar(10) DEFAULT NULL COMMENT '确认收货状态：0->未确认；1->已确认',
+  `delete_status` varchar(10) NOT NULL DEFAULT '0' COMMENT '删除状态：0->未删除；1->已删除',
   `use_integration` int DEFAULT NULL COMMENT '下单时使用的积分',
   `payment_time` datetime DEFAULT NULL COMMENT '支付时间',
   `delivery_time` datetime DEFAULT NULL COMMENT '发货时间',
@@ -660,7 +660,7 @@ CREATE TABLE `oms_order_operate_history` (
   `order_id` bigint DEFAULT NULL COMMENT '订单id',
   `operate_man` varchar(100) DEFAULT NULL COMMENT '操作人：用户；系统；后台管理员',
   `create_time` datetime DEFAULT NULL COMMENT '操作时间',
-  `order_status` int DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
+  `order_status` varchar(10) DEFAULT NULL COMMENT '订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单',
   `note` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='订单操作历史记录';
@@ -717,7 +717,7 @@ CREATE TABLE `oms_order_return_apply` (
   `return_amount` decimal(10,2) DEFAULT NULL COMMENT '退款金额',
   `return_name` varchar(100) DEFAULT NULL COMMENT '退货人姓名',
   `return_phone` varchar(100) DEFAULT NULL COMMENT '退货人电话',
-  `status` int DEFAULT NULL COMMENT '申请状态：0->待处理；1->退货中；2->已完成；3->已拒绝',
+  `status` varchar(10) DEFAULT NULL COMMENT '申请状态：0->待处理；1->退货中；2->已完成；3->已拒绝',
   `handle_time` datetime DEFAULT NULL COMMENT '处理时间',
   `product_pic` varchar(500) DEFAULT NULL COMMENT '商品图片',
   `product_name` varchar(200) DEFAULT NULL COMMENT '商品名称',
@@ -770,7 +770,7 @@ CREATE TABLE `oms_order_return_reason` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL COMMENT '退货类型',
   `sort` int DEFAULT NULL,
-  `status` int DEFAULT NULL COMMENT '状态：0->不启用；1->启用',
+  `status` varchar(10) DEFAULT NULL COMMENT '状态：0->不启用；1->启用',
   `create_time` datetime DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='退货原因表';
@@ -849,20 +849,20 @@ CREATE TABLE `pms_brand` (
   `name` varchar(64) DEFAULT NULL,
   `first_letter` varchar(8) DEFAULT NULL COMMENT '首字母',
   `sort` int DEFAULT NULL,
-  `factory_status` int DEFAULT NULL COMMENT '是否为品牌制造商：0->不是；1->是',
-  `show_status` int DEFAULT NULL,
+  `factory_status` varchar(10) DEFAULT NULL COMMENT '是否为品牌制造商：0->不是；1->是',
+  `show_status` varchar(10) DEFAULT NULL,
   `product_count` int DEFAULT NULL COMMENT '产品数量',
   `product_comment_count` int DEFAULT NULL COMMENT '产品评论数量',
   `logo` varchar(255) DEFAULT NULL COMMENT '品牌logo',
   `big_pic` varchar(255) DEFAULT NULL COMMENT '专区大图',
   `brand_story` text COMMENT '品牌故事',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='品牌表';
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='品牌表';
 
 -- ----------------------------
 -- Records of pms_brand
 -- ----------------------------
-INSERT INTO `pms_brand` VALUES ('1', '万和', 'W', '0', '1', '1', '100', '100', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20200607/5b07ca8aN4e127d2f.jpg', 'http://img13.360buyimg.com/cms/jfs/t1/121860/35/2430/187800/5ec4e294E22f3ffcc/1e233b65b94ba192.jpg', '万和成立于1993年8月，总部位于广东顺德国家级高新技术开发区内，是国内生产规模最大的燃气具专业制造企业，也是中国燃气具发展战略的首倡者和推动者、中国五金制品协会燃气用具分会第三届理事长单位。');
+INSERT INTO `pms_brand` VALUES ('1', '万和', 'W', '1', '1', '1', '100', '100', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20200607/5b07ca8aN4e127d2f.jpg', 'http://img13.360buyimg.com/cms/jfs/t1/121860/35/2430/187800/5ec4e294E22f3ffcc/1e233b65b94ba192.jpg', '万和成立于1993年8月，总部位于广东顺德国家级高新技术开发区内，是国内生产规模最大的燃气具专业制造企业，也是中国燃气具发展战略的首倡者和推动者、中国五金制品协会燃气用具分会第三届理事长单位。');
 INSERT INTO `pms_brand` VALUES ('2', '三星', 'S', '100', '1', '1', '100', '100', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20200607/57201b47N7bf15715.jpg', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20221108/sanxing_banner_01.png', '三星集团（英文：SAMSUNG、韩文：삼성）是韩国最大的跨国企业集团，三星集团包括众多的国际下属企业，旗下子公司有：三星电子、三星物产、三星人寿保险等，业务涉及电子、金融、机械、化学等众多领域。');
 INSERT INTO `pms_brand` VALUES ('3', '华为', 'H', '100', '1', '1', '100', '100', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20200607/5abf6f26N31658aa2.jpg', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20221108/huawei_banner_01.png', '荣耀品牌成立于2013年,是华为旗下手机双品牌之一。荣耀以“创新、品质、服务”为核心战略,为全球年轻人提供潮酷的全场景智能化体验,打造年轻人向往的先锋文化和潮流生活方式');
 INSERT INTO `pms_brand` VALUES ('4', '格力', 'G', '30', '1', '1', '100', '100', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg (3).jpg', null, 'Victoria\'s Secret的故事');
@@ -873,7 +873,15 @@ INSERT INTO `pms_brand` VALUES ('49', '七匹狼', 'S', '200', '1', '1', '77', '
 INSERT INTO `pms_brand` VALUES ('50', '海澜之家', 'H', '200', '1', '1', '66', '300', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20200607/5a5c69b9N5d6c5696.jpg', 'http://img10.360buyimg.com/cms/jfs/t1/133148/4/1605/470028/5edaf5ccEd7a687a9/e0a007631361ff75.jpg', '“海澜之家”（英文缩写：HLA）是海澜之家股份有限公司旗下的服装品牌，总部位于中国江苏省无锡市江阴市，主要采用连锁零售的模式，销售男性服装、配饰与相关产品。');
 INSERT INTO `pms_brand` VALUES ('51', '苹果', 'A', '200', '1', '1', '55', '200', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20200607/49b30bb0377030d1.jpg', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20221108/apple_banner_01.png', '苹果公司(Apple Inc. )是美国的一家高科技公司。 由史蒂夫·乔布斯、斯蒂夫·沃兹尼亚克和罗·韦恩(Ron Wayne)等人于1976年4月1日创立,并命名为美国苹果电脑公司(Apple Computer Inc. ),2007年1月9日更名为苹果公司,总部位于加利福尼亚州的...');
 INSERT INTO `pms_brand` VALUES ('58', 'NIKE', 'N', '0', '1', '0', '33', '100', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180615/timg (51).jpg', '', 'NIKE的故事');
-INSERT INTO `pms_brand` VALUES ('59', '测试品牌', 'C', '0', '0', '0', null, null, 'http://localhost:9000/mall/20220609/Snipaste_2022-06-08_14-35-53.png', 'http://localhost:9000/mall/20220609/biji_05.jpg', '12345');
+INSERT INTO `pms_brand` VALUES ('59', '测试品牌', 'C', '0', '0', '0', null, null, 'http://127.0.0.1:8081/images/b939b4b3-9773-41b3-a4c1-4c4adfadab05.png', 'http://127.0.0.1:8081/images/b939b4b3-9773-41b3-a4c1-4c4adfadab05.png', '12345');
+INSERT INTO `pms_brand` VALUES ('60', '测试品牌221111', 'C', '300', '0', '1', null, null, null, null, null);
+INSERT INTO `pms_brand` VALUES ('61', '测试品牌22', 'C', '300', '1', '1', null, null, null, null, null);
+INSERT INTO `pms_brand` VALUES ('62', '测试1', 'C1', '3021', '0', '1', null, null, null, null, null);
+INSERT INTO `pms_brand` VALUES ('63', '测试品牌22', 'C', '300', '1', '1', null, null, null, null, null);
+INSERT INTO `pms_brand` VALUES ('64', '测试品牌85', 'C', '300', '1', '1', null, null, null, null, null);
+INSERT INTO `pms_brand` VALUES ('65', '测试品牌220021', 'C', '300', '1', '1', null, null, null, null, null);
+INSERT INTO `pms_brand` VALUES ('66', '测试品牌222', 'C', '300', '1', '1', null, null, null, null, null);
+INSERT INTO `pms_brand` VALUES ('114', 'ces1', 's', '22', '1', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for pms_comment
@@ -887,7 +895,7 @@ CREATE TABLE `pms_comment` (
   `star` int DEFAULT NULL COMMENT '评价星数：0->5',
   `member_ip` varchar(64) DEFAULT NULL COMMENT '评价的ip',
   `create_time` datetime DEFAULT NULL,
-  `show_status` int DEFAULT NULL,
+  `show_status` varchar(10) DEFAULT NULL,
   `product_attribute` varchar(255) DEFAULT NULL COMMENT '购买时的商品属性',
   `collect_couont` int DEFAULT NULL,
   `read_count` int DEFAULT NULL,
@@ -913,7 +921,7 @@ CREATE TABLE `pms_comment_replay` (
   `member_icon` varchar(255) DEFAULT NULL,
   `content` varchar(1000) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
-  `type` int DEFAULT NULL COMMENT '评论人员类型；0->会员；1->管理员',
+  `type` varchar(10) DEFAULT NULL COMMENT '评论人员类型；0->会员；1->管理员',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='产品评价回复表';
 
@@ -928,7 +936,7 @@ DROP TABLE IF EXISTS `pms_freight_template`;
 CREATE TABLE `pms_freight_template` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
-  `charge_type` int DEFAULT NULL COMMENT '计费类型:0->按重量；1->按件数',
+  `charge_type` varchar(10) DEFAULT NULL COMMENT '计费类型:0->按重量；1->按件数',
   `first_weight` decimal(10,2) DEFAULT NULL COMMENT '首重kg',
   `first_fee` decimal(10,2) DEFAULT NULL COMMENT '首费（元）',
   `continue_weight` decimal(10,2) DEFAULT NULL,
@@ -1051,11 +1059,11 @@ CREATE TABLE `pms_product` (
   `name` varchar(200) NOT NULL,
   `pic` varchar(255) DEFAULT NULL,
   `product_sn` varchar(64) NOT NULL COMMENT '货号',
-  `delete_status` int DEFAULT NULL COMMENT '删除状态：0->未删除；1->已删除',
-  `publish_status` int DEFAULT NULL COMMENT '上架状态：0->下架；1->上架',
-  `new_status` int DEFAULT NULL COMMENT '新品状态:0->不是新品；1->新品',
-  `recommand_status` int DEFAULT NULL COMMENT '推荐状态；0->不推荐；1->推荐',
-  `verify_status` int DEFAULT NULL COMMENT '审核状态：0->未审核；1->审核通过',
+  `delete_status` varchar(10) DEFAULT NULL COMMENT '删除状态：0->未删除；1->已删除',
+  `publish_status` varchar(10) DEFAULT NULL COMMENT '上架状态：0->下架；1->上架',
+  `new_status` varchar(10) DEFAULT NULL COMMENT '新品状态:0->不是新品；1->新品',
+  `recommand_status` varchar(10) DEFAULT NULL COMMENT '推荐状态；0->不推荐；1->推荐',
+  `verify_status` varchar(10) DEFAULT NULL COMMENT '审核状态：0->未审核；1->审核通过',
   `sort` int DEFAULT NULL COMMENT '排序',
   `sale` int DEFAULT NULL COMMENT '销量',
   `price` decimal(10,2) DEFAULT NULL,
@@ -1070,7 +1078,7 @@ CREATE TABLE `pms_product` (
   `low_stock` int DEFAULT NULL COMMENT '库存预警值',
   `unit` varchar(16) DEFAULT NULL COMMENT '单位',
   `weight` decimal(10,2) DEFAULT NULL COMMENT '商品重量，默认为克',
-  `preview_status` int DEFAULT NULL COMMENT '是否为预告商品：0->不是；1->是',
+  `preview_status` varchar(10) DEFAULT NULL COMMENT '是否为预告商品：0->不是；1->是',
   `service_ids` varchar(64) DEFAULT NULL COMMENT '以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮',
   `keywords` varchar(255) DEFAULT NULL,
   `note` varchar(255) DEFAULT NULL,
@@ -1082,7 +1090,7 @@ CREATE TABLE `pms_product` (
   `promotion_start_time` datetime DEFAULT NULL COMMENT '促销开始时间',
   `promotion_end_time` datetime DEFAULT NULL COMMENT '促销结束时间',
   `promotion_per_limit` int DEFAULT NULL COMMENT '活动限购数量',
-  `promotion_type` int DEFAULT NULL COMMENT '促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购',
+  `promotion_type` varchar(10) DEFAULT NULL COMMENT '促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购',
   `brand_name` varchar(255) DEFAULT NULL COMMENT '品牌名称',
   `product_category_name` varchar(255) DEFAULT NULL COMMENT '商品分类名称',
   PRIMARY KEY (`id`) USING BTREE
@@ -1138,15 +1146,15 @@ CREATE TABLE `pms_product_attribute` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `product_attribute_category_id` bigint DEFAULT NULL,
   `name` varchar(64) DEFAULT NULL,
-  `select_type` int DEFAULT NULL COMMENT '属性选择类型：0->唯一；1->单选；2->多选',
-  `input_type` int DEFAULT NULL COMMENT '属性录入方式：0->手工录入；1->从列表中选取',
+  `select_type` varchar(10) DEFAULT NULL COMMENT '属性选择类型：0->唯一；1->单选；2->多选',
+  `input_type` varchar(10) DEFAULT NULL COMMENT '属性录入方式：0->手工录入；1->从列表中选取',
   `input_list` varchar(255) DEFAULT NULL COMMENT '可选值列表，以逗号隔开',
   `sort` int DEFAULT NULL COMMENT '排序字段：最高的可以单独上传图片',
-  `filter_type` int DEFAULT NULL COMMENT '分类筛选样式：1->普通；1->颜色',
-  `search_type` int DEFAULT NULL COMMENT '检索类型；0->不需要进行检索；1->关键字检索；2->范围检索',
-  `related_status` int DEFAULT NULL COMMENT '相同属性产品是否关联；0->不关联；1->关联',
-  `hand_add_status` int DEFAULT NULL COMMENT '是否支持手动新增；0->不支持；1->支持',
-  `type` int DEFAULT NULL COMMENT '属性的类型；0->规格；1->参数',
+  `filter_type` varchar(10) DEFAULT NULL COMMENT '分类筛选样式：1->普通；1->颜色',
+  `search_type` varchar(10) DEFAULT NULL COMMENT '检索类型；0->不需要进行检索；1->关键字检索；2->范围检索',
+  `related_status` varchar(10) DEFAULT NULL COMMENT '相同属性产品是否关联；0->不关联；1->关联',
+  `hand_add_status` varchar(10) DEFAULT NULL COMMENT '是否支持手动新增；0->不支持；1->支持',
+  `type` varchar(10) DEFAULT NULL COMMENT '属性的类型；0->规格；1->参数',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品属性参数表';
 
@@ -1389,11 +1397,11 @@ CREATE TABLE `pms_product_category` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `parent_id` bigint DEFAULT NULL COMMENT '上机分类的编号：0表示一级分类',
   `name` varchar(64) DEFAULT NULL,
-  `level` int DEFAULT NULL COMMENT '分类级别：0->1级；1->2级',
+  `level` varchar(10) DEFAULT NULL COMMENT '分类级别：0->1级；1->2级',
   `product_count` int DEFAULT NULL,
   `product_unit` varchar(64) DEFAULT NULL,
-  `nav_status` int DEFAULT NULL COMMENT '是否显示在导航栏：0->不显示；1->显示',
-  `show_status` int DEFAULT NULL COMMENT '显示状态：0->不显示；1->显示',
+  `nav_status` varchar(10) DEFAULT NULL COMMENT '是否显示在导航栏：0->不显示；1->显示',
+  `show_status` varchar(10) DEFAULT NULL COMMENT '显示状态：0->不显示；1->显示',
   `sort` int DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL COMMENT '图标',
   `keywords` varchar(255) DEFAULT NULL,
@@ -1602,7 +1610,7 @@ CREATE TABLE `pms_product_verify_record` (
   `product_id` bigint DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `vertify_man` varchar(64) DEFAULT NULL COMMENT '审核人',
-  `status` int DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
   `detail` varchar(255) DEFAULT NULL COMMENT '反馈详情',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='商品审核记录';
@@ -1738,23 +1746,23 @@ INSERT INTO `pms_sku_stock` VALUES ('242', '45', '202211080045004', '2499.00', '
 DROP TABLE IF EXISTS `sms_coupon`;
 CREATE TABLE `sms_coupon` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `type` int DEFAULT NULL COMMENT '优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券',
+  `type` varchar(10) DEFAULT NULL COMMENT '优惠券类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券',
   `name` varchar(100) DEFAULT NULL,
-  `platform` int DEFAULT NULL COMMENT '使用平台：0->全部；1->移动；2->PC',
+  `platform` varchar(10) DEFAULT NULL COMMENT '使用平台：0->全部；1->移动；2->PC',
   `count` int DEFAULT NULL COMMENT '数量',
   `amount` decimal(10,2) DEFAULT NULL COMMENT '金额',
   `per_limit` int DEFAULT NULL COMMENT '每人限领张数',
   `min_point` decimal(10,2) DEFAULT NULL COMMENT '使用门槛；0表示无门槛',
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
-  `use_type` int DEFAULT NULL COMMENT '使用类型：0->全场通用；1->指定分类；2->指定商品',
+  `use_type` varchar(10) DEFAULT NULL COMMENT '使用类型：0->全场通用；1->指定分类；2->指定商品',
   `note` varchar(200) DEFAULT NULL COMMENT '备注',
   `publish_count` int DEFAULT NULL COMMENT '发行数量',
   `use_count` int DEFAULT NULL COMMENT '已使用数量',
   `receive_count` int DEFAULT NULL COMMENT '领取数量',
   `enable_time` datetime DEFAULT NULL COMMENT '可以领取的日期',
   `code` varchar(64) DEFAULT NULL COMMENT '优惠码',
-  `member_level` int DEFAULT NULL COMMENT '可领取的会员类型：0->无限时',
+  `member_level` varchar(10) DEFAULT NULL COMMENT '可领取的会员类型：0->无限时',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='优惠券表';
 
@@ -1777,9 +1785,9 @@ CREATE TABLE `sms_coupon_history` (
   `member_id` bigint DEFAULT NULL,
   `coupon_code` varchar(64) DEFAULT NULL,
   `member_nickname` varchar(64) DEFAULT NULL COMMENT '领取人昵称',
-  `get_type` int DEFAULT NULL COMMENT '获取类型：0->后台赠送；1->主动获取',
+  `get_type` varchar(10) DEFAULT NULL COMMENT '获取类型：0->后台赠送；1->主动获取',
   `create_time` datetime DEFAULT NULL,
-  `use_status` int DEFAULT NULL COMMENT '使用状态：0->未使用；1->已使用；2->已过期',
+  `use_status` varchar(10) DEFAULT NULL COMMENT '使用状态：0->未使用；1->已使用；2->已过期',
   `use_time` datetime DEFAULT NULL COMMENT '使用时间',
   `order_id` bigint DEFAULT NULL COMMENT '订单编号',
   `order_sn` varchar(100) DEFAULT NULL COMMENT '订单号码',
@@ -1849,7 +1857,7 @@ CREATE TABLE `sms_flash_promotion` (
   `title` varchar(200) DEFAULT NULL COMMENT '秒杀时间段名称',
   `start_date` date DEFAULT NULL COMMENT '开始日期',
   `end_date` date DEFAULT NULL COMMENT '结束日期',
-  `status` int DEFAULT NULL COMMENT '上下线状态',
+  `status` varchar(10) DEFAULT NULL COMMENT '上下线状态',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='限时购表';
@@ -1954,7 +1962,7 @@ CREATE TABLE `sms_flash_promotion_session` (
   `name` varchar(200) DEFAULT NULL COMMENT '场次名称',
   `start_time` time DEFAULT NULL COMMENT '每日开始时间',
   `end_time` time DEFAULT NULL COMMENT '每日结束时间',
-  `status` int DEFAULT NULL COMMENT '启用状态：0->不启用；1->启用',
+  `status` varchar(10) DEFAULT NULL COMMENT '启用状态：0->不启用；1->启用',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='限时购场次表';
@@ -1977,11 +1985,11 @@ DROP TABLE IF EXISTS `sms_home_advertise`;
 CREATE TABLE `sms_home_advertise` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
-  `type` int DEFAULT NULL COMMENT '轮播位置：0->PC首页轮播；1->app首页轮播',
+  `type` varchar(10) DEFAULT NULL COMMENT '轮播位置：0->PC首页轮播；1->app首页轮播',
   `pic` varchar(500) DEFAULT NULL,
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
-  `status` int DEFAULT NULL COMMENT '上下线状态：0->下线；1->上线',
+  `status` varchar(10) DEFAULT NULL COMMENT '上下线状态：0->下线；1->上线',
   `click_count` int DEFAULT NULL COMMENT '点击数',
   `order_count` int DEFAULT NULL COMMENT '下单数',
   `url` varchar(500) DEFAULT NULL COMMENT '链接地址',
@@ -2013,7 +2021,7 @@ CREATE TABLE `sms_home_brand` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `brand_id` bigint DEFAULT NULL,
   `brand_name` varchar(64) DEFAULT NULL,
-  `recommend_status` int DEFAULT NULL,
+  `recommend_status` varchar(10) DEFAULT NULL,
   `sort` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='首页推荐品牌表';
@@ -2039,7 +2047,7 @@ CREATE TABLE `sms_home_new_product` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `product_id` bigint DEFAULT NULL,
   `product_name` varchar(500) DEFAULT NULL,
-  `recommend_status` int DEFAULT NULL,
+  `recommend_status` varchar(10) DEFAULT NULL,
   `sort` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='新鲜好物表';
@@ -2065,7 +2073,7 @@ CREATE TABLE `sms_home_recommend_product` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `product_id` bigint DEFAULT NULL,
   `product_name` varchar(500) DEFAULT NULL,
-  `recommend_status` int DEFAULT NULL,
+  `recommend_status` varchar(10) DEFAULT NULL,
   `sort` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='人气推荐商品表';
@@ -2087,7 +2095,7 @@ CREATE TABLE `sms_home_recommend_subject` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `subject_id` bigint DEFAULT NULL,
   `subject_name` varchar(64) DEFAULT NULL,
-  `recommend_status` int DEFAULT NULL,
+  `recommend_status` varchar(10) DEFAULT NULL,
   `sort` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='首页推荐专题表';
@@ -5686,9 +5694,9 @@ CREATE TABLE `ums_admin` (
   `note` varchar(500) DEFAULT NULL COMMENT '备注信息',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `status` int DEFAULT '1' COMMENT '帐号启用状态：0->禁用；1->启用',
+  `status` varchar(10) DEFAULT '1' COMMENT '帐号启用状态：0->禁用；1->启用',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='后台用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='后台用户表';
 
 -- ----------------------------
 -- Records of ums_admin
@@ -5701,6 +5709,8 @@ INSERT INTO `ums_admin` VALUES ('7', 'orderAdmin', '$2a$10$UqEhA9UZXjHHA3B.L9wNG
 INSERT INTO `ums_admin` VALUES ('8', 'test123', '$2a$10$M1qJguEzwoAN0la7PB8UO.HOGe1xZGku7xw1iTaUUpY0ZVRCxrxoO', 'string', 'abc@qq.com', 'string', 'string', '2022-08-07 14:45:42', null, '1');
 INSERT INTO `ums_admin` VALUES ('9', 'test256', '$2a$10$kTMBrt8mkXcO8T4eHThFWOf3KuNK6tqevkiAf4YbtXtaCJ6ocYkJa', 'string', 'abc@qq.com', 'string', 'string', '2022-08-07 14:52:57', null, '1');
 INSERT INTO `ums_admin` VALUES ('10', 'test1267', '$2a$10$VUywDhXVPY13YZxMD/uPWeDqkzSozN7o8u/3MX6sBig2NK2VaTJZ2', null, 'test1267@qq.com', 'test1267', 'test1267', '2023-01-04 16:13:34', null, '1');
+INSERT INTO `ums_admin` VALUES ('11', 'test001', '$2a$10$/h8YtjKmkqS7XkGHD6GjZe/VcmG4JTB/JAur8Exk3yOjf3r1VD7Ze', null, null, null, null, '2023-03-31 15:05:33', '2023-03-31 16:52:34', '1');
+INSERT INTO `ums_admin` VALUES ('13', 'super', '$2a$10$6hYsnepVn.AJVanbyQstKOVe.6ky6uaAxcG1fjoJ1./OOc3asJt7e', null, null, '超级管理员', null, '2023-03-31 15:37:32', '2023-04-06 22:49:48', '1');
 
 -- ----------------------------
 -- Table structure for ums_admin_login_log
@@ -6139,7 +6149,7 @@ CREATE TABLE `ums_admin_permission_relation` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `admin_id` bigint DEFAULT NULL,
   `permission_id` bigint DEFAULT NULL,
-  `type` int DEFAULT NULL,
+  `type` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='后台用户和权限关系表(除角色中定义的权限以外的加减权限)';
 
@@ -6156,7 +6166,7 @@ CREATE TABLE `ums_admin_role_relation` (
   `admin_id` bigint DEFAULT NULL,
   `role_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='后台用户和角色关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='后台用户和角色关系表';
 
 -- ----------------------------
 -- Records of ums_admin_role_relation
@@ -6167,6 +6177,7 @@ INSERT INTO `ums_admin_role_relation` VALUES ('28', '7', '2');
 INSERT INTO `ums_admin_role_relation` VALUES ('29', '1', '5');
 INSERT INTO `ums_admin_role_relation` VALUES ('30', '4', '5');
 INSERT INTO `ums_admin_role_relation` VALUES ('31', '8', '1');
+INSERT INTO `ums_admin_role_relation` VALUES ('32', '13', '1');
 
 -- ----------------------------
 -- Table structure for ums_growth_change_history
@@ -6176,11 +6187,11 @@ CREATE TABLE `ums_growth_change_history` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `member_id` bigint DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
-  `change_type` int DEFAULT NULL COMMENT '改变类型：0->增加；1->减少',
+  `change_type` varchar(10) DEFAULT NULL COMMENT '改变类型：0->增加；1->减少',
   `change_count` int DEFAULT NULL COMMENT '积分改变数量',
   `operate_man` varchar(100) DEFAULT NULL COMMENT '操作人员',
   `operate_note` varchar(200) DEFAULT NULL COMMENT '操作备注',
-  `source_type` int DEFAULT NULL COMMENT '积分来源：0->购物；1->管理员修改',
+  `source_type` varchar(10) DEFAULT NULL COMMENT '积分来源：0->购物；1->管理员修改',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='成长值变化历史记录表';
 
@@ -6197,11 +6208,11 @@ CREATE TABLE `ums_integration_change_history` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `member_id` bigint DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
-  `change_type` int DEFAULT NULL COMMENT '改变类型：0->增加；1->减少',
+  `change_type` varchar(10) DEFAULT NULL COMMENT '改变类型：0->增加；1->减少',
   `change_count` int DEFAULT NULL COMMENT '积分改变数量',
   `operate_man` varchar(100) DEFAULT NULL COMMENT '操作人员',
   `operate_note` varchar(200) DEFAULT NULL COMMENT '操作备注',
-  `source_type` int DEFAULT NULL COMMENT '积分来源：0->购物；1->管理员修改',
+  `source_type` varchar(10) DEFAULT NULL COMMENT '积分来源：0->购物；1->管理员修改',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='积分变化历史记录表';
 
@@ -6218,7 +6229,7 @@ CREATE TABLE `ums_integration_consume_setting` (
   `deduction_per_amount` int DEFAULT NULL COMMENT '每一元需要抵扣的积分数量',
   `max_percent_per_order` int DEFAULT NULL COMMENT '每笔订单最高抵用百分比',
   `use_unit` int DEFAULT NULL COMMENT '每次使用积分最小单位100',
-  `coupon_status` int DEFAULT NULL COMMENT '是否可以和优惠券同用；0->不可以；1->可以',
+  `coupon_status` varchar(10) DEFAULT NULL COMMENT '是否可以和优惠券同用；0->不可以；1->可以',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='积分消费设置';
 
@@ -6238,15 +6249,15 @@ CREATE TABLE `ums_member` (
   `password` varchar(64) DEFAULT NULL COMMENT '密码',
   `nickname` varchar(64) DEFAULT NULL COMMENT '昵称',
   `phone` varchar(64) DEFAULT NULL COMMENT '手机号码',
-  `status` int DEFAULT NULL COMMENT '帐号启用状态:0->禁用；1->启用',
+  `status` varchar(10) DEFAULT NULL COMMENT '帐号启用状态:0->禁用；1->启用',
   `create_time` datetime DEFAULT NULL COMMENT '注册时间',
   `icon` varchar(500) DEFAULT NULL COMMENT '头像',
-  `gender` int DEFAULT NULL COMMENT '性别：0->未知；1->男；2->女',
+  `gender` varchar(10) DEFAULT NULL COMMENT '性别：0->未知；1->男；2->女',
   `birthday` date DEFAULT NULL COMMENT '生日',
   `city` varchar(64) DEFAULT NULL COMMENT '所做城市',
   `job` varchar(100) DEFAULT NULL COMMENT '职业',
   `personalized_signature` varchar(200) DEFAULT NULL COMMENT '个性签名',
-  `source_type` int DEFAULT NULL COMMENT '用户来源',
+  `source_type` varchar(10) DEFAULT NULL COMMENT '用户来源',
   `integration` int DEFAULT NULL COMMENT '积分',
   `growth` int DEFAULT NULL COMMENT '成长值',
   `luckey_count` int DEFAULT NULL COMMENT '剩余抽奖次数',
@@ -6277,15 +6288,15 @@ CREATE TABLE `ums_member_level` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `growth_point` int DEFAULT NULL,
-  `default_status` int DEFAULT NULL COMMENT '是否为默认等级：0->不是；1->是',
+  `default_status` varchar(10) DEFAULT NULL COMMENT '是否为默认等级：0->不是；1->是',
   `free_freight_point` decimal(10,2) DEFAULT NULL COMMENT '免运费标准',
   `comment_growth_point` int DEFAULT NULL COMMENT '每次评价获取的成长值',
-  `priviledge_free_freight` int DEFAULT NULL COMMENT '是否有免邮特权',
-  `priviledge_sign_in` int DEFAULT NULL COMMENT '是否有签到特权',
-  `priviledge_comment` int DEFAULT NULL COMMENT '是否有评论获奖励特权',
-  `priviledge_promotion` int DEFAULT NULL COMMENT '是否有专享活动特权',
-  `priviledge_member_price` int DEFAULT NULL COMMENT '是否有会员价格特权',
-  `priviledge_birthday` int DEFAULT NULL COMMENT '是否有生日特权',
+  `priviledge_free_freight` varchar(10) DEFAULT NULL COMMENT '是否有免邮特权',
+  `priviledge_sign_in` varchar(10) DEFAULT NULL COMMENT '是否有签到特权',
+  `priviledge_comment` varchar(10) DEFAULT NULL COMMENT '是否有评论获奖励特权',
+  `priviledge_promotion` varchar(10) DEFAULT NULL COMMENT '是否有专享活动特权',
+  `priviledge_member_price` varchar(10) DEFAULT NULL COMMENT '是否有会员价格特权',
+  `priviledge_birthday` varchar(10) DEFAULT NULL COMMENT '是否有生日特权',
   `note` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='会员等级表';
@@ -6308,7 +6319,7 @@ CREATE TABLE `ums_member_login_log` (
   `create_time` datetime DEFAULT NULL,
   `ip` varchar(64) DEFAULT NULL,
   `city` varchar(64) DEFAULT NULL,
-  `login_type` int DEFAULT NULL COMMENT '登录类型：0->PC；1->android;2->ios;3->小程序',
+  `login_type` varchar(10) DEFAULT NULL COMMENT '登录类型：0->PC；1->android;2->ios;3->小程序',
   `province` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='会员登录记录';
@@ -6356,7 +6367,7 @@ CREATE TABLE `ums_member_receive_address` (
   `member_id` bigint DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL COMMENT '收货人名称',
   `phone_number` varchar(64) DEFAULT NULL,
-  `default_status` int DEFAULT NULL COMMENT '是否为默认',
+  `default_status` varchar(10) DEFAULT NULL COMMENT '是否为默认',
   `post_code` varchar(100) DEFAULT NULL COMMENT '邮政编码',
   `province` varchar(100) DEFAULT NULL COMMENT '省份/直辖市',
   `city` varchar(100) DEFAULT NULL COMMENT '城市',
@@ -6383,7 +6394,7 @@ CREATE TABLE `ums_member_rule_setting` (
   `consume_per_point` decimal(10,2) DEFAULT NULL COMMENT '每消费多少元获取1个点',
   `low_order_amount` decimal(10,2) DEFAULT NULL COMMENT '最低获取点数的订单金额',
   `max_point_per_order` int DEFAULT NULL COMMENT '每笔订单最高获取点数',
-  `type` int DEFAULT NULL COMMENT '类型：0->积分规则；1->成长值规则',
+  `type` varchar(10) DEFAULT NULL COMMENT '类型：0->积分规则；1->成长值规则',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='会员积分成长规则表';
 
@@ -6444,7 +6455,7 @@ CREATE TABLE `ums_member_task` (
   `name` varchar(100) DEFAULT NULL,
   `growth` int DEFAULT NULL COMMENT '赠送成长值',
   `intergration` int DEFAULT NULL COMMENT '赠送积分',
-  `type` int DEFAULT NULL COMMENT '任务类型：0->新手任务；1->日常任务',
+  `type` varchar(10) DEFAULT NULL COMMENT '任务类型：0->新手任务；1->日常任务',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='会员任务表';
 
@@ -6507,9 +6518,9 @@ CREATE TABLE `ums_permission` (
   `name` varchar(100) DEFAULT NULL COMMENT '名称',
   `value` varchar(200) DEFAULT NULL COMMENT '权限值',
   `icon` varchar(500) DEFAULT NULL COMMENT '图标',
-  `type` int DEFAULT NULL COMMENT '权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）',
+  `type` varchar(10) DEFAULT NULL COMMENT '权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）',
   `uri` varchar(200) DEFAULT NULL COMMENT '前端资源路径',
-  `status` int DEFAULT NULL COMMENT '启用状态；0->禁用；1->启用',
+  `status` varchar(10) DEFAULT NULL COMMENT '启用状态；0->禁用；1->启用',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `sort` int DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
@@ -6618,7 +6629,7 @@ CREATE TABLE `ums_role` (
   `description` varchar(500) DEFAULT NULL COMMENT '描述',
   `admin_count` int DEFAULT NULL COMMENT '后台用户数量',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `status` int DEFAULT '1' COMMENT '启用状态：0->禁用；1->启用',
+  `status` varchar(10) DEFAULT '1' COMMENT '启用状态：0->禁用；1->启用',
   `sort` int DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='后台用户角色表';
@@ -6707,10 +6718,10 @@ INSERT INTO `ums_role_permission_relation` VALUES ('10', '3', '5');
 INSERT INTO `ums_role_permission_relation` VALUES ('11', '3', '12');
 INSERT INTO `ums_role_permission_relation` VALUES ('12', '3', '13');
 INSERT INTO `ums_role_permission_relation` VALUES ('13', '3', '14');
-INSERT INTO `ums_role_permission_relation` VALUES ('14', '4', '6');
-INSERT INTO `ums_role_permission_relation` VALUES ('15', '4', '15');
-INSERT INTO `ums_role_permission_relation` VALUES ('16', '4', '16');
-INSERT INTO `ums_role_permission_relation` VALUES ('17', '4', '17');
+INSERT INTO `ums_role_permission_relation` VALUES ('14', '1', '6');
+INSERT INTO `ums_role_permission_relation` VALUES ('15', '1', '15');
+INSERT INTO `ums_role_permission_relation` VALUES ('16', '1', '16');
+INSERT INTO `ums_role_permission_relation` VALUES ('17', '1', '17');
 
 -- ----------------------------
 -- Table structure for ums_role_resource_relation
