@@ -19,10 +19,10 @@ public class PmsBrandUpdateParam implements Serializable {
     private Integer sort;
 
     @ApiModelProperty(value = "是否为品牌制造商：0->不是；1->是")
-    private Integer factoryStatus;
+    private String factoryStatus;
 
     @ApiModelProperty(value = "显示状态：0-不显示 1-显示")
-    private Integer showStatus;
+    private String showStatus;
 
     @ApiModelProperty(value = "产品数量")
     private Integer productCount;
@@ -71,19 +71,19 @@ public class PmsBrandUpdateParam implements Serializable {
         this.sort = sort;
     }
 
-    public Integer getFactoryStatus() {
+    public String getFactoryStatus() {
         return factoryStatus;
     }
 
-    public void setFactoryStatus(Integer factoryStatus) {
+    public void setFactoryStatus(String factoryStatus) {
         this.factoryStatus = factoryStatus;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

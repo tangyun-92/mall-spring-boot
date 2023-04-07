@@ -9,7 +9,7 @@
     <result column="star" jdbcType="INTEGER" property="star" />
     <result column="member_ip" jdbcType="VARCHAR" property="memberIp" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="show_status" jdbcType="VARCHAR" property="showStatus" />
     <result column="product_attribute" jdbcType="VARCHAR" property="productAttribute" />
     <result column="collect_couont" jdbcType="INTEGER" property="collectCouont" />
     <result column="read_count" jdbcType="INTEGER" property="readCount" />
@@ -48,7 +48,7 @@
       )
     values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{memberNickName,jdbcType=VARCHAR}, 
       #{productName,jdbcType=VARCHAR}, #{star,jdbcType=INTEGER}, #{memberIp,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{showStatus,jdbcType=INTEGER}, #{productAttribute,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{showStatus,jdbcType=VARCHAR}, #{productAttribute,jdbcType=VARCHAR}, 
       #{collectCouont,jdbcType=INTEGER}, #{readCount,jdbcType=INTEGER}, #{pics,jdbcType=VARCHAR}, 
       #{memberIcon,jdbcType=VARCHAR}, #{replayCount,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
       )
@@ -125,7 +125,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="showStatus != null">
-        #{showStatus,jdbcType=INTEGER},
+        #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="productAttribute != null">
         #{productAttribute,jdbcType=VARCHAR},
@@ -172,7 +172,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="showStatus != null">
-        show_status = #{showStatus,jdbcType=INTEGER},
+        show_status = #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="productAttribute != null">
         product_attribute = #{productAttribute,jdbcType=VARCHAR},
@@ -206,7 +206,7 @@
       star = #{star,jdbcType=INTEGER},
       member_ip = #{memberIp,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       product_attribute = #{productAttribute,jdbcType=VARCHAR},
       collect_couont = #{collectCouont,jdbcType=INTEGER},
       read_count = #{readCount,jdbcType=INTEGER},
@@ -224,7 +224,7 @@
       star = #{star,jdbcType=INTEGER},
       member_ip = #{memberIp,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       product_attribute = #{productAttribute,jdbcType=VARCHAR},
       collect_couont = #{collectCouont,jdbcType=INTEGER},
       read_count = #{readCount,jdbcType=INTEGER},

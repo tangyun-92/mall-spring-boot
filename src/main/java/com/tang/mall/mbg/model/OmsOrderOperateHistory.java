@@ -17,7 +17,7 @@ public class OmsOrderOperateHistory implements Serializable {
     private Date createTime;
 
     @ApiModelProperty(value = "订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单")
-    private Integer orderStatus;
+    private String orderStatus;
 
     @ApiModelProperty(value = "备注")
     private String note;
@@ -56,11 +56,11 @@ public class OmsOrderOperateHistory implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getOrderStatus() {
+    public String getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(Integer orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 

@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="subject_id" jdbcType="BIGINT" property="subjectId" />
     <result column="subject_name" jdbcType="VARCHAR" property="subjectName" />
-    <result column="recommend_status" jdbcType="INTEGER" property="recommendStatus" />
+    <result column="recommend_status" jdbcType="VARCHAR" property="recommendStatus" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -25,7 +25,7 @@
     insert into sms_home_recommend_subject (id, subject_id, subject_name, 
       recommend_status, sort)
     values (#{id,jdbcType=BIGINT}, #{subjectId,jdbcType=BIGINT}, #{subjectName,jdbcType=VARCHAR}, 
-      #{recommendStatus,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER})
+      #{recommendStatus,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.SmsHomeRecommendSubject">
     insert into sms_home_recommend_subject
@@ -57,7 +57,7 @@
         #{subjectName,jdbcType=VARCHAR},
       </if>
       <if test="recommendStatus != null">
-        #{recommendStatus,jdbcType=INTEGER},
+        #{recommendStatus,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         #{sort,jdbcType=INTEGER},
@@ -74,7 +74,7 @@
         subject_name = #{subjectName,jdbcType=VARCHAR},
       </if>
       <if test="recommendStatus != null">
-        recommend_status = #{recommendStatus,jdbcType=INTEGER},
+        recommend_status = #{recommendStatus,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
@@ -86,7 +86,7 @@
     update sms_home_recommend_subject
     set subject_id = #{subjectId,jdbcType=BIGINT},
       subject_name = #{subjectName,jdbcType=VARCHAR},
-      recommend_status = #{recommendStatus,jdbcType=INTEGER},
+      recommend_status = #{recommendStatus,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>

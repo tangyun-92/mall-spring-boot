@@ -15,7 +15,7 @@
     <result column="member_nickname" jdbcType="VARCHAR" property="memberNickname" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
-    <result column="delete_status" jdbcType="INTEGER" property="deleteStatus" />
+    <result column="delete_status" jdbcType="VARCHAR" property="deleteStatus" />
     <result column="product_category_id" jdbcType="BIGINT" property="productCategoryId" />
     <result column="product_brand" jdbcType="VARCHAR" property="productBrand" />
     <result column="product_sn" jdbcType="VARCHAR" property="productSn" />
@@ -48,7 +48,7 @@
       #{memberId,jdbcType=BIGINT}, #{quantity,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
       #{productPic,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productSubTitle,jdbcType=VARCHAR}, 
       #{productSkuCode,jdbcType=VARCHAR}, #{memberNickname,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{modifyDate,jdbcType=TIMESTAMP}, #{deleteStatus,jdbcType=INTEGER}, #{productCategoryId,jdbcType=BIGINT}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{deleteStatus,jdbcType=VARCHAR}, #{productCategoryId,jdbcType=BIGINT}, 
       #{productBrand,jdbcType=VARCHAR}, #{productSn,jdbcType=VARCHAR}, #{productAttr,jdbcType=VARCHAR}
       )
   </insert>
@@ -151,7 +151,7 @@
         #{modifyDate,jdbcType=TIMESTAMP},
       </if>
       <if test="deleteStatus != null">
-        #{deleteStatus,jdbcType=INTEGER},
+        #{deleteStatus,jdbcType=VARCHAR},
       </if>
       <if test="productCategoryId != null">
         #{productCategoryId,jdbcType=BIGINT},
@@ -207,7 +207,7 @@
         modify_date = #{modifyDate,jdbcType=TIMESTAMP},
       </if>
       <if test="deleteStatus != null">
-        delete_status = #{deleteStatus,jdbcType=INTEGER},
+        delete_status = #{deleteStatus,jdbcType=VARCHAR},
       </if>
       <if test="productCategoryId != null">
         product_category_id = #{productCategoryId,jdbcType=BIGINT},
@@ -238,7 +238,7 @@
       member_nickname = #{memberNickname,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       modify_date = #{modifyDate,jdbcType=TIMESTAMP},
-      delete_status = #{deleteStatus,jdbcType=INTEGER},
+      delete_status = #{deleteStatus,jdbcType=VARCHAR},
       product_category_id = #{productCategoryId,jdbcType=BIGINT},
       product_brand = #{productBrand,jdbcType=VARCHAR},
       product_sn = #{productSn,jdbcType=VARCHAR},

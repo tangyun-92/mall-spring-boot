@@ -41,8 +41,8 @@ public class OmsCartItem implements Serializable {
     @ApiModelProperty(value = "修改时间")
     private Date modifyDate;
 
-    @ApiModelProperty(value = "是否删除")
-    private Integer deleteStatus;
+    @ApiModelProperty(value = "是否删除 0-未删除 1-已删除")
+    private String deleteStatus;
 
     @ApiModelProperty(value = "商品分类")
     private Long productCategoryId;
@@ -160,11 +160,11 @@ public class OmsCartItem implements Serializable {
         this.modifyDate = modifyDate;
     }
 
-    public Integer getDeleteStatus() {
+    public String getDeleteStatus() {
         return deleteStatus;
     }
 
-    public void setDeleteStatus(Integer deleteStatus) {
+    public void setDeleteStatus(String deleteStatus) {
         this.deleteStatus = deleteStatus;
     }
 

@@ -15,17 +15,17 @@
     <result column="integration_amount" jdbcType="DECIMAL" property="integrationAmount" />
     <result column="coupon_amount" jdbcType="DECIMAL" property="couponAmount" />
     <result column="discount_amount" jdbcType="DECIMAL" property="discountAmount" />
-    <result column="pay_type" jdbcType="INTEGER" property="payType" />
-    <result column="source_type" jdbcType="INTEGER" property="sourceType" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="order_type" jdbcType="INTEGER" property="orderType" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="source_type" jdbcType="VARCHAR" property="sourceType" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="order_type" jdbcType="VARCHAR" property="orderType" />
     <result column="delivery_company" jdbcType="VARCHAR" property="deliveryCompany" />
     <result column="delivery_sn" jdbcType="VARCHAR" property="deliverySn" />
     <result column="auto_confirm_day" jdbcType="INTEGER" property="autoConfirmDay" />
     <result column="integration" jdbcType="INTEGER" property="integration" />
     <result column="growth" jdbcType="INTEGER" property="growth" />
     <result column="promotion_info" jdbcType="VARCHAR" property="promotionInfo" />
-    <result column="bill_type" jdbcType="INTEGER" property="billType" />
+    <result column="bill_type" jdbcType="VARCHAR" property="billType" />
     <result column="bill_header" jdbcType="VARCHAR" property="billHeader" />
     <result column="bill_content" jdbcType="VARCHAR" property="billContent" />
     <result column="bill_receiver_phone" jdbcType="VARCHAR" property="billReceiverPhone" />
@@ -38,8 +38,8 @@
     <result column="receiver_region" jdbcType="VARCHAR" property="receiverRegion" />
     <result column="receiver_detail_address" jdbcType="VARCHAR" property="receiverDetailAddress" />
     <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="confirm_status" jdbcType="INTEGER" property="confirmStatus" />
-    <result column="delete_status" jdbcType="INTEGER" property="deleteStatus" />
+    <result column="confirm_status" jdbcType="VARCHAR" property="confirmStatus" />
+    <result column="delete_status" jdbcType="VARCHAR" property="deleteStatus" />
     <result column="use_integration" jdbcType="INTEGER" property="useIntegration" />
     <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
     <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
@@ -87,15 +87,15 @@
       #{orderSn,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{memberUsername,jdbcType=VARCHAR}, 
       #{totalAmount,jdbcType=DECIMAL}, #{payAmount,jdbcType=DECIMAL}, #{freightAmount,jdbcType=DECIMAL}, 
       #{promotionAmount,jdbcType=DECIMAL}, #{integrationAmount,jdbcType=DECIMAL}, #{couponAmount,jdbcType=DECIMAL}, 
-      #{discountAmount,jdbcType=DECIMAL}, #{payType,jdbcType=INTEGER}, #{sourceType,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, #{deliveryCompany,jdbcType=VARCHAR}, 
+      #{discountAmount,jdbcType=DECIMAL}, #{payType,jdbcType=VARCHAR}, #{sourceType,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, #{deliveryCompany,jdbcType=VARCHAR}, 
       #{deliverySn,jdbcType=VARCHAR}, #{autoConfirmDay,jdbcType=INTEGER}, #{integration,jdbcType=INTEGER}, 
-      #{growth,jdbcType=INTEGER}, #{promotionInfo,jdbcType=VARCHAR}, #{billType,jdbcType=INTEGER}, 
+      #{growth,jdbcType=INTEGER}, #{promotionInfo,jdbcType=VARCHAR}, #{billType,jdbcType=VARCHAR}, 
       #{billHeader,jdbcType=VARCHAR}, #{billContent,jdbcType=VARCHAR}, #{billReceiverPhone,jdbcType=VARCHAR}, 
       #{billReceiverEmail,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, 
       #{receiverPostCode,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, #{receiverCity,jdbcType=VARCHAR}, 
       #{receiverRegion,jdbcType=VARCHAR}, #{receiverDetailAddress,jdbcType=VARCHAR}, 
-      #{note,jdbcType=VARCHAR}, #{confirmStatus,jdbcType=INTEGER}, #{deleteStatus,jdbcType=INTEGER}, 
+      #{note,jdbcType=VARCHAR}, #{confirmStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, 
       #{useIntegration,jdbcType=INTEGER}, #{paymentTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, 
       #{receiveTime,jdbcType=TIMESTAMP}, #{commentTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
       )
@@ -277,16 +277,16 @@
         #{discountAmount,jdbcType=DECIMAL},
       </if>
       <if test="payType != null">
-        #{payType,jdbcType=INTEGER},
+        #{payType,jdbcType=VARCHAR},
       </if>
       <if test="sourceType != null">
-        #{sourceType,jdbcType=INTEGER},
+        #{sourceType,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="orderType != null">
-        #{orderType,jdbcType=INTEGER},
+        #{orderType,jdbcType=VARCHAR},
       </if>
       <if test="deliveryCompany != null">
         #{deliveryCompany,jdbcType=VARCHAR},
@@ -307,7 +307,7 @@
         #{promotionInfo,jdbcType=VARCHAR},
       </if>
       <if test="billType != null">
-        #{billType,jdbcType=INTEGER},
+        #{billType,jdbcType=VARCHAR},
       </if>
       <if test="billHeader != null">
         #{billHeader,jdbcType=VARCHAR},
@@ -346,10 +346,10 @@
         #{note,jdbcType=VARCHAR},
       </if>
       <if test="confirmStatus != null">
-        #{confirmStatus,jdbcType=INTEGER},
+        #{confirmStatus,jdbcType=VARCHAR},
       </if>
       <if test="deleteStatus != null">
-        #{deleteStatus,jdbcType=INTEGER},
+        #{deleteStatus,jdbcType=VARCHAR},
       </if>
       <if test="useIntegration != null">
         #{useIntegration,jdbcType=INTEGER},
@@ -411,16 +411,16 @@
         discount_amount = #{discountAmount,jdbcType=DECIMAL},
       </if>
       <if test="payType != null">
-        pay_type = #{payType,jdbcType=INTEGER},
+        pay_type = #{payType,jdbcType=VARCHAR},
       </if>
       <if test="sourceType != null">
-        source_type = #{sourceType,jdbcType=INTEGER},
+        source_type = #{sourceType,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
       <if test="orderType != null">
-        order_type = #{orderType,jdbcType=INTEGER},
+        order_type = #{orderType,jdbcType=VARCHAR},
       </if>
       <if test="deliveryCompany != null">
         delivery_company = #{deliveryCompany,jdbcType=VARCHAR},
@@ -441,7 +441,7 @@
         promotion_info = #{promotionInfo,jdbcType=VARCHAR},
       </if>
       <if test="billType != null">
-        bill_type = #{billType,jdbcType=INTEGER},
+        bill_type = #{billType,jdbcType=VARCHAR},
       </if>
       <if test="billHeader != null">
         bill_header = #{billHeader,jdbcType=VARCHAR},
@@ -480,10 +480,10 @@
         note = #{note,jdbcType=VARCHAR},
       </if>
       <if test="confirmStatus != null">
-        confirm_status = #{confirmStatus,jdbcType=INTEGER},
+        confirm_status = #{confirmStatus,jdbcType=VARCHAR},
       </if>
       <if test="deleteStatus != null">
-        delete_status = #{deleteStatus,jdbcType=INTEGER},
+        delete_status = #{deleteStatus,jdbcType=VARCHAR},
       </if>
       <if test="useIntegration != null">
         use_integration = #{useIntegration,jdbcType=INTEGER},
@@ -520,17 +520,17 @@
       integration_amount = #{integrationAmount,jdbcType=DECIMAL},
       coupon_amount = #{couponAmount,jdbcType=DECIMAL},
       discount_amount = #{discountAmount,jdbcType=DECIMAL},
-      pay_type = #{payType,jdbcType=INTEGER},
-      source_type = #{sourceType,jdbcType=INTEGER},
-      `status` = #{status,jdbcType=INTEGER},
-      order_type = #{orderType,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      source_type = #{sourceType,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
       delivery_company = #{deliveryCompany,jdbcType=VARCHAR},
       delivery_sn = #{deliverySn,jdbcType=VARCHAR},
       auto_confirm_day = #{autoConfirmDay,jdbcType=INTEGER},
       integration = #{integration,jdbcType=INTEGER},
       growth = #{growth,jdbcType=INTEGER},
       promotion_info = #{promotionInfo,jdbcType=VARCHAR},
-      bill_type = #{billType,jdbcType=INTEGER},
+      bill_type = #{billType,jdbcType=VARCHAR},
       bill_header = #{billHeader,jdbcType=VARCHAR},
       bill_content = #{billContent,jdbcType=VARCHAR},
       bill_receiver_phone = #{billReceiverPhone,jdbcType=VARCHAR},
@@ -543,8 +543,8 @@
       receiver_region = #{receiverRegion,jdbcType=VARCHAR},
       receiver_detail_address = #{receiverDetailAddress,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
-      confirm_status = #{confirmStatus,jdbcType=INTEGER},
-      delete_status = #{deleteStatus,jdbcType=INTEGER},
+      confirm_status = #{confirmStatus,jdbcType=VARCHAR},
+      delete_status = #{deleteStatus,jdbcType=VARCHAR},
       use_integration = #{useIntegration,jdbcType=INTEGER},
       payment_time = #{paymentTime,jdbcType=TIMESTAMP},
       delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},

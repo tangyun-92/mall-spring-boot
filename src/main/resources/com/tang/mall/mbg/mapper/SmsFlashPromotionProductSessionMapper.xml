@@ -6,7 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="start_time" jdbcType="TIME" property="startTime" />
     <result column="end_time" jdbcType="TIME" property="endTime" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -27,7 +27,7 @@
       end_time, `status`, create_time
       )
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{startTime,jdbcType=TIME}, 
-      #{endTime,jdbcType=TIME}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      #{endTime,jdbcType=TIME}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.SmsFlashPromotionProductSession">
@@ -66,7 +66,7 @@
         #{endTime,jdbcType=TIME},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -86,7 +86,7 @@
         end_time = #{endTime,jdbcType=TIME},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -99,7 +99,7 @@
     set `name` = #{name,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIME},
       end_time = #{endTime,jdbcType=TIME},
-      `status` = #{status,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

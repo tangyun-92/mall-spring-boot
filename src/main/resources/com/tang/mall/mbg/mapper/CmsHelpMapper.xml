@@ -6,7 +6,7 @@
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="show_status" jdbcType="VARCHAR" property="showStatus" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="read_count" jdbcType="INTEGER" property="readCount" />
   </resultMap>
@@ -36,7 +36,7 @@
       title, show_status, create_time, 
       read_count, content)
     values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{icon,jdbcType=VARCHAR}, 
-      #{title,jdbcType=VARCHAR}, #{showStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=VARCHAR}, #{showStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{readCount,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.CmsHelp">
@@ -81,7 +81,7 @@
         #{title,jdbcType=VARCHAR},
       </if>
       <if test="showStatus != null">
-        #{showStatus,jdbcType=INTEGER},
+        #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -107,7 +107,7 @@
         title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="showStatus != null">
-        show_status = #{showStatus,jdbcType=INTEGER},
+        show_status = #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -126,7 +126,7 @@
     set category_id = #{categoryId,jdbcType=BIGINT},
       icon = #{icon,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       read_count = #{readCount,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
@@ -137,7 +137,7 @@
     set category_id = #{categoryId,jdbcType=BIGINT},
       icon = #{icon,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       read_count = #{readCount,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

@@ -5,15 +5,15 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="product_attribute_category_id" jdbcType="BIGINT" property="productAttributeCategoryId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="select_type" jdbcType="INTEGER" property="selectType" />
-    <result column="input_type" jdbcType="INTEGER" property="inputType" />
+    <result column="select_type" jdbcType="VARCHAR" property="selectType" />
+    <result column="input_type" jdbcType="VARCHAR" property="inputType" />
     <result column="input_list" jdbcType="VARCHAR" property="inputList" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
-    <result column="filter_type" jdbcType="INTEGER" property="filterType" />
-    <result column="search_type" jdbcType="INTEGER" property="searchType" />
-    <result column="related_status" jdbcType="INTEGER" property="relatedStatus" />
-    <result column="hand_add_status" jdbcType="INTEGER" property="handAddStatus" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="filter_type" jdbcType="VARCHAR" property="filterType" />
+    <result column="search_type" jdbcType="VARCHAR" property="searchType" />
+    <result column="related_status" jdbcType="VARCHAR" property="relatedStatus" />
+    <result column="hand_add_status" jdbcType="VARCHAR" property="handAddStatus" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
   </resultMap>
   <sql id="Base_Column_List">
     id, product_attribute_category_id, `name`, select_type, input_type, input_list, sort, 
@@ -36,9 +36,9 @@
       related_status, hand_add_status, `type`
       )
     values (#{id,jdbcType=BIGINT}, #{productAttributeCategoryId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{selectType,jdbcType=INTEGER}, #{inputType,jdbcType=INTEGER}, #{inputList,jdbcType=VARCHAR}, 
-      #{sort,jdbcType=INTEGER}, #{filterType,jdbcType=INTEGER}, #{searchType,jdbcType=INTEGER}, 
-      #{relatedStatus,jdbcType=INTEGER}, #{handAddStatus,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}
+      #{selectType,jdbcType=VARCHAR}, #{inputType,jdbcType=VARCHAR}, #{inputList,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{filterType,jdbcType=VARCHAR}, #{searchType,jdbcType=VARCHAR}, 
+      #{relatedStatus,jdbcType=VARCHAR}, #{handAddStatus,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.PmsProductAttribute">
@@ -92,10 +92,10 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="selectType != null">
-        #{selectType,jdbcType=INTEGER},
+        #{selectType,jdbcType=VARCHAR},
       </if>
       <if test="inputType != null">
-        #{inputType,jdbcType=INTEGER},
+        #{inputType,jdbcType=VARCHAR},
       </if>
       <if test="inputList != null">
         #{inputList,jdbcType=VARCHAR},
@@ -104,19 +104,19 @@
         #{sort,jdbcType=INTEGER},
       </if>
       <if test="filterType != null">
-        #{filterType,jdbcType=INTEGER},
+        #{filterType,jdbcType=VARCHAR},
       </if>
       <if test="searchType != null">
-        #{searchType,jdbcType=INTEGER},
+        #{searchType,jdbcType=VARCHAR},
       </if>
       <if test="relatedStatus != null">
-        #{relatedStatus,jdbcType=INTEGER},
+        #{relatedStatus,jdbcType=VARCHAR},
       </if>
       <if test="handAddStatus != null">
-        #{handAddStatus,jdbcType=INTEGER},
+        #{handAddStatus,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        #{type,jdbcType=INTEGER},
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -130,10 +130,10 @@
         `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="selectType != null">
-        select_type = #{selectType,jdbcType=INTEGER},
+        select_type = #{selectType,jdbcType=VARCHAR},
       </if>
       <if test="inputType != null">
-        input_type = #{inputType,jdbcType=INTEGER},
+        input_type = #{inputType,jdbcType=VARCHAR},
       </if>
       <if test="inputList != null">
         input_list = #{inputList,jdbcType=VARCHAR},
@@ -142,19 +142,19 @@
         sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="filterType != null">
-        filter_type = #{filterType,jdbcType=INTEGER},
+        filter_type = #{filterType,jdbcType=VARCHAR},
       </if>
       <if test="searchType != null">
-        search_type = #{searchType,jdbcType=INTEGER},
+        search_type = #{searchType,jdbcType=VARCHAR},
       </if>
       <if test="relatedStatus != null">
-        related_status = #{relatedStatus,jdbcType=INTEGER},
+        related_status = #{relatedStatus,jdbcType=VARCHAR},
       </if>
       <if test="handAddStatus != null">
-        hand_add_status = #{handAddStatus,jdbcType=INTEGER},
+        hand_add_status = #{handAddStatus,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
+        `type` = #{type,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -163,15 +163,15 @@
     update pms_product_attribute
     set product_attribute_category_id = #{productAttributeCategoryId,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
-      select_type = #{selectType,jdbcType=INTEGER},
-      input_type = #{inputType,jdbcType=INTEGER},
+      select_type = #{selectType,jdbcType=VARCHAR},
+      input_type = #{inputType,jdbcType=VARCHAR},
       input_list = #{inputList,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
-      filter_type = #{filterType,jdbcType=INTEGER},
-      search_type = #{searchType,jdbcType=INTEGER},
-      related_status = #{relatedStatus,jdbcType=INTEGER},
-      hand_add_status = #{handAddStatus,jdbcType=INTEGER},
-      `type` = #{type,jdbcType=INTEGER}
+      filter_type = #{filterType,jdbcType=VARCHAR},
+      search_type = #{searchType,jdbcType=VARCHAR},
+      related_status = #{relatedStatus,jdbcType=VARCHAR},
+      hand_add_status = #{handAddStatus,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

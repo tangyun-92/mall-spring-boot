@@ -8,7 +8,7 @@ public class CmsMemberReport implements Serializable {
     private Long id;
 
     @ApiModelProperty(value = "举报类型：0->商品评价；1->话题内容；2->用户评论")
-    private Integer reportType;
+    private String reportType;
 
     @ApiModelProperty(value = "举报人")
     private String reportMemberName;
@@ -18,10 +18,10 @@ public class CmsMemberReport implements Serializable {
     private String reportObject;
 
     @ApiModelProperty(value = "举报状态：0->未处理；1->已处理")
-    private Integer reportStatus;
+    private String reportStatus;
 
     @ApiModelProperty(value = "处理结果：0->无效；1->有效；2->恶意")
-    private Integer handleStatus;
+    private String handleStatus;
 
     private String note;
 
@@ -35,11 +35,11 @@ public class CmsMemberReport implements Serializable {
         this.id = id;
     }
 
-    public Integer getReportType() {
+    public String getReportType() {
         return reportType;
     }
 
-    public void setReportType(Integer reportType) {
+    public void setReportType(String reportType) {
         this.reportType = reportType;
     }
 
@@ -67,19 +67,19 @@ public class CmsMemberReport implements Serializable {
         this.reportObject = reportObject;
     }
 
-    public Integer getReportStatus() {
+    public String getReportStatus() {
         return reportStatus;
     }
 
-    public void setReportStatus(Integer reportStatus) {
+    public void setReportStatus(String reportStatus) {
         this.reportStatus = reportStatus;
     }
 
-    public Integer getHandleStatus() {
+    public String getHandleStatus() {
         return handleStatus;
     }
 
-    public void setHandleStatus(Integer handleStatus) {
+    public void setHandleStatus(String handleStatus) {
         this.handleStatus = handleStatus;
     }
 

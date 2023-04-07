@@ -14,7 +14,7 @@ public class UmsMemberReceiveAddress implements Serializable {
     private String phoneNumber;
 
     @ApiModelProperty(value = "是否为默认")
-    private Integer defaultStatus;
+    private String defaultStatus;
 
     @ApiModelProperty(value = "邮政编码")
     private String postCode;
@@ -65,11 +65,11 @@ public class UmsMemberReceiveAddress implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getDefaultStatus() {
+    public String getDefaultStatus() {
         return defaultStatus;
     }
 
-    public void setDefaultStatus(Integer defaultStatus) {
+    public void setDefaultStatus(String defaultStatus) {
         this.defaultStatus = defaultStatus;
     }
 

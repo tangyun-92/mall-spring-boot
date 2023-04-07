@@ -13,7 +13,7 @@ public class OmsOrderReturnReason implements Serializable {
     private Integer sort;
 
     @ApiModelProperty(value = "状态：0->不启用；1->启用")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "添加时间")
     private Date createTime;
@@ -44,11 +44,11 @@ public class OmsOrderReturnReason implements Serializable {
         this.sort = sort;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

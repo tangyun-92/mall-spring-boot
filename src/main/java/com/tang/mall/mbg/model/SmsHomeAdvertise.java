@@ -10,7 +10,7 @@ public class SmsHomeAdvertise implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "轮播位置：0->PC首页轮播；1->app首页轮播")
-    private Integer type;
+    private String type;
 
     private String pic;
 
@@ -19,7 +19,7 @@ public class SmsHomeAdvertise implements Serializable {
     private Date endTime;
 
     @ApiModelProperty(value = "上下线状态：0->下线；1->上线")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "点击数")
     private Integer clickCount;
@@ -54,11 +54,11 @@ public class SmsHomeAdvertise implements Serializable {
         this.name = name;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -86,11 +86,11 @@ public class SmsHomeAdvertise implements Serializable {
         this.endTime = endTime;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

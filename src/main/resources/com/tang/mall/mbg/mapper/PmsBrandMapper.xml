@@ -6,8 +6,8 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="first_letter" jdbcType="VARCHAR" property="firstLetter" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
-    <result column="factory_status" jdbcType="INTEGER" property="factoryStatus" />
-    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="factory_status" jdbcType="VARCHAR" property="factoryStatus" />
+    <result column="show_status" jdbcType="VARCHAR" property="showStatus" />
     <result column="product_count" jdbcType="INTEGER" property="productCount" />
     <result column="product_comment_count" jdbcType="INTEGER" property="productCommentCount" />
     <result column="logo" jdbcType="VARCHAR" property="logo" />
@@ -41,7 +41,7 @@
       product_count, product_comment_count, logo, 
       big_pic, brand_story)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR}, 
-      #{sort,jdbcType=INTEGER}, #{factoryStatus,jdbcType=INTEGER}, #{showStatus,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{factoryStatus,jdbcType=VARCHAR}, #{showStatus,jdbcType=VARCHAR}, 
       #{productCount,jdbcType=INTEGER}, #{productCommentCount,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, 
       #{bigPic,jdbcType=VARCHAR}, #{brandStory,jdbcType=LONGVARCHAR})
   </insert>
@@ -96,10 +96,10 @@
         #{sort,jdbcType=INTEGER},
       </if>
       <if test="factoryStatus != null">
-        #{factoryStatus,jdbcType=INTEGER},
+        #{factoryStatus,jdbcType=VARCHAR},
       </if>
       <if test="showStatus != null">
-        #{showStatus,jdbcType=INTEGER},
+        #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="productCount != null">
         #{productCount,jdbcType=INTEGER},
@@ -131,10 +131,10 @@
         sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="factoryStatus != null">
-        factory_status = #{factoryStatus,jdbcType=INTEGER},
+        factory_status = #{factoryStatus,jdbcType=VARCHAR},
       </if>
       <if test="showStatus != null">
-        show_status = #{showStatus,jdbcType=INTEGER},
+        show_status = #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="productCount != null">
         product_count = #{productCount,jdbcType=INTEGER},
@@ -159,8 +159,8 @@
     set `name` = #{name,jdbcType=VARCHAR},
       first_letter = #{firstLetter,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
-      factory_status = #{factoryStatus,jdbcType=INTEGER},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      factory_status = #{factoryStatus,jdbcType=VARCHAR},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       product_count = #{productCount,jdbcType=INTEGER},
       product_comment_count = #{productCommentCount,jdbcType=INTEGER},
       logo = #{logo,jdbcType=VARCHAR},
@@ -173,8 +173,8 @@
     set `name` = #{name,jdbcType=VARCHAR},
       first_letter = #{firstLetter,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
-      factory_status = #{factoryStatus,jdbcType=INTEGER},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      factory_status = #{factoryStatus,jdbcType=VARCHAR},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       product_count = #{productCount,jdbcType=INTEGER},
       product_comment_count = #{productCommentCount,jdbcType=INTEGER},
       logo = #{logo,jdbcType=VARCHAR},

@@ -12,17 +12,17 @@ public class PmsProductCategory implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "分类级别：0->1级；1->2级")
-    private Integer level;
+    private String level;
 
     private Integer productCount;
 
     private String productUnit;
 
     @ApiModelProperty(value = "是否显示在导航栏：0->不显示；1->显示")
-    private Integer navStatus;
+    private String navStatus;
 
     @ApiModelProperty(value = "显示状态：0->不显示；1->显示")
-    private Integer showStatus;
+    private String showStatus;
 
     private Integer sort;
 
@@ -60,11 +60,11 @@ public class PmsProductCategory implements Serializable {
         this.name = name;
     }
 
-    public Integer getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 
@@ -84,19 +84,19 @@ public class PmsProductCategory implements Serializable {
         this.productUnit = productUnit;
     }
 
-    public Integer getNavStatus() {
+    public String getNavStatus() {
         return navStatus;
     }
 
-    public void setNavStatus(Integer navStatus) {
+    public void setNavStatus(String navStatus) {
         this.navStatus = navStatus;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

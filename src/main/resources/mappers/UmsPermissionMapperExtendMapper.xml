@@ -7,9 +7,9 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="uri" jdbcType="VARCHAR" property="uri" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>

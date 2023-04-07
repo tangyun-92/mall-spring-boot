@@ -14,7 +14,7 @@ public class PmsProductVerifyRecord implements Serializable {
     @ApiModelProperty(value = "审核人")
     private String vertifyMan;
 
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "反馈详情")
     private String detail;
@@ -53,11 +53,11 @@ public class PmsProductVerifyRecord implements Serializable {
         this.vertifyMan = vertifyMan;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

@@ -8,15 +8,15 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
-    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="birthday" jdbcType="DATE" property="birthday" />
     <result column="city" jdbcType="VARCHAR" property="city" />
     <result column="job" jdbcType="VARCHAR" property="job" />
     <result column="personalized_signature" jdbcType="VARCHAR" property="personalizedSignature" />
-    <result column="source_type" jdbcType="INTEGER" property="sourceType" />
+    <result column="source_type" jdbcType="VARCHAR" property="sourceType" />
     <result column="integration" jdbcType="INTEGER" property="integration" />
     <result column="growth" jdbcType="INTEGER" property="growth" />
     <result column="luckey_count" jdbcType="INTEGER" property="luckeyCount" />
@@ -47,9 +47,9 @@
       history_integration)
     values (#{id,jdbcType=BIGINT}, #{memberLevelId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{icon,jdbcType=VARCHAR}, 
-      #{gender,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{city,jdbcType=VARCHAR}, 
-      #{job,jdbcType=VARCHAR}, #{personalizedSignature,jdbcType=VARCHAR}, #{sourceType,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{icon,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{city,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{personalizedSignature,jdbcType=VARCHAR}, #{sourceType,jdbcType=VARCHAR}, 
       #{integration,jdbcType=INTEGER}, #{growth,jdbcType=INTEGER}, #{luckeyCount,jdbcType=INTEGER}, 
       #{historyIntegration,jdbcType=INTEGER})
   </insert>
@@ -134,7 +134,7 @@
         #{phone,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -143,7 +143,7 @@
         #{icon,jdbcType=VARCHAR},
       </if>
       <if test="gender != null">
-        #{gender,jdbcType=INTEGER},
+        #{gender,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null">
         #{birthday,jdbcType=DATE},
@@ -158,7 +158,7 @@
         #{personalizedSignature,jdbcType=VARCHAR},
       </if>
       <if test="sourceType != null">
-        #{sourceType,jdbcType=INTEGER},
+        #{sourceType,jdbcType=VARCHAR},
       </if>
       <if test="integration != null">
         #{integration,jdbcType=INTEGER},
@@ -193,7 +193,7 @@
         phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -202,7 +202,7 @@
         icon = #{icon,jdbcType=VARCHAR},
       </if>
       <if test="gender != null">
-        gender = #{gender,jdbcType=INTEGER},
+        gender = #{gender,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null">
         birthday = #{birthday,jdbcType=DATE},
@@ -217,7 +217,7 @@
         personalized_signature = #{personalizedSignature,jdbcType=VARCHAR},
       </if>
       <if test="sourceType != null">
-        source_type = #{sourceType,jdbcType=INTEGER},
+        source_type = #{sourceType,jdbcType=VARCHAR},
       </if>
       <if test="integration != null">
         integration = #{integration,jdbcType=INTEGER},
@@ -241,15 +241,15 @@
       `password` = #{password,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       icon = #{icon,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=VARCHAR},
       birthday = #{birthday,jdbcType=DATE},
       city = #{city,jdbcType=VARCHAR},
       job = #{job,jdbcType=VARCHAR},
       personalized_signature = #{personalizedSignature,jdbcType=VARCHAR},
-      source_type = #{sourceType,jdbcType=INTEGER},
+      source_type = #{sourceType,jdbcType=VARCHAR},
       integration = #{integration,jdbcType=INTEGER},
       growth = #{growth,jdbcType=INTEGER},
       luckey_count = #{luckeyCount,jdbcType=INTEGER},

@@ -1,4 +1,4 @@
-package com.tang.mall.service.impl;
+package com.tang.mall.util;
 
 import com.github.pagehelper.Page;
 import lombok.Data;

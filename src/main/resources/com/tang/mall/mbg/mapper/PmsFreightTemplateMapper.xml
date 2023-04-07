@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.tang.mall.mbg.model.PmsFreightTemplate">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="charge_type" jdbcType="INTEGER" property="chargeType" />
+    <result column="charge_type" jdbcType="VARCHAR" property="chargeType" />
     <result column="first_weight" jdbcType="DECIMAL" property="firstWeight" />
     <result column="first_fee" jdbcType="DECIMAL" property="firstFee" />
     <result column="continue_weight" jdbcType="DECIMAL" property="continueWeight" />
@@ -29,7 +29,7 @@
     insert into pms_freight_template (id, `name`, charge_type, 
       first_weight, first_fee, continue_weight, 
       continme_fee, dest)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{chargeType,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{chargeType,jdbcType=VARCHAR}, 
       #{firstWeight,jdbcType=DECIMAL}, #{firstFee,jdbcType=DECIMAL}, #{continueWeight,jdbcType=DECIMAL}, 
       #{continmeFee,jdbcType=DECIMAL}, #{dest,jdbcType=VARCHAR})
   </insert>
@@ -69,7 +69,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="chargeType != null">
-        #{chargeType,jdbcType=INTEGER},
+        #{chargeType,jdbcType=VARCHAR},
       </if>
       <if test="firstWeight != null">
         #{firstWeight,jdbcType=DECIMAL},
@@ -95,7 +95,7 @@
         `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="chargeType != null">
-        charge_type = #{chargeType,jdbcType=INTEGER},
+        charge_type = #{chargeType,jdbcType=VARCHAR},
       </if>
       <if test="firstWeight != null">
         first_weight = #{firstWeight,jdbcType=DECIMAL},
@@ -118,7 +118,7 @@
   <update id="updateByPrimaryKey" parameterType="com.tang.mall.mbg.model.PmsFreightTemplate">
     update pms_freight_template
     set `name` = #{name,jdbcType=VARCHAR},
-      charge_type = #{chargeType,jdbcType=INTEGER},
+      charge_type = #{chargeType,jdbcType=VARCHAR},
       first_weight = #{firstWeight,jdbcType=DECIMAL},
       first_fee = #{firstFee,jdbcType=DECIMAL},
       continue_weight = #{continueWeight,jdbcType=DECIMAL},

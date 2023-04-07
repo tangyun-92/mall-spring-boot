@@ -12,7 +12,7 @@ public class CmsPreferenceArea implements Serializable {
 
     private Integer sort;
 
-    private Integer showStatus;
+    private String showStatus;
 
     @ApiModelProperty(value = "展示图片")
     private byte[] pic;
@@ -51,11 +51,11 @@ public class CmsPreferenceArea implements Serializable {
         this.sort = sort;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

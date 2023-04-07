@@ -7,14 +7,14 @@
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="pic" jdbcType="VARCHAR" property="pic" />
     <result column="product_count" jdbcType="INTEGER" property="productCount" />
-    <result column="recommend_status" jdbcType="INTEGER" property="recommendStatus" />
+    <result column="recommend_status" jdbcType="VARCHAR" property="recommendStatus" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
     <result column="read_count" jdbcType="INTEGER" property="readCount" />
     <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
     <result column="album_pics" jdbcType="VARCHAR" property="albumPics" />
     <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="show_status" jdbcType="VARCHAR" property="showStatus" />
     <result column="forward_count" jdbcType="INTEGER" property="forwardCount" />
     <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
   </resultMap>
@@ -48,10 +48,10 @@
       show_status, forward_count, category_name, 
       content)
     values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
-      #{pic,jdbcType=VARCHAR}, #{productCount,jdbcType=INTEGER}, #{recommendStatus,jdbcType=INTEGER}, 
+      #{pic,jdbcType=VARCHAR}, #{productCount,jdbcType=INTEGER}, #{recommendStatus,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{collectCount,jdbcType=INTEGER}, #{readCount,jdbcType=INTEGER}, 
       #{commentCount,jdbcType=INTEGER}, #{albumPics,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{showStatus,jdbcType=INTEGER}, #{forwardCount,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, 
+      #{showStatus,jdbcType=VARCHAR}, #{forwardCount,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.CmsSubject">
@@ -123,7 +123,7 @@
         #{productCount,jdbcType=INTEGER},
       </if>
       <if test="recommendStatus != null">
-        #{recommendStatus,jdbcType=INTEGER},
+        #{recommendStatus,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -144,7 +144,7 @@
         #{description,jdbcType=VARCHAR},
       </if>
       <if test="showStatus != null">
-        #{showStatus,jdbcType=INTEGER},
+        #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="forwardCount != null">
         #{forwardCount,jdbcType=INTEGER},
@@ -173,7 +173,7 @@
         product_count = #{productCount,jdbcType=INTEGER},
       </if>
       <if test="recommendStatus != null">
-        recommend_status = #{recommendStatus,jdbcType=INTEGER},
+        recommend_status = #{recommendStatus,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -194,7 +194,7 @@
         description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="showStatus != null">
-        show_status = #{showStatus,jdbcType=INTEGER},
+        show_status = #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="forwardCount != null">
         forward_count = #{forwardCount,jdbcType=INTEGER},
@@ -214,14 +214,14 @@
       title = #{title,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
       product_count = #{productCount,jdbcType=INTEGER},
-      recommend_status = #{recommendStatus,jdbcType=INTEGER},
+      recommend_status = #{recommendStatus,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       collect_count = #{collectCount,jdbcType=INTEGER},
       read_count = #{readCount,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       album_pics = #{albumPics,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       forward_count = #{forwardCount,jdbcType=INTEGER},
       category_name = #{categoryName,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
@@ -233,14 +233,14 @@
       title = #{title,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
       product_count = #{productCount,jdbcType=INTEGER},
-      recommend_status = #{recommendStatus,jdbcType=INTEGER},
+      recommend_status = #{recommendStatus,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       collect_count = #{collectCount,jdbcType=INTEGER},
       read_count = #{readCount,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       album_pics = #{albumPics,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       forward_count = #{forwardCount,jdbcType=INTEGER},
       category_name = #{categoryName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}

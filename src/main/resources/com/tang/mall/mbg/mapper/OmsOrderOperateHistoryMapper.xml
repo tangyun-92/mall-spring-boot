@@ -6,7 +6,7 @@
     <result column="order_id" jdbcType="BIGINT" property="orderId" />
     <result column="operate_man" jdbcType="VARCHAR" property="operateMan" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -27,7 +27,7 @@
       create_time, order_status, note
       )
     values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{operateMan,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}
+      #{createTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.OmsOrderOperateHistory">
@@ -66,7 +66,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderStatus != null">
-        #{orderStatus,jdbcType=INTEGER},
+        #{orderStatus,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
@@ -86,7 +86,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="orderStatus != null">
-        order_status = #{orderStatus,jdbcType=INTEGER},
+        order_status = #{orderStatus,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
@@ -99,7 +99,7 @@
     set order_id = #{orderId,jdbcType=BIGINT},
       operate_man = #{operateMan,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>

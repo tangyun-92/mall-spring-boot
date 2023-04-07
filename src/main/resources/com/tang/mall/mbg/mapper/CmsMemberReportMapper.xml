@@ -3,21 +3,21 @@
 <mapper namespace="com.tang.mall.mbg.mapper.CmsMemberReportMapper">
   <resultMap id="BaseResultMap" type="com.tang.mall.mbg.model.CmsMemberReport">
     <result column="id" jdbcType="BIGINT" property="id" />
-    <result column="report_type" jdbcType="INTEGER" property="reportType" />
+    <result column="report_type" jdbcType="VARCHAR" property="reportType" />
     <result column="report_member_name" jdbcType="VARCHAR" property="reportMemberName" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="report_object" jdbcType="VARCHAR" property="reportObject" />
-    <result column="report_status" jdbcType="INTEGER" property="reportStatus" />
-    <result column="handle_status" jdbcType="INTEGER" property="handleStatus" />
+    <result column="report_status" jdbcType="VARCHAR" property="reportStatus" />
+    <result column="handle_status" jdbcType="VARCHAR" property="handleStatus" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <insert id="insert" parameterType="com.tang.mall.mbg.model.CmsMemberReport">
     insert into cms_member_report (id, report_type, report_member_name, 
       create_time, report_object, report_status, 
       handle_status, note)
-    values (#{id,jdbcType=BIGINT}, #{reportType,jdbcType=INTEGER}, #{reportMemberName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{reportObject,jdbcType=VARCHAR}, #{reportStatus,jdbcType=INTEGER}, 
-      #{handleStatus,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR})
+    values (#{id,jdbcType=BIGINT}, #{reportType,jdbcType=VARCHAR}, #{reportMemberName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{reportObject,jdbcType=VARCHAR}, #{reportStatus,jdbcType=VARCHAR}, 
+      #{handleStatus,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.CmsMemberReport">
     insert into cms_member_report
@@ -52,7 +52,7 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="reportType != null">
-        #{reportType,jdbcType=INTEGER},
+        #{reportType,jdbcType=VARCHAR},
       </if>
       <if test="reportMemberName != null">
         #{reportMemberName,jdbcType=VARCHAR},
@@ -64,10 +64,10 @@
         #{reportObject,jdbcType=VARCHAR},
       </if>
       <if test="reportStatus != null">
-        #{reportStatus,jdbcType=INTEGER},
+        #{reportStatus,jdbcType=VARCHAR},
       </if>
       <if test="handleStatus != null">
-        #{handleStatus,jdbcType=INTEGER},
+        #{handleStatus,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},

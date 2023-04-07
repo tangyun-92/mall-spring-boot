@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="admin_id" jdbcType="BIGINT" property="adminId" />
     <result column="permission_id" jdbcType="BIGINT" property="permissionId" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
   </resultMap>
   <sql id="Base_Column_List">
     id, admin_id, permission_id, `type`
@@ -24,7 +24,7 @@
     insert into ums_admin_permission_relation (id, admin_id, permission_id, 
       `type`)
     values (#{id,jdbcType=BIGINT}, #{adminId,jdbcType=BIGINT}, #{permissionId,jdbcType=BIGINT}, 
-      #{type,jdbcType=INTEGER})
+      #{type,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.UmsAdminPermissionRelation">
     insert into ums_admin_permission_relation
@@ -53,7 +53,7 @@
         #{permissionId,jdbcType=BIGINT},
       </if>
       <if test="type != null">
-        #{type,jdbcType=INTEGER},
+        #{type,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -67,7 +67,7 @@
         permission_id = #{permissionId,jdbcType=BIGINT},
       </if>
       <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
+        `type` = #{type,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -76,7 +76,7 @@
     update ums_admin_permission_relation
     set admin_id = #{adminId,jdbcType=BIGINT},
       permission_id = #{permissionId,jdbcType=BIGINT},
-      `type` = #{type,jdbcType=INTEGER}
+      `type` = #{type,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -6,7 +6,7 @@
     <result column="member_id" jdbcType="BIGINT" property="memberId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
-    <result column="default_status" jdbcType="INTEGER" property="defaultStatus" />
+    <result column="default_status" jdbcType="VARCHAR" property="defaultStatus" />
     <result column="post_code" jdbcType="VARCHAR" property="postCode" />
     <result column="province" jdbcType="VARCHAR" property="province" />
     <result column="city" jdbcType="VARCHAR" property="city" />
@@ -33,7 +33,7 @@
       province, city, region, 
       detail_address)
     values (#{id,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{phoneNumber,jdbcType=VARCHAR}, #{defaultStatus,jdbcType=INTEGER}, #{postCode,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{defaultStatus,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, 
       #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, 
       #{detailAddress,jdbcType=VARCHAR})
   </insert>
@@ -85,7 +85,7 @@
         #{phoneNumber,jdbcType=VARCHAR},
       </if>
       <if test="defaultStatus != null">
-        #{defaultStatus,jdbcType=INTEGER},
+        #{defaultStatus,jdbcType=VARCHAR},
       </if>
       <if test="postCode != null">
         #{postCode,jdbcType=VARCHAR},
@@ -117,7 +117,7 @@
         phone_number = #{phoneNumber,jdbcType=VARCHAR},
       </if>
       <if test="defaultStatus != null">
-        default_status = #{defaultStatus,jdbcType=INTEGER},
+        default_status = #{defaultStatus,jdbcType=VARCHAR},
       </if>
       <if test="postCode != null">
         post_code = #{postCode,jdbcType=VARCHAR},
@@ -142,7 +142,7 @@
     set member_id = #{memberId,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
       phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      default_status = #{defaultStatus,jdbcType=INTEGER},
+      default_status = #{defaultStatus,jdbcType=VARCHAR},
       post_code = #{postCode,jdbcType=VARCHAR},
       province = #{province,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},

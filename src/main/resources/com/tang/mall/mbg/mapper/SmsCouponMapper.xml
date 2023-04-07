@@ -3,23 +3,23 @@
 <mapper namespace="com.tang.mall.mbg.mapper.SmsCouponMapper">
   <resultMap id="BaseResultMap" type="com.tang.mall.mbg.model.SmsCoupon">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="platform" jdbcType="INTEGER" property="platform" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
     <result column="count" jdbcType="INTEGER" property="count" />
     <result column="amount" jdbcType="DECIMAL" property="amount" />
     <result column="per_limit" jdbcType="INTEGER" property="perLimit" />
     <result column="min_point" jdbcType="DECIMAL" property="minPoint" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="use_type" jdbcType="INTEGER" property="useType" />
+    <result column="use_type" jdbcType="VARCHAR" property="useType" />
     <result column="note" jdbcType="VARCHAR" property="note" />
     <result column="publish_count" jdbcType="INTEGER" property="publishCount" />
     <result column="use_count" jdbcType="INTEGER" property="useCount" />
     <result column="receive_count" jdbcType="INTEGER" property="receiveCount" />
     <result column="enable_time" jdbcType="TIMESTAMP" property="enableTime" />
     <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="member_level" jdbcType="INTEGER" property="memberLevel" />
+    <result column="member_level" jdbcType="VARCHAR" property="memberLevel" />
   </resultMap>
   <sql id="Base_Column_List">
     id, `type`, `name`, platform, `count`, amount, per_limit, min_point, start_time, 
@@ -44,12 +44,12 @@
       publish_count, use_count, receive_count, 
       enable_time, code, member_level
       )
-    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{platform,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{platform,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
       #{perLimit,jdbcType=INTEGER}, #{minPoint,jdbcType=DECIMAL}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{useType,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{useType,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
       #{publishCount,jdbcType=INTEGER}, #{useCount,jdbcType=INTEGER}, #{receiveCount,jdbcType=INTEGER}, 
-      #{enableTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR}, #{memberLevel,jdbcType=INTEGER}
+      #{enableTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR}, #{memberLevel,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.SmsCoupon">
@@ -115,13 +115,13 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="type != null">
-        #{type,jdbcType=INTEGER},
+        #{type,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="platform != null">
-        #{platform,jdbcType=INTEGER},
+        #{platform,jdbcType=VARCHAR},
       </if>
       <if test="count != null">
         #{count,jdbcType=INTEGER},
@@ -142,7 +142,7 @@
         #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="useType != null">
-        #{useType,jdbcType=INTEGER},
+        #{useType,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
@@ -163,7 +163,7 @@
         #{code,jdbcType=VARCHAR},
       </if>
       <if test="memberLevel != null">
-        #{memberLevel,jdbcType=INTEGER},
+        #{memberLevel,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -171,13 +171,13 @@
     update sms_coupon
     <set>
       <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
+        `type` = #{type,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="platform != null">
-        platform = #{platform,jdbcType=INTEGER},
+        platform = #{platform,jdbcType=VARCHAR},
       </if>
       <if test="count != null">
         `count` = #{count,jdbcType=INTEGER},
@@ -198,7 +198,7 @@
         end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="useType != null">
-        use_type = #{useType,jdbcType=INTEGER},
+        use_type = #{useType,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
@@ -219,30 +219,30 @@
         code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="memberLevel != null">
-        member_level = #{memberLevel,jdbcType=INTEGER},
+        member_level = #{memberLevel,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tang.mall.mbg.model.SmsCoupon">
     update sms_coupon
-    set `type` = #{type,jdbcType=INTEGER},
+    set `type` = #{type,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
-      platform = #{platform,jdbcType=INTEGER},
+      platform = #{platform,jdbcType=VARCHAR},
       `count` = #{count,jdbcType=INTEGER},
       amount = #{amount,jdbcType=DECIMAL},
       per_limit = #{perLimit,jdbcType=INTEGER},
       min_point = #{minPoint,jdbcType=DECIMAL},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      use_type = #{useType,jdbcType=INTEGER},
+      use_type = #{useType,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
       publish_count = #{publishCount,jdbcType=INTEGER},
       use_count = #{useCount,jdbcType=INTEGER},
       receive_count = #{receiveCount,jdbcType=INTEGER},
       enable_time = #{enableTime,jdbcType=TIMESTAMP},
       code = #{code,jdbcType=VARCHAR},
-      member_level = #{memberLevel,jdbcType=INTEGER}
+      member_level = #{memberLevel,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

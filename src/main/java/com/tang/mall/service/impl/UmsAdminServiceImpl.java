@@ -67,7 +67,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UmsAdmin umsAdmin = new UmsAdmin();
         BeanUtils.copyProperties(umsAdminRegisterParam, umsAdmin);
         umsAdmin.setCreateTime(new Date());
-        umsAdmin.setStatus(1);
+        umsAdmin.setStatus("1");
         // 密码加密
         String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
         umsAdmin.setPassword(encodePassword);

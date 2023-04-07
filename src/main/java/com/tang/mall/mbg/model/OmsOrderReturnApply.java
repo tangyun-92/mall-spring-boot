@@ -36,7 +36,7 @@ public class OmsOrderReturnApply implements Serializable {
     private String returnPhone;
 
     @ApiModelProperty(value = "申请状态：0->待处理；1->退货中；2->已完成；3->已拒绝")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "处理时间")
     private Date handleTime;
@@ -168,11 +168,11 @@ public class OmsOrderReturnApply implements Serializable {
         this.returnPhone = returnPhone;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

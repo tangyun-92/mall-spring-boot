@@ -12,7 +12,7 @@ public class UmsMemberLevel implements Serializable {
     private Integer growthPoint;
 
     @ApiModelProperty(value = "是否为默认等级：0->不是；1->是")
-    private Integer defaultStatus;
+    private String defaultStatus;
 
     @ApiModelProperty(value = "免运费标准")
     private BigDecimal freeFreightPoint;
@@ -21,22 +21,22 @@ public class UmsMemberLevel implements Serializable {
     private Integer commentGrowthPoint;
 
     @ApiModelProperty(value = "是否有免邮特权")
-    private Integer priviledgeFreeFreight;
+    private String priviledgeFreeFreight;
 
     @ApiModelProperty(value = "是否有签到特权")
-    private Integer priviledgeSignIn;
+    private String priviledgeSignIn;
 
     @ApiModelProperty(value = "是否有评论获奖励特权")
-    private Integer priviledgeComment;
+    private String priviledgeComment;
 
     @ApiModelProperty(value = "是否有专享活动特权")
-    private Integer priviledgePromotion;
+    private String priviledgePromotion;
 
     @ApiModelProperty(value = "是否有会员价格特权")
-    private Integer priviledgeMemberPrice;
+    private String priviledgeMemberPrice;
 
     @ApiModelProperty(value = "是否有生日特权")
-    private Integer priviledgeBirthday;
+    private String priviledgeBirthday;
 
     private String note;
 
@@ -66,11 +66,11 @@ public class UmsMemberLevel implements Serializable {
         this.growthPoint = growthPoint;
     }
 
-    public Integer getDefaultStatus() {
+    public String getDefaultStatus() {
         return defaultStatus;
     }
 
-    public void setDefaultStatus(Integer defaultStatus) {
+    public void setDefaultStatus(String defaultStatus) {
         this.defaultStatus = defaultStatus;
     }
 
@@ -90,51 +90,51 @@ public class UmsMemberLevel implements Serializable {
         this.commentGrowthPoint = commentGrowthPoint;
     }
 
-    public Integer getPriviledgeFreeFreight() {
+    public String getPriviledgeFreeFreight() {
         return priviledgeFreeFreight;
     }
 
-    public void setPriviledgeFreeFreight(Integer priviledgeFreeFreight) {
+    public void setPriviledgeFreeFreight(String priviledgeFreeFreight) {
         this.priviledgeFreeFreight = priviledgeFreeFreight;
     }
 
-    public Integer getPriviledgeSignIn() {
+    public String getPriviledgeSignIn() {
         return priviledgeSignIn;
     }
 
-    public void setPriviledgeSignIn(Integer priviledgeSignIn) {
+    public void setPriviledgeSignIn(String priviledgeSignIn) {
         this.priviledgeSignIn = priviledgeSignIn;
     }
 
-    public Integer getPriviledgeComment() {
+    public String getPriviledgeComment() {
         return priviledgeComment;
     }
 
-    public void setPriviledgeComment(Integer priviledgeComment) {
+    public void setPriviledgeComment(String priviledgeComment) {
         this.priviledgeComment = priviledgeComment;
     }
 
-    public Integer getPriviledgePromotion() {
+    public String getPriviledgePromotion() {
         return priviledgePromotion;
     }
 
-    public void setPriviledgePromotion(Integer priviledgePromotion) {
+    public void setPriviledgePromotion(String priviledgePromotion) {
         this.priviledgePromotion = priviledgePromotion;
     }
 
-    public Integer getPriviledgeMemberPrice() {
+    public String getPriviledgeMemberPrice() {
         return priviledgeMemberPrice;
     }
 
-    public void setPriviledgeMemberPrice(Integer priviledgeMemberPrice) {
+    public void setPriviledgeMemberPrice(String priviledgeMemberPrice) {
         this.priviledgeMemberPrice = priviledgeMemberPrice;
     }
 
-    public Integer getPriviledgeBirthday() {
+    public String getPriviledgeBirthday() {
         return priviledgeBirthday;
     }
 
-    public void setPriviledgeBirthday(Integer priviledgeBirthday) {
+    public void setPriviledgeBirthday(String priviledgeBirthday) {
         this.priviledgeBirthday = priviledgeBirthday;
     }
 

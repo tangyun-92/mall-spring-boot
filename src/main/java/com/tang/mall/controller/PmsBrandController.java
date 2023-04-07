@@ -1,12 +1,11 @@
 package com.tang.mall.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.tang.mall.common.ApiRestResponse;
 import com.tang.mall.dto.PmsBrandUpdateParam;
 import com.tang.mall.dto.PmsBrandAddParam;
 import com.tang.mall.dto.PmsBrandListParam;
 import com.tang.mall.service.PmsBrandService;
-import com.tang.mall.service.impl.PageBean;
+import com.tang.mall.util.PageBean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +57,8 @@ public class PmsBrandController {
     @ApiOperation("后台-删除品牌")
     @PostMapping("/admin/brand/delete")
     @PreAuthorize("hasAuthority('pms:brand:delete')")
-    public ApiRestResponse deleteBrand(@RequestParam Long id) {
-        brandService.delete(id);
+    public ApiRestResponse deleteBrand(@RequestParam Integer[] ids) {
+        brandService.delete(ids);
         return ApiRestResponse.success();
     }
 

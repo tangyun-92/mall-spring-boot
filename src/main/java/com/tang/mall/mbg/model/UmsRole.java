@@ -20,7 +20,7 @@ public class UmsRole implements Serializable {
     private Date createTime;
 
     @ApiModelProperty(value = "启用状态：0->禁用；1->启用")
-    private Integer status;
+    private String status;
 
     private Integer sort;
 
@@ -66,11 +66,11 @@ public class UmsRole implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

@@ -16,7 +16,7 @@ public class UmsIntegrationConsumeSetting implements Serializable {
     private Integer useUnit;
 
     @ApiModelProperty(value = "是否可以和优惠券同用；0->不可以；1->可以")
-    private Integer couponStatus;
+    private String couponStatus;
 
     private static final long serialVersionUID = 1L;
 
@@ -52,11 +52,11 @@ public class UmsIntegrationConsumeSetting implements Serializable {
         this.useUnit = useUnit;
     }
 
-    public Integer getCouponStatus() {
+    public String getCouponStatus() {
         return couponStatus;
     }
 
-    public void setCouponStatus(Integer couponStatus) {
+    public void setCouponStatus(String couponStatus) {
         this.couponStatus = couponStatus;
     }
 

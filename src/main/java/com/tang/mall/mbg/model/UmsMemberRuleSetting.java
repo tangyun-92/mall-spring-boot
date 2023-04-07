@@ -23,7 +23,7 @@ public class UmsMemberRuleSetting implements Serializable {
     private Integer maxPointPerOrder;
 
     @ApiModelProperty(value = "类型：0->积分规则；1->成长值规则")
-    private Integer type;
+    private String type;
 
     private static final long serialVersionUID = 1L;
 
@@ -75,11 +75,11 @@ public class UmsMemberRuleSetting implements Serializable {
         this.maxPointPerOrder = maxPointPerOrder;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

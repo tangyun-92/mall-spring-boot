@@ -22,7 +22,7 @@ public class UmsMember implements Serializable {
     private String phone;
 
     @ApiModelProperty(value = "帐号启用状态:0->禁用；1->启用")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "注册时间")
     private Date createTime;
@@ -31,7 +31,7 @@ public class UmsMember implements Serializable {
     private String icon;
 
     @ApiModelProperty(value = "性别：0->未知；1->男；2->女")
-    private Integer gender;
+    private String gender;
 
     @ApiModelProperty(value = "生日")
     private Date birthday;
@@ -46,7 +46,7 @@ public class UmsMember implements Serializable {
     private String personalizedSignature;
 
     @ApiModelProperty(value = "用户来源")
-    private Integer sourceType;
+    private String sourceType;
 
     @ApiModelProperty(value = "积分")
     private Integer integration;
@@ -110,11 +110,11 @@ public class UmsMember implements Serializable {
         this.phone = phone;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -134,11 +134,11 @@ public class UmsMember implements Serializable {
         this.icon = icon;
     }
 
-    public Integer getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Integer gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -174,11 +174,11 @@ public class UmsMember implements Serializable {
         this.personalizedSignature = personalizedSignature;
     }
 
-    public Integer getSourceType() {
+    public String getSourceType() {
         return sourceType;
     }
 
-    public void setSourceType(Integer sourceType) {
+    public void setSourceType(String sourceType) {
         this.sourceType = sourceType;
     }
 

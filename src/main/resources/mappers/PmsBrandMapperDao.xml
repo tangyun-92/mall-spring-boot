@@ -7,22 +7,20 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="first_letter" jdbcType="VARCHAR" property="firstLetter" />
         <result column="sort" jdbcType="INTEGER" property="sort" />
-        <result column="factory_status" jdbcType="INTEGER" property="factoryStatus" />
-        <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+        <result column="factory_status" jdbcType="VARCHAR" property="factoryStatus" />
+        <result column="show_status" jdbcType="VARCHAR" property="showStatus" />
         <result column="product_count" jdbcType="INTEGER" property="productCount" />
         <result column="product_comment_count" jdbcType="INTEGER" property="productCommentCount" />
         <result column="logo" jdbcType="VARCHAR" property="logo" />
         <result column="big_pic" jdbcType="VARCHAR" property="bigPic" />
+        <result column="brand_story" jdbcType="VARCHAR" property="brandStory" />
     </resultMap>
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tang.mall.mbg.model.PmsBrand">
         <result column="brand_story" jdbcType="LONGVARCHAR" property="brandStory" />
     </resultMap>
     <sql id="Base_Column_List">
         id, `name`, first_letter, sort, factory_status, show_status, product_count, product_comment_count,
-    logo, big_pic
-    </sql>
-    <sql id="Blob_Column_List">
-        brand_story
+    logo, big_pic, brand_story
     </sql>
 
     <select id="selectList" resultMap="BaseResultMap" parameterType="com.tang.mall.dto.PmsBrandListParam">
@@ -43,4 +41,11 @@
         from pms_brand
         where name = #{name, jdbcType=VARCHAR}
     </select>
+    <delete id="batchDelete">
+        delete from pms_brand
+        where id in
+        <foreach collection="ids" close=")" item="id" open="(" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

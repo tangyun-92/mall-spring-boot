@@ -10,7 +10,7 @@ public class UmsAdminPermissionRelation implements Serializable {
 
     private Long permissionId;
 
-    private Integer type;
+    private String type;
 
     private static final long serialVersionUID = 1L;
 
@@ -38,11 +38,11 @@ public class UmsAdminPermissionRelation implements Serializable {
         this.permissionId = permissionId;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

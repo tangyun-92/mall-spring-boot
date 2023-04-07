@@ -17,7 +17,7 @@ public class CmsSubjectComment implements Serializable {
 
     private Date createTime;
 
-    private Integer showStatus;
+    private String showStatus;
 
     private static final long serialVersionUID = 1L;
 
@@ -69,11 +69,11 @@ public class CmsSubjectComment implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

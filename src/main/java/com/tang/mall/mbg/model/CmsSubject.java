@@ -17,7 +17,7 @@ public class CmsSubject implements Serializable {
     @ApiModelProperty(value = "关联产品数量")
     private Integer productCount;
 
-    private Integer recommendStatus;
+    private String recommendStatus;
 
     private Date createTime;
 
@@ -33,7 +33,7 @@ public class CmsSubject implements Serializable {
     private String description;
 
     @ApiModelProperty(value = "显示状态：0->不显示；1->显示")
-    private Integer showStatus;
+    private String showStatus;
 
     @ApiModelProperty(value = "转发数")
     private Integer forwardCount;
@@ -85,11 +85,11 @@ public class CmsSubject implements Serializable {
         this.productCount = productCount;
     }
 
-    public Integer getRecommendStatus() {
+    public String getRecommendStatus() {
         return recommendStatus;
     }
 
-    public void setRecommendStatus(Integer recommendStatus) {
+    public void setRecommendStatus(String recommendStatus) {
         this.recommendStatus = recommendStatus;
     }
 
@@ -141,11 +141,11 @@ public class CmsSubject implements Serializable {
         this.description = description;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

@@ -24,19 +24,19 @@ public class PmsProduct implements Serializable {
     private String productSn;
 
     @ApiModelProperty(value = "删除状态：0->未删除；1->已删除")
-    private Integer deleteStatus;
+    private String deleteStatus;
 
     @ApiModelProperty(value = "上架状态：0->下架；1->上架")
-    private Integer publishStatus;
+    private String publishStatus;
 
     @ApiModelProperty(value = "新品状态:0->不是新品；1->新品")
-    private Integer newStatus;
+    private String newStatus;
 
     @ApiModelProperty(value = "推荐状态；0->不推荐；1->推荐")
-    private Integer recommandStatus;
+    private String recommandStatus;
 
     @ApiModelProperty(value = "审核状态：0->未审核；1->审核通过")
-    private Integer verifyStatus;
+    private String verifyStatus;
 
     @ApiModelProperty(value = "排序")
     private Integer sort;
@@ -77,7 +77,7 @@ public class PmsProduct implements Serializable {
     private BigDecimal weight;
 
     @ApiModelProperty(value = "是否为预告商品：0->不是；1->是")
-    private Integer previewStatus;
+    private String previewStatus;
 
     @ApiModelProperty(value = "以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮")
     private String serviceIds;
@@ -101,7 +101,7 @@ public class PmsProduct implements Serializable {
     private Integer promotionPerLimit;
 
     @ApiModelProperty(value = "促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购")
-    private Integer promotionType;
+    private String promotionType;
 
     @ApiModelProperty(value = "品牌名称")
     private String brandName;
@@ -186,43 +186,43 @@ public class PmsProduct implements Serializable {
         this.productSn = productSn;
     }
 
-    public Integer getDeleteStatus() {
+    public String getDeleteStatus() {
         return deleteStatus;
     }
 
-    public void setDeleteStatus(Integer deleteStatus) {
+    public void setDeleteStatus(String deleteStatus) {
         this.deleteStatus = deleteStatus;
     }
 
-    public Integer getPublishStatus() {
+    public String getPublishStatus() {
         return publishStatus;
     }
 
-    public void setPublishStatus(Integer publishStatus) {
+    public void setPublishStatus(String publishStatus) {
         this.publishStatus = publishStatus;
     }
 
-    public Integer getNewStatus() {
+    public String getNewStatus() {
         return newStatus;
     }
 
-    public void setNewStatus(Integer newStatus) {
+    public void setNewStatus(String newStatus) {
         this.newStatus = newStatus;
     }
 
-    public Integer getRecommandStatus() {
+    public String getRecommandStatus() {
         return recommandStatus;
     }
 
-    public void setRecommandStatus(Integer recommandStatus) {
+    public void setRecommandStatus(String recommandStatus) {
         this.recommandStatus = recommandStatus;
     }
 
-    public Integer getVerifyStatus() {
+    public String getVerifyStatus() {
         return verifyStatus;
     }
 
-    public void setVerifyStatus(Integer verifyStatus) {
+    public void setVerifyStatus(String verifyStatus) {
         this.verifyStatus = verifyStatus;
     }
 
@@ -330,11 +330,11 @@ public class PmsProduct implements Serializable {
         this.weight = weight;
     }
 
-    public Integer getPreviewStatus() {
+    public String getPreviewStatus() {
         return previewStatus;
     }
 
-    public void setPreviewStatus(Integer previewStatus) {
+    public void setPreviewStatus(String previewStatus) {
         this.previewStatus = previewStatus;
     }
 
@@ -402,11 +402,11 @@ public class PmsProduct implements Serializable {
         this.promotionPerLimit = promotionPerLimit;
     }
 
-    public Integer getPromotionType() {
+    public String getPromotionType() {
         return promotionType;
     }
 
-    public void setPromotionType(Integer promotionType) {
+    public void setPromotionType(String promotionType) {
         this.promotionType = promotionType;
     }
 

@@ -15,7 +15,7 @@ public class UmsMemberTask implements Serializable {
     private Integer intergration;
 
     @ApiModelProperty(value = "任务类型：0->新手任务；1->日常任务")
-    private Integer type;
+    private String type;
 
     private static final long serialVersionUID = 1L;
 
@@ -51,11 +51,11 @@ public class UmsMemberTask implements Serializable {
         this.intergration = intergration;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

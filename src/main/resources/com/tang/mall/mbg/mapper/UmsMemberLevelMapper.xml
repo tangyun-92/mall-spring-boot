@@ -5,15 +5,15 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="growth_point" jdbcType="INTEGER" property="growthPoint" />
-    <result column="default_status" jdbcType="INTEGER" property="defaultStatus" />
+    <result column="default_status" jdbcType="VARCHAR" property="defaultStatus" />
     <result column="free_freight_point" jdbcType="DECIMAL" property="freeFreightPoint" />
     <result column="comment_growth_point" jdbcType="INTEGER" property="commentGrowthPoint" />
-    <result column="priviledge_free_freight" jdbcType="INTEGER" property="priviledgeFreeFreight" />
-    <result column="priviledge_sign_in" jdbcType="INTEGER" property="priviledgeSignIn" />
-    <result column="priviledge_comment" jdbcType="INTEGER" property="priviledgeComment" />
-    <result column="priviledge_promotion" jdbcType="INTEGER" property="priviledgePromotion" />
-    <result column="priviledge_member_price" jdbcType="INTEGER" property="priviledgeMemberPrice" />
-    <result column="priviledge_birthday" jdbcType="INTEGER" property="priviledgeBirthday" />
+    <result column="priviledge_free_freight" jdbcType="VARCHAR" property="priviledgeFreeFreight" />
+    <result column="priviledge_sign_in" jdbcType="VARCHAR" property="priviledgeSignIn" />
+    <result column="priviledge_comment" jdbcType="VARCHAR" property="priviledgeComment" />
+    <result column="priviledge_promotion" jdbcType="VARCHAR" property="priviledgePromotion" />
+    <result column="priviledge_member_price" jdbcType="VARCHAR" property="priviledgeMemberPrice" />
+    <result column="priviledge_birthday" jdbcType="VARCHAR" property="priviledgeBirthday" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -39,10 +39,10 @@
       priviledge_member_price, priviledge_birthday, 
       note)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{growthPoint,jdbcType=INTEGER}, 
-      #{defaultStatus,jdbcType=INTEGER}, #{freeFreightPoint,jdbcType=DECIMAL}, #{commentGrowthPoint,jdbcType=INTEGER}, 
-      #{priviledgeFreeFreight,jdbcType=INTEGER}, #{priviledgeSignIn,jdbcType=INTEGER}, 
-      #{priviledgeComment,jdbcType=INTEGER}, #{priviledgePromotion,jdbcType=INTEGER}, 
-      #{priviledgeMemberPrice,jdbcType=INTEGER}, #{priviledgeBirthday,jdbcType=INTEGER}, 
+      #{defaultStatus,jdbcType=VARCHAR}, #{freeFreightPoint,jdbcType=DECIMAL}, #{commentGrowthPoint,jdbcType=INTEGER}, 
+      #{priviledgeFreeFreight,jdbcType=VARCHAR}, #{priviledgeSignIn,jdbcType=VARCHAR}, 
+      #{priviledgeComment,jdbcType=VARCHAR}, #{priviledgePromotion,jdbcType=VARCHAR}, 
+      #{priviledgeMemberPrice,jdbcType=VARCHAR}, #{priviledgeBirthday,jdbcType=VARCHAR}, 
       #{note,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.UmsMemberLevel">
@@ -99,7 +99,7 @@
         #{growthPoint,jdbcType=INTEGER},
       </if>
       <if test="defaultStatus != null">
-        #{defaultStatus,jdbcType=INTEGER},
+        #{defaultStatus,jdbcType=VARCHAR},
       </if>
       <if test="freeFreightPoint != null">
         #{freeFreightPoint,jdbcType=DECIMAL},
@@ -108,22 +108,22 @@
         #{commentGrowthPoint,jdbcType=INTEGER},
       </if>
       <if test="priviledgeFreeFreight != null">
-        #{priviledgeFreeFreight,jdbcType=INTEGER},
+        #{priviledgeFreeFreight,jdbcType=VARCHAR},
       </if>
       <if test="priviledgeSignIn != null">
-        #{priviledgeSignIn,jdbcType=INTEGER},
+        #{priviledgeSignIn,jdbcType=VARCHAR},
       </if>
       <if test="priviledgeComment != null">
-        #{priviledgeComment,jdbcType=INTEGER},
+        #{priviledgeComment,jdbcType=VARCHAR},
       </if>
       <if test="priviledgePromotion != null">
-        #{priviledgePromotion,jdbcType=INTEGER},
+        #{priviledgePromotion,jdbcType=VARCHAR},
       </if>
       <if test="priviledgeMemberPrice != null">
-        #{priviledgeMemberPrice,jdbcType=INTEGER},
+        #{priviledgeMemberPrice,jdbcType=VARCHAR},
       </if>
       <if test="priviledgeBirthday != null">
-        #{priviledgeBirthday,jdbcType=INTEGER},
+        #{priviledgeBirthday,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
@@ -140,7 +140,7 @@
         growth_point = #{growthPoint,jdbcType=INTEGER},
       </if>
       <if test="defaultStatus != null">
-        default_status = #{defaultStatus,jdbcType=INTEGER},
+        default_status = #{defaultStatus,jdbcType=VARCHAR},
       </if>
       <if test="freeFreightPoint != null">
         free_freight_point = #{freeFreightPoint,jdbcType=DECIMAL},
@@ -149,22 +149,22 @@
         comment_growth_point = #{commentGrowthPoint,jdbcType=INTEGER},
       </if>
       <if test="priviledgeFreeFreight != null">
-        priviledge_free_freight = #{priviledgeFreeFreight,jdbcType=INTEGER},
+        priviledge_free_freight = #{priviledgeFreeFreight,jdbcType=VARCHAR},
       </if>
       <if test="priviledgeSignIn != null">
-        priviledge_sign_in = #{priviledgeSignIn,jdbcType=INTEGER},
+        priviledge_sign_in = #{priviledgeSignIn,jdbcType=VARCHAR},
       </if>
       <if test="priviledgeComment != null">
-        priviledge_comment = #{priviledgeComment,jdbcType=INTEGER},
+        priviledge_comment = #{priviledgeComment,jdbcType=VARCHAR},
       </if>
       <if test="priviledgePromotion != null">
-        priviledge_promotion = #{priviledgePromotion,jdbcType=INTEGER},
+        priviledge_promotion = #{priviledgePromotion,jdbcType=VARCHAR},
       </if>
       <if test="priviledgeMemberPrice != null">
-        priviledge_member_price = #{priviledgeMemberPrice,jdbcType=INTEGER},
+        priviledge_member_price = #{priviledgeMemberPrice,jdbcType=VARCHAR},
       </if>
       <if test="priviledgeBirthday != null">
-        priviledge_birthday = #{priviledgeBirthday,jdbcType=INTEGER},
+        priviledge_birthday = #{priviledgeBirthday,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
@@ -176,15 +176,15 @@
     update ums_member_level
     set `name` = #{name,jdbcType=VARCHAR},
       growth_point = #{growthPoint,jdbcType=INTEGER},
-      default_status = #{defaultStatus,jdbcType=INTEGER},
+      default_status = #{defaultStatus,jdbcType=VARCHAR},
       free_freight_point = #{freeFreightPoint,jdbcType=DECIMAL},
       comment_growth_point = #{commentGrowthPoint,jdbcType=INTEGER},
-      priviledge_free_freight = #{priviledgeFreeFreight,jdbcType=INTEGER},
-      priviledge_sign_in = #{priviledgeSignIn,jdbcType=INTEGER},
-      priviledge_comment = #{priviledgeComment,jdbcType=INTEGER},
-      priviledge_promotion = #{priviledgePromotion,jdbcType=INTEGER},
-      priviledge_member_price = #{priviledgeMemberPrice,jdbcType=INTEGER},
-      priviledge_birthday = #{priviledgeBirthday,jdbcType=INTEGER},
+      priviledge_free_freight = #{priviledgeFreeFreight,jdbcType=VARCHAR},
+      priviledge_sign_in = #{priviledgeSignIn,jdbcType=VARCHAR},
+      priviledge_comment = #{priviledgeComment,jdbcType=VARCHAR},
+      priviledge_promotion = #{priviledgePromotion,jdbcType=VARCHAR},
+      priviledge_member_price = #{priviledgeMemberPrice,jdbcType=VARCHAR},
+      priviledge_birthday = #{priviledgeBirthday,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>

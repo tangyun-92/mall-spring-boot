@@ -4,11 +4,11 @@
   <resultMap id="BaseResultMap" type="com.tang.mall.mbg.model.SmsHomeAdvertise">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="pic" jdbcType="VARCHAR" property="pic" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="click_count" jdbcType="INTEGER" property="clickCount" />
     <result column="order_count" jdbcType="INTEGER" property="orderCount" />
     <result column="url" jdbcType="VARCHAR" property="url" />
@@ -34,9 +34,9 @@
       pic, start_time, end_time, 
       `status`, click_count, order_count, 
       url, note, sort)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
       #{pic,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=INTEGER}, #{clickCount,jdbcType=INTEGER}, #{orderCount,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{clickCount,jdbcType=INTEGER}, #{orderCount,jdbcType=INTEGER}, 
       #{url,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.SmsHomeAdvertise">
@@ -87,7 +87,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        #{type,jdbcType=INTEGER},
+        #{type,jdbcType=VARCHAR},
       </if>
       <if test="pic != null">
         #{pic,jdbcType=VARCHAR},
@@ -99,7 +99,7 @@
         #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="clickCount != null">
         #{clickCount,jdbcType=INTEGER},
@@ -125,7 +125,7 @@
         `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
+        `type` = #{type,jdbcType=VARCHAR},
       </if>
       <if test="pic != null">
         pic = #{pic,jdbcType=VARCHAR},
@@ -137,7 +137,7 @@
         end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
       <if test="clickCount != null">
         click_count = #{clickCount,jdbcType=INTEGER},
@@ -160,11 +160,11 @@
   <update id="updateByPrimaryKey" parameterType="com.tang.mall.mbg.model.SmsHomeAdvertise">
     update sms_home_advertise
     set `name` = #{name,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      `status` = #{status,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
       click_count = #{clickCount,jdbcType=INTEGER},
       order_count = #{orderCount,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},

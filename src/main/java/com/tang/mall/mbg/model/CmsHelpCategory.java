@@ -14,7 +14,7 @@ public class CmsHelpCategory implements Serializable {
     @ApiModelProperty(value = "专题数量")
     private Integer helpCount;
 
-    private Integer showStatus;
+    private String showStatus;
 
     private Integer sort;
 
@@ -52,11 +52,11 @@ public class CmsHelpCategory implements Serializable {
         this.helpCount = helpCount;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

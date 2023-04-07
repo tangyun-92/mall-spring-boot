@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="com.tang.mall.mbg.model.OmsCompanyAddress">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="address_name" jdbcType="VARCHAR" property="addressName" />
-    <result column="send_status" jdbcType="INTEGER" property="sendStatus" />
-    <result column="receive_status" jdbcType="INTEGER" property="receiveStatus" />
+    <result column="send_status" jdbcType="VARCHAR" property="sendStatus" />
+    <result column="receive_status" jdbcType="VARCHAR" property="receiveStatus" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="province" jdbcType="VARCHAR" property="province" />
@@ -32,8 +32,8 @@
       receive_status, `name`, phone, 
       province, city, region, 
       detail_address)
-    values (#{id,jdbcType=BIGINT}, #{addressName,jdbcType=VARCHAR}, #{sendStatus,jdbcType=INTEGER}, 
-      #{receiveStatus,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{addressName,jdbcType=VARCHAR}, #{sendStatus,jdbcType=VARCHAR}, 
+      #{receiveStatus,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, 
       #{detailAddress,jdbcType=VARCHAR})
   </insert>
@@ -79,10 +79,10 @@
         #{addressName,jdbcType=VARCHAR},
       </if>
       <if test="sendStatus != null">
-        #{sendStatus,jdbcType=INTEGER},
+        #{sendStatus,jdbcType=VARCHAR},
       </if>
       <if test="receiveStatus != null">
-        #{receiveStatus,jdbcType=INTEGER},
+        #{receiveStatus,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -111,10 +111,10 @@
         address_name = #{addressName,jdbcType=VARCHAR},
       </if>
       <if test="sendStatus != null">
-        send_status = #{sendStatus,jdbcType=INTEGER},
+        send_status = #{sendStatus,jdbcType=VARCHAR},
       </if>
       <if test="receiveStatus != null">
-        receive_status = #{receiveStatus,jdbcType=INTEGER},
+        receive_status = #{receiveStatus,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
@@ -140,8 +140,8 @@
   <update id="updateByPrimaryKey" parameterType="com.tang.mall.mbg.model.OmsCompanyAddress">
     update oms_company_address
     set address_name = #{addressName,jdbcType=VARCHAR},
-      send_status = #{sendStatus,jdbcType=INTEGER},
-      receive_status = #{receiveStatus,jdbcType=INTEGER},
+      send_status = #{sendStatus,jdbcType=VARCHAR},
+      receive_status = #{receiveStatus,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       province = #{province,jdbcType=VARCHAR},

@@ -16,7 +16,7 @@ public class UmsMemberLoginLog implements Serializable {
     private String city;
 
     @ApiModelProperty(value = "登录类型：0->PC；1->android;2->ios;3->小程序")
-    private Integer loginType;
+    private String loginType;
 
     private String province;
 
@@ -62,11 +62,11 @@ public class UmsMemberLoginLog implements Serializable {
         this.city = city;
     }
 
-    public Integer getLoginType() {
+    public String getLoginType() {
         return loginType;
     }
 
-    public void setLoginType(Integer loginType) {
+    public void setLoginType(String loginType) {
         this.loginType = loginType;
     }
 

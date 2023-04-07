@@ -10,7 +10,7 @@ public class PmsFreightTemplate implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "计费类型:0->按重量；1->按件数")
-    private Integer chargeType;
+    private String chargeType;
 
     @ApiModelProperty(value = "首重kg")
     private BigDecimal firstWeight;
@@ -43,11 +43,11 @@ public class PmsFreightTemplate implements Serializable {
         this.name = name;
     }
 
-    public Integer getChargeType() {
+    public String getChargeType() {
         return chargeType;
     }
 
-    public void setChargeType(Integer chargeType) {
+    public void setChargeType(String chargeType) {
         this.chargeType = chargeType;
     }
 

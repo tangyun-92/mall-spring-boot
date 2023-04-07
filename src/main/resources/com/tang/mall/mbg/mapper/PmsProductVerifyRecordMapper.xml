@@ -6,7 +6,7 @@
     <result column="product_id" jdbcType="BIGINT" property="productId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="vertify_man" jdbcType="VARCHAR" property="vertifyMan" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="detail" jdbcType="VARCHAR" property="detail" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -27,7 +27,7 @@
       vertify_man, `status`, detail
       )
     values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{vertifyMan,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR}
+      #{vertifyMan,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.PmsProductVerifyRecord">
@@ -66,7 +66,7 @@
         #{vertifyMan,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="detail != null">
         #{detail,jdbcType=VARCHAR},
@@ -86,7 +86,7 @@
         vertify_man = #{vertifyMan,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
       <if test="detail != null">
         detail = #{detail,jdbcType=VARCHAR},
@@ -99,7 +99,7 @@
     set product_id = #{productId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       vertify_man = #{vertifyMan,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>

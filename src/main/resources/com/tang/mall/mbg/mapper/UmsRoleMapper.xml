@@ -7,7 +7,7 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="admin_count" jdbcType="INTEGER" property="adminCount" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -28,7 +28,7 @@
       admin_count, create_time, `status`, 
       sort)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{adminCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{adminCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
       #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.UmsRole">
@@ -73,7 +73,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         #{sort,jdbcType=INTEGER},
@@ -96,7 +96,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
@@ -110,7 +110,7 @@
       description = #{description,jdbcType=VARCHAR},
       admin_count = #{adminCount,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      `status` = #{status,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>

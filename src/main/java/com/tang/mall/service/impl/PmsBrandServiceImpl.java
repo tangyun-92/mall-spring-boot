@@ -10,9 +10,9 @@ import com.tang.mall.dao.PmsBrandMapperDao;
 import com.tang.mall.dto.PmsBrandAddParam;
 import com.tang.mall.dto.PmsBrandListParam;
 import com.tang.mall.service.PmsBrandService;
+import com.tang.mall.util.PageBean;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -36,21 +36,20 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      * @return
      */
     @Override
-    @Cacheable(value = "pmsBrandListForAdmin") // 启用 redis
+//    @Cacheable(value = "pmsBrandListForAdmin") // 启用 redis
     public PageBean list(PmsBrandListParam pmsBrandListParam) {
         // 搜索处理
         // 品牌名称模糊查询
         if (!StringUtils.isEmpty(pmsBrandListParam.getName())) {
             String name = new StringBuilder().append("%").append(pmsBrandListParam.getName()).append("%").toString();
             pmsBrandListParam.setName(name);
+        } else {
+            pmsBrandListParam.setName(null);
         }
 
         PageHelper.startPage(pmsBrandListParam.getCurrent(), pmsBrandListParam.getPageSize());
 
         List<PmsBrand> brandList = pmsBrandMapperDao.selectList(pmsBrandListParam);
-//        PageInfo pageInfo = new PageInfo(brandList);
-//        return pageInfo;
-//        PageBean pageInfo = new PageBean<>(brandList);
         return new PageBean<>(brandList);
     }
 
@@ -93,19 +92,19 @@ public class PmsBrandServiceImpl implements PmsBrandService {
 
     /**
      * 后台-删除品牌
-     * @param id
+     * @param ids
      */
     @Override
-    public void delete(Long id) {
-        PmsBrand pmsBrandOld = pmsBrandMapper.selectByPrimaryKey(id);
+    public void delete(Integer[] ids) {
+        pmsBrandMapperDao.batchDelete(ids);
         // 查不到记录，无法删除
-        if (pmsBrandOld == null) {
-            throw new MallException(MallExceptionEnum.DELETE_FAILED);
-        }
-        int count = pmsBrandMapper.deleteByPrimaryKey(id);
-        if (count == 0) {
-            throw new MallException(MallExceptionEnum.DELETE_FAILED);
-        }
+//        if (pmsBrandOld == null) {
+//            throw new MallException(MallExceptionEnum.DELETE_FAILED);
+//        }
+//        int count = pmsBrandMapper.deleteByPrimaryKey(id);
+//        if (count == 0) {
+//            throw new MallException(MallExceptionEnum.DELETE_FAILED);
+//        }
     }
 
 }

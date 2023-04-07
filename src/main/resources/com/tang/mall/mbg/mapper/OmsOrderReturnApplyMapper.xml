@@ -12,7 +12,7 @@
     <result column="return_amount" jdbcType="DECIMAL" property="returnAmount" />
     <result column="return_name" jdbcType="VARCHAR" property="returnName" />
     <result column="return_phone" jdbcType="VARCHAR" property="returnPhone" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="handle_time" jdbcType="TIMESTAMP" property="handleTime" />
     <result column="product_pic" jdbcType="VARCHAR" property="productPic" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
@@ -60,7 +60,7 @@
     values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{companyAddressId,jdbcType=BIGINT}, 
       #{productId,jdbcType=BIGINT}, #{orderSn,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{memberUsername,jdbcType=VARCHAR}, #{returnAmount,jdbcType=DECIMAL}, #{returnName,jdbcType=VARCHAR}, 
-      #{returnPhone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{handleTime,jdbcType=TIMESTAMP}, 
+      #{returnPhone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{handleTime,jdbcType=TIMESTAMP}, 
       #{productPic,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productBrand,jdbcType=VARCHAR}, 
       #{productAttr,jdbcType=VARCHAR}, #{productCount,jdbcType=INTEGER}, #{productPrice,jdbcType=DECIMAL}, 
       #{productRealPrice,jdbcType=DECIMAL}, #{reason,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
@@ -185,7 +185,7 @@
         #{returnPhone,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=INTEGER},
+        #{status,jdbcType=VARCHAR},
       </if>
       <if test="handleTime != null">
         #{handleTime,jdbcType=TIMESTAMP},
@@ -268,7 +268,7 @@
         return_phone = #{returnPhone,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=VARCHAR},
       </if>
       <if test="handleTime != null">
         handle_time = #{handleTime,jdbcType=TIMESTAMP},
@@ -332,7 +332,7 @@
       return_amount = #{returnAmount,jdbcType=DECIMAL},
       return_name = #{returnName,jdbcType=VARCHAR},
       return_phone = #{returnPhone,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
       handle_time = #{handleTime,jdbcType=TIMESTAMP},
       product_pic = #{productPic,jdbcType=VARCHAR},
       product_name = #{productName,jdbcType=VARCHAR},

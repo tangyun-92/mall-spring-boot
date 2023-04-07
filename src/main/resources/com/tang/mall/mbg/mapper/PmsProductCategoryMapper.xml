@@ -5,11 +5,11 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
     <result column="product_count" jdbcType="INTEGER" property="productCount" />
     <result column="product_unit" jdbcType="VARCHAR" property="productUnit" />
-    <result column="nav_status" jdbcType="INTEGER" property="navStatus" />
-    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="nav_status" jdbcType="VARCHAR" property="navStatus" />
+    <result column="show_status" jdbcType="VARCHAR" property="showStatus" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="keywords" jdbcType="VARCHAR" property="keywords" />
@@ -43,8 +43,8 @@
       icon, keywords, description
       )
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{level,jdbcType=INTEGER}, #{productCount,jdbcType=INTEGER}, #{productUnit,jdbcType=VARCHAR}, 
-      #{navStatus,jdbcType=INTEGER}, #{showStatus,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
+      #{level,jdbcType=VARCHAR}, #{productCount,jdbcType=INTEGER}, #{productUnit,jdbcType=VARCHAR}, 
+      #{navStatus,jdbcType=VARCHAR}, #{showStatus,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
       #{icon,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
@@ -99,7 +99,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="level != null">
-        #{level,jdbcType=INTEGER},
+        #{level,jdbcType=VARCHAR},
       </if>
       <if test="productCount != null">
         #{productCount,jdbcType=INTEGER},
@@ -108,10 +108,10 @@
         #{productUnit,jdbcType=VARCHAR},
       </if>
       <if test="navStatus != null">
-        #{navStatus,jdbcType=INTEGER},
+        #{navStatus,jdbcType=VARCHAR},
       </if>
       <if test="showStatus != null">
-        #{showStatus,jdbcType=INTEGER},
+        #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         #{sort,jdbcType=INTEGER},
@@ -137,7 +137,7 @@
         `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="level != null">
-        `level` = #{level,jdbcType=INTEGER},
+        `level` = #{level,jdbcType=VARCHAR},
       </if>
       <if test="productCount != null">
         product_count = #{productCount,jdbcType=INTEGER},
@@ -146,10 +146,10 @@
         product_unit = #{productUnit,jdbcType=VARCHAR},
       </if>
       <if test="navStatus != null">
-        nav_status = #{navStatus,jdbcType=INTEGER},
+        nav_status = #{navStatus,jdbcType=VARCHAR},
       </if>
       <if test="showStatus != null">
-        show_status = #{showStatus,jdbcType=INTEGER},
+        show_status = #{showStatus,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
@@ -170,11 +170,11 @@
     update pms_product_category
     set parent_id = #{parentId,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
-      `level` = #{level,jdbcType=INTEGER},
+      `level` = #{level,jdbcType=VARCHAR},
       product_count = #{productCount,jdbcType=INTEGER},
       product_unit = #{productUnit,jdbcType=VARCHAR},
-      nav_status = #{navStatus,jdbcType=INTEGER},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      nav_status = #{navStatus,jdbcType=VARCHAR},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
       icon = #{icon,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR},
@@ -185,11 +185,11 @@
     update pms_product_category
     set parent_id = #{parentId,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
-      `level` = #{level,jdbcType=INTEGER},
+      `level` = #{level,jdbcType=VARCHAR},
       product_count = #{productCount,jdbcType=INTEGER},
       product_unit = #{productUnit,jdbcType=VARCHAR},
-      nav_status = #{navStatus,jdbcType=INTEGER},
-      show_status = #{showStatus,jdbcType=INTEGER},
+      nav_status = #{navStatus,jdbcType=VARCHAR},
+      show_status = #{showStatus,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
       icon = #{icon,jdbcType=VARCHAR},
       keywords = #{keywords,jdbcType=VARCHAR}

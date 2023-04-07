@@ -20,11 +20,11 @@ public class PmsBrandAddParam {
     private Integer sort;
 
     @NotNull(message = "factoryStatus不能为空")
-    @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "Integer", required = true)
-    private Integer factoryStatus;
+    @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "String", required = true)
+    private String factoryStatus;
 
-    @ApiModelProperty(value = "显示状态：0-不显示 1-显示", name = "showStatus", dataType = "Integer")
-    private Integer showStatus;
+    @ApiModelProperty(value = "显示状态：0-不显示 1-显示", name = "showStatus", dataType = "String")
+    private String showStatus;
 
     @ApiModelProperty(value = "产品数量", name = "productCount", dataType = "Integer")
     private Integer productCount;
@@ -65,19 +65,19 @@ public class PmsBrandAddParam {
         this.sort = sort;
     }
 
-    public Integer getFactoryStatus() {
+    public String getFactoryStatus() {
         return factoryStatus;
     }
 
-    public void setFactoryStatus(Integer factoryStatus) {
+    public void setFactoryStatus(String factoryStatus) {
         this.factoryStatus = factoryStatus;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

@@ -21,7 +21,7 @@ public class PmsComment implements Serializable {
 
     private Date createTime;
 
-    private Integer showStatus;
+    private String showStatus;
 
     @ApiModelProperty(value = "购买时的商品属性")
     private String productAttribute;
@@ -98,11 +98,11 @@ public class PmsComment implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

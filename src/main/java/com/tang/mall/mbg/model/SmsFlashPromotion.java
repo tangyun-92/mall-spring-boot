@@ -17,7 +17,7 @@ public class SmsFlashPromotion implements Serializable {
     private Date endDate;
 
     @ApiModelProperty(value = "上下线状态")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
@@ -56,11 +56,11 @@ public class SmsFlashPromotion implements Serializable {
         this.endDate = endDate;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

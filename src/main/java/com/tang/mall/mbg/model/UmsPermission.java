@@ -20,13 +20,13 @@ public class UmsPermission implements Serializable {
     private String icon;
 
     @ApiModelProperty(value = "权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）")
-    private Integer type;
+    private String type;
 
     @ApiModelProperty(value = "前端资源路径")
     private String uri;
 
     @ApiModelProperty(value = "启用状态；0->禁用；1->启用")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
@@ -76,11 +76,11 @@ public class UmsPermission implements Serializable {
         this.icon = icon;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -92,11 +92,11 @@ public class UmsPermission implements Serializable {
         this.uri = uri;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

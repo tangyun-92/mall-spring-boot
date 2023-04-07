@@ -8,7 +8,7 @@
     <result column="member_icon" jdbcType="VARCHAR" property="memberIcon" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="show_status" jdbcType="VARCHAR" property="showStatus" />
   </resultMap>
   <sql id="Base_Column_List">
     id, member_nick_name, topic_id, member_icon, content, create_time, show_status
@@ -29,7 +29,7 @@
       show_status)
     values (#{id,jdbcType=BIGINT}, #{memberNickName,jdbcType=VARCHAR}, #{topicId,jdbcType=BIGINT}, 
       #{memberIcon,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{showStatus,jdbcType=INTEGER})
+      #{showStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.CmsTopicComment">
     insert into cms_topic_comment
@@ -76,7 +76,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="showStatus != null">
-        #{showStatus,jdbcType=INTEGER},
+        #{showStatus,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -99,7 +99,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="showStatus != null">
-        show_status = #{showStatus,jdbcType=INTEGER},
+        show_status = #{showStatus,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -111,7 +111,7 @@
       member_icon = #{memberIcon,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      show_status = #{showStatus,jdbcType=INTEGER}
+      show_status = #{showStatus,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

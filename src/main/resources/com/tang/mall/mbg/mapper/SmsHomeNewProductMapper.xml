@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="product_id" jdbcType="BIGINT" property="productId" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="recommend_status" jdbcType="INTEGER" property="recommendStatus" />
+    <result column="recommend_status" jdbcType="VARCHAR" property="recommendStatus" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -25,7 +25,7 @@
     insert into sms_home_new_product (id, product_id, product_name, 
       recommend_status, sort)
     values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, 
-      #{recommendStatus,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER})
+      #{recommendStatus,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.SmsHomeNewProduct">
     insert into sms_home_new_product
@@ -57,7 +57,7 @@
         #{productName,jdbcType=VARCHAR},
       </if>
       <if test="recommendStatus != null">
-        #{recommendStatus,jdbcType=INTEGER},
+        #{recommendStatus,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         #{sort,jdbcType=INTEGER},
@@ -74,7 +74,7 @@
         product_name = #{productName,jdbcType=VARCHAR},
       </if>
       <if test="recommendStatus != null">
-        recommend_status = #{recommendStatus,jdbcType=INTEGER},
+        recommend_status = #{recommendStatus,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
@@ -86,7 +86,7 @@
     update sms_home_new_product
     set product_id = #{productId,jdbcType=BIGINT},
       product_name = #{productName,jdbcType=VARCHAR},
-      recommend_status = #{recommendStatus,jdbcType=INTEGER},
+      recommend_status = #{recommendStatus,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>

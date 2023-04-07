@@ -6,7 +6,7 @@
     <result column="deduction_per_amount" jdbcType="INTEGER" property="deductionPerAmount" />
     <result column="max_percent_per_order" jdbcType="INTEGER" property="maxPercentPerOrder" />
     <result column="use_unit" jdbcType="INTEGER" property="useUnit" />
-    <result column="coupon_status" jdbcType="INTEGER" property="couponStatus" />
+    <result column="coupon_status" jdbcType="VARCHAR" property="couponStatus" />
   </resultMap>
   <sql id="Base_Column_List">
     id, deduction_per_amount, max_percent_per_order, use_unit, coupon_status
@@ -25,7 +25,7 @@
     insert into ums_integration_consume_setting (id, deduction_per_amount, max_percent_per_order, 
       use_unit, coupon_status)
     values (#{id,jdbcType=BIGINT}, #{deductionPerAmount,jdbcType=INTEGER}, #{maxPercentPerOrder,jdbcType=INTEGER}, 
-      #{useUnit,jdbcType=INTEGER}, #{couponStatus,jdbcType=INTEGER})
+      #{useUnit,jdbcType=INTEGER}, #{couponStatus,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tang.mall.mbg.model.UmsIntegrationConsumeSetting">
     insert into ums_integration_consume_setting
@@ -60,7 +60,7 @@
         #{useUnit,jdbcType=INTEGER},
       </if>
       <if test="couponStatus != null">
-        #{couponStatus,jdbcType=INTEGER},
+        #{couponStatus,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -77,7 +77,7 @@
         use_unit = #{useUnit,jdbcType=INTEGER},
       </if>
       <if test="couponStatus != null">
-        coupon_status = #{couponStatus,jdbcType=INTEGER},
+        coupon_status = #{couponStatus,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -87,7 +87,7 @@
     set deduction_per_amount = #{deductionPerAmount,jdbcType=INTEGER},
       max_percent_per_order = #{maxPercentPerOrder,jdbcType=INTEGER},
       use_unit = #{useUnit,jdbcType=INTEGER},
-      coupon_status = #{couponStatus,jdbcType=INTEGER}
+      coupon_status = #{couponStatus,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

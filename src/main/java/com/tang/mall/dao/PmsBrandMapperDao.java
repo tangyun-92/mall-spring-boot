@@ -14,4 +14,6 @@ public interface PmsBrandMapperDao {
 
     PmsBrand selectByName(String name);
 
+    int batchDelete(@Param("ids") Integer[] ids);
+
 }

@@ -12,7 +12,7 @@ public class UmsIntegrationChangeHistory implements Serializable {
     private Date createTime;
 
     @ApiModelProperty(value = "改变类型：0->增加；1->减少")
-    private Integer changeType;
+    private String changeType;
 
     @ApiModelProperty(value = "积分改变数量")
     private Integer changeCount;
@@ -24,7 +24,7 @@ public class UmsIntegrationChangeHistory implements Serializable {
     private String operateNote;
 
     @ApiModelProperty(value = "积分来源：0->购物；1->管理员修改")
-    private Integer sourceType;
+    private String sourceType;
 
     private static final long serialVersionUID = 1L;
 
@@ -52,11 +52,11 @@ public class UmsIntegrationChangeHistory implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getChangeType() {
+    public String getChangeType() {
         return changeType;
     }
 
-    public void setChangeType(Integer changeType) {
+    public void setChangeType(String changeType) {
         this.changeType = changeType;
     }
 
@@ -84,11 +84,11 @@ public class UmsIntegrationChangeHistory implements Serializable {
         this.operateNote = operateNote;
     }
 
-    public Integer getSourceType() {
+    public String getSourceType() {
         return sourceType;
     }
 
-    public void setSourceType(Integer sourceType) {
+    public void setSourceType(String sourceType) {
         this.sourceType = sourceType;
     }
 

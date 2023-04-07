@@ -7,8 +7,8 @@ public class PmsBrandListParam {
     @ApiModelProperty(value = "品牌名称", name = "name", dataType = "String")
     private String name;
 
-    @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "Integer")
-    private Integer factoryStatus;
+    @ApiModelProperty(value = "是否为品牌制造商：0-不是 1-是", name = "factoryStatus", dataType = "String")
+    private String factoryStatus;
 
     @ApiModelProperty(value = "当前第几页", name = "pageNum", dataType = "Integer")
     private Integer current=1;
@@ -34,11 +34,11 @@ public class PmsBrandListParam {
         this.name = name;
     }
 
-    public Integer getFactoryStatus() {
+    public String getFactoryStatus() {
         return factoryStatus;
     }
 
-    public void setFactoryStatus(Integer factoryStatus) {
+    public void setFactoryStatus(String factoryStatus) {
         this.factoryStatus = factoryStatus;
     }
 

@@ -13,10 +13,11 @@ public class CmsHelp implements Serializable {
 
     private String title;
 
-    private Integer showStatus;
+    private String showStatus;
 
     private Date createTime;
 
+    @ApiModelProperty(value = "阅读次数")
     private Integer readCount;
 
     private String content;
@@ -55,11 +56,11 @@ public class CmsHelp implements Serializable {
         this.title = title;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

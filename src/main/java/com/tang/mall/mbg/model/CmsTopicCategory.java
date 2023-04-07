@@ -14,7 +14,7 @@ public class CmsTopicCategory implements Serializable {
     @ApiModelProperty(value = "专题数量")
     private Integer subjectCount;
 
-    private Integer showStatus;
+    private String showStatus;
 
     private Integer sort;
 
@@ -52,11 +52,11 @@ public class CmsTopicCategory implements Serializable {
         this.subjectCount = subjectCount;
     }
 
-    public Integer getShowStatus() {
+    public String getShowStatus() {
         return showStatus;
     }
 
-    public void setShowStatus(Integer showStatus) {
+    public void setShowStatus(String showStatus) {
         this.showStatus = showStatus;
     }
 

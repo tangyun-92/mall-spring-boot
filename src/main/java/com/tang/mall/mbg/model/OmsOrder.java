@@ -44,16 +44,16 @@ public class OmsOrder implements Serializable {
     private BigDecimal discountAmount;
 
     @ApiModelProperty(value = "支付方式：0->未支付；1->支付宝；2->微信")
-    private Integer payType;
+    private String payType;
 
     @ApiModelProperty(value = "订单来源：0->PC订单；1->app订单")
-    private Integer sourceType;
+    private String sourceType;
 
     @ApiModelProperty(value = "订单状态：0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单")
-    private Integer status;
+    private String status;
 
     @ApiModelProperty(value = "订单类型：0->正常订单；1->秒杀订单")
-    private Integer orderType;
+    private String orderType;
 
     @ApiModelProperty(value = "物流公司(配送方式)")
     private String deliveryCompany;
@@ -74,7 +74,7 @@ public class OmsOrder implements Serializable {
     private String promotionInfo;
 
     @ApiModelProperty(value = "发票类型：0->不开发票；1->电子发票；2->纸质发票")
-    private Integer billType;
+    private String billType;
 
     @ApiModelProperty(value = "发票抬头")
     private String billHeader;
@@ -113,10 +113,10 @@ public class OmsOrder implements Serializable {
     private String note;
 
     @ApiModelProperty(value = "确认收货状态：0->未确认；1->已确认")
-    private Integer confirmStatus;
+    private String confirmStatus;
 
     @ApiModelProperty(value = "删除状态：0->未删除；1->已删除")
-    private Integer deleteStatus;
+    private String deleteStatus;
 
     @ApiModelProperty(value = "下单时使用的积分")
     private Integer useIntegration;
@@ -242,35 +242,35 @@ public class OmsOrder implements Serializable {
         this.discountAmount = discountAmount;
     }
 
-    public Integer getPayType() {
+    public String getPayType() {
         return payType;
     }
 
-    public void setPayType(Integer payType) {
+    public void setPayType(String payType) {
         this.payType = payType;
     }
 
-    public Integer getSourceType() {
+    public String getSourceType() {
         return sourceType;
     }
 
-    public void setSourceType(Integer sourceType) {
+    public void setSourceType(String sourceType) {
         this.sourceType = sourceType;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Integer getOrderType() {
+    public String getOrderType() {
         return orderType;
     }
 
-    public void setOrderType(Integer orderType) {
+    public void setOrderType(String orderType) {
         this.orderType = orderType;
     }
 
@@ -322,11 +322,11 @@ public class OmsOrder implements Serializable {
         this.promotionInfo = promotionInfo;
     }
 
-    public Integer getBillType() {
+    public String getBillType() {
         return billType;
     }
 
-    public void setBillType(Integer billType) {
+    public void setBillType(String billType) {
         this.billType = billType;
     }
 
@@ -426,19 +426,19 @@ public class OmsOrder implements Serializable {
         this.note = note;
     }
 
-    public Integer getConfirmStatus() {
+    public String getConfirmStatus() {
         return confirmStatus;
     }
 
-    public void setConfirmStatus(Integer confirmStatus) {
+    public void setConfirmStatus(String confirmStatus) {
         this.confirmStatus = confirmStatus;
     }
 
-    public Integer getDeleteStatus() {
+    public String getDeleteStatus() {
         return deleteStatus;
     }
 
-    public void setDeleteStatus(Integer deleteStatus) {
+    public void setDeleteStatus(String deleteStatus) {
         this.deleteStatus = deleteStatus;
     }
 

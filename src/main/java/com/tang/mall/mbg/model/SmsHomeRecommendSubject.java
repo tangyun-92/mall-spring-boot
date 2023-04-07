@@ -10,7 +10,7 @@ public class SmsHomeRecommendSubject implements Serializable {
 
     private String subjectName;
 
-    private Integer recommendStatus;
+    private String recommendStatus;
 
     private Integer sort;
 
@@ -40,11 +40,11 @@ public class SmsHomeRecommendSubject implements Serializable {
         this.subjectName = subjectName;
     }
 
-    public Integer getRecommendStatus() {
+    public String getRecommendStatus() {
         return recommendStatus;
     }
 
-    public void setRecommendStatus(Integer recommendStatus) {
+    public void setRecommendStatus(String recommendStatus) {
         this.recommendStatus = recommendStatus;
     }
 

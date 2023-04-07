@@ -17,12 +17,12 @@ public class SmsCouponHistory implements Serializable {
     private String memberNickname;
 
     @ApiModelProperty(value = "获取类型：0->后台赠送；1->主动获取")
-    private Integer getType;
+    private String getType;
 
     private Date createTime;
 
     @ApiModelProperty(value = "使用状态：0->未使用；1->已使用；2->已过期")
-    private Integer useStatus;
+    private String useStatus;
 
     @ApiModelProperty(value = "使用时间")
     private Date useTime;
@@ -75,11 +75,11 @@ public class SmsCouponHistory implements Serializable {
         this.memberNickname = memberNickname;
     }
 
-    public Integer getGetType() {
+    public String getGetType() {
         return getType;
     }
 
-    public void setGetType(Integer getType) {
+    public void setGetType(String getType) {
         this.getType = getType;
     }
 
@@ -91,11 +91,11 @@ public class SmsCouponHistory implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getUseStatus() {
+    public String getUseStatus() {
         return useStatus;
     }
 
-    public void setUseStatus(Integer useStatus) {
+    public void setUseStatus(String useStatus) {
         this.useStatus = useStatus;
     }
 
