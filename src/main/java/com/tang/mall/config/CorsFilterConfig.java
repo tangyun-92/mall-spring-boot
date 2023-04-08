@@ -29,7 +29,7 @@ public class CorsFilterConfig implements Filter {
                 .stream()
                 .collect(Collectors.toMap(h -> h, httpRequest::getHeader));
         String origin = headers.get("origin");// 获取源站
-        httpResponse.setHeader("Access-Control-Allow-Origin", origin);
+        httpResponse.setHeader("Access-Control-Allow-Origin", "*");
         httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
         httpResponse.setHeader("Access-Control-Max-Age", "1728000");
         httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
