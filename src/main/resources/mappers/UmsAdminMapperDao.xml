@@ -22,4 +22,26 @@
     from ums_admin
     where username = #{username, jdbcType=VARCHAR}
   </select>
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.tang.mall.dto.UmsAdminListParam">
+    select id,username,icon,email,nick_name,note,create_time,login_time,`status`
+    from ums_admin
+    <where>
+      <if test="query.username != null">
+        and username like #{query.username}
+      </if>
+      <if test="query.nickName != null">
+        and nick_name like #{query.nickName}
+      </if>
+      <if test="query.status != null">
+        and status = #{query.status}
+      </if>
+    </where>
+  </select>
+  <delete id="batchDelete">
+    delete from ums_admin
+    where id in
+    <foreach collection="ids" close=")" item="id" open="(" separator=",">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>

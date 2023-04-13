@@ -1,6 +1,7 @@
 package com.tang.mall.service.impl;
 
-import com.tang.mall.dto.UmsAdminRegisterParam;
+import com.github.pagehelper.PageHelper;
+import com.tang.mall.dto.*;
 import com.tang.mall.exception.MallException;
 import com.tang.mall.exception.MallExceptionEnum;
 import com.tang.mall.mbg.mapper.UmsAdminMapper;
@@ -10,6 +11,7 @@ import com.tang.mall.dao.UmsAdminMapperDao;
 import com.tang.mall.dao.UmsPermissionMapperDao;
 import com.tang.mall.service.UmsAdminService;
 import com.tang.mall.util.JwtTokenUtil;
+import com.tang.mall.util.PageBean;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,9 +20,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -99,6 +101,86 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             throw new MallException(MallExceptionEnum.WRONG_PASSWORD);
         }
         return token;
+    }
+
+    /**
+     * 获取用户列表
+     * @param umsAdminListParam
+     * @return
+     */
+    @Override
+    public PageBean list(UmsAdminListParam umsAdminListParam) {
+        // 用户名模糊查询
+        if (!StringUtils.isEmpty(umsAdminListParam.getUsername())) {
+            String username = new StringBuilder().append("%").append(umsAdminListParam.getUsername()).append("%").toString();
+            umsAdminListParam.setUsername(username);
+        } else {
+            umsAdminListParam.setUsername(null);
+        }
+        // 昵称模糊查询
+        if (!StringUtils.isEmpty(umsAdminListParam.getNickName())) {
+            String nickName = new StringBuilder().append("%").append(umsAdminListParam.getNickName()).append("%").toString();
+            umsAdminListParam.setNickName(nickName);
+        } else {
+            umsAdminListParam.setNickName(null);
+        }
+
+        PageHelper.startPage(umsAdminListParam.getCurrent(), umsAdminListParam.getPageSize());
+        List<UmsAdmin> umsAdminList = umsAdminMapperDao.selectList(umsAdminListParam);
+        return new PageBean<>(umsAdminList);
+    }
+
+    /**
+     * 后台-新增用户
+     * @param umsAdminAddParam
+     */
+    @Override
+    public void add(UmsAdminAddParam umsAdminAddParam) {
+        UmsAdmin umsAdmin = new UmsAdmin();
+        BeanUtils.copyProperties(umsAdminAddParam, umsAdmin);
+
+        UmsAdmin umsAdminOld = umsAdminMapperDao.selectByName(umsAdminAddParam.getUsername());
+        if (umsAdminOld != null) {
+            throw new MallException(MallExceptionEnum.NAME_EXISTED);
+        }
+
+        umsAdmin.setCreateTime(new Date());
+        // 新增用户，设置初始密码为 123456
+        // 密码加密
+        String encodePassword = passwordEncoder.encode("123456");
+        umsAdmin.setPassword(encodePassword);
+
+        int count = umsAdminMapper.insertSelective(umsAdmin);
+        if (count == 0) {
+            throw new MallException(MallExceptionEnum.CREATE_FAILED);
+        }
+    }
+
+    /**
+     * 后台-更新用户
+     */
+    @Override
+    public void update(UmsAdminUpdateParam umsAdminUpdateParam) {
+        UmsAdmin umsAdmin = new UmsAdmin();
+        BeanUtils.copyProperties(umsAdminUpdateParam, umsAdmin);
+
+        UmsAdmin umsAdminOld = umsAdminMapperDao.selectByName(umsAdminUpdateParam.getUsername());
+        if (umsAdminOld != null && !umsAdminOld.getId().equals(umsAdminUpdateParam.getId())) {
+            throw new MallException(MallExceptionEnum.NAME_EXISTED);
+        }
+        int count = umsAdminMapper.updateByPrimaryKeySelective(umsAdmin);
+        if (count == 0) {
+            throw new MallException(MallExceptionEnum.UPDATE_FAILED);
+        }
+    }
+
+    /**
+     * 后台-删除用户
+     * @param ids
+     */
+    @Override
+    public void delete(Integer[] ids) {
+        umsAdminMapperDao.batchDelete(ids);
     }
 
 }

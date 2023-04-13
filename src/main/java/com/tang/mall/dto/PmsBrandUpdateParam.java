@@ -16,6 +16,7 @@ public class PmsBrandUpdateParam implements Serializable {
     @ApiModelProperty(value = "首字母")
     private String firstLetter;
 
+    @ApiModelProperty(value = "排序", name = "sort", dataType = "Integer")
     private Integer sort;
 
     @ApiModelProperty(value = "是否为品牌制造商：0->不是；1->是")
