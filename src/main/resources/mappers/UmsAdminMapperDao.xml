@@ -22,9 +22,23 @@
     from ums_admin
     where username = #{username, jdbcType=VARCHAR}
   </select>
-  <select id="selectList" resultMap="BaseResultMap" parameterType="com.tang.mall.dto.UmsAdminListParam">
-    select id,username,icon,email,nick_name,note,create_time,login_time,`status`
-    from ums_admin
+  <select id="selectList" parameterType="com.tang.mall.dto.UmsAdminListParam"
+          resultType="com.tang.mall.vo.UmsAdminVO">
+    select
+           a.id,
+           a.username,
+           a.icon,
+           a.email,
+           a.nick_name as nickName,
+           a.note,
+           a.create_time as createName,
+           a.login_time as loginTime,
+           a.`status`,
+           r.`name` as roleName,
+           r.id as roleId
+    from ums_admin as a
+    left join ums_admin_role_relation as ar on ar.admin_id = a.id
+    left join ums_role as r on r.id = ar.role_id
     <where>
       <if test="query.username != null">
         and username like #{query.username}

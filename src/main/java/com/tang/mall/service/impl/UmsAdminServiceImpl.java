@@ -1,17 +1,21 @@
 package com.tang.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.tang.mall.dao.UmsAdminRoleRelationMapperDao;
 import com.tang.mall.dto.*;
 import com.tang.mall.exception.MallException;
 import com.tang.mall.exception.MallExceptionEnum;
 import com.tang.mall.mbg.mapper.UmsAdminMapper;
+import com.tang.mall.mbg.mapper.UmsAdminRoleRelationMapper;
 import com.tang.mall.mbg.model.UmsAdmin;
+import com.tang.mall.mbg.model.UmsAdminRoleRelation;
 import com.tang.mall.mbg.model.UmsPermission;
 import com.tang.mall.dao.UmsAdminMapperDao;
 import com.tang.mall.dao.UmsPermissionMapperDao;
 import com.tang.mall.service.UmsAdminService;
 import com.tang.mall.util.JwtTokenUtil;
 import com.tang.mall.util.PageBean;
+import com.tang.mall.vo.UmsAdminVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +48,10 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     private JwtTokenUtil jwtTokenUtil;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+    @Autowired
+    UmsAdminRoleRelationMapper umsAdminRoleRelationMapper;
+    @Autowired
+    UmsAdminRoleRelationMapperDao umsAdminRoleRelationMapperDao;
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {
@@ -126,7 +134,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         }
 
         PageHelper.startPage(umsAdminListParam.getCurrent(), umsAdminListParam.getPageSize());
-        List<UmsAdmin> umsAdminList = umsAdminMapperDao.selectList(umsAdminListParam);
+        List<UmsAdminVO> umsAdminList = umsAdminMapperDao.selectList(umsAdminListParam);
         return new PageBean<>(umsAdminList);
     }
 
@@ -181,6 +189,34 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Override
     public void delete(Integer[] ids) {
         umsAdminMapperDao.batchDelete(ids);
+    }
+
+    /**
+     * 后台-分配角色
+     * @param adminId
+     * @param roleId
+     */
+    @Override
+    public void assignRole(Long adminId, Long roleId) {
+        UmsAdminRoleRelation umsAdminRoleRelation = new UmsAdminRoleRelation();
+
+        UmsAdminRoleRelation umsAdminRoleRelationOld = umsAdminRoleRelationMapperDao.selectByAdminId(adminId);
+        if (umsAdminRoleRelationOld != null && umsAdminRoleRelationOld.getAdminId().equals(adminId)) {
+            umsAdminRoleRelation.setRoleId(roleId);
+            umsAdminRoleRelation.setId(umsAdminRoleRelationOld.getId());
+            int count = umsAdminRoleRelationMapper.updateByPrimaryKeySelective(umsAdminRoleRelation);
+            if (count == 0) {
+                throw new MallException(MallExceptionEnum.UPDATE_FAILED);
+            }
+        } else {
+            umsAdminRoleRelation.setAdminId(adminId);
+            umsAdminRoleRelation.setRoleId(roleId);
+            int count = umsAdminRoleRelationMapper.insertSelective(umsAdminRoleRelation);
+            if (count == 0) {
+                throw new MallException(MallExceptionEnum.CREATE_FAILED);
+            }
+        }
+
     }
 
 }

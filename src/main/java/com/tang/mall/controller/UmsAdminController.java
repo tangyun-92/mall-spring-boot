@@ -111,4 +111,12 @@ public class UmsAdminController {
         adminService.delete(ids);
         return ApiRestResponse.success();
     }
+
+    @ApiOperation("后台-分配角色")
+    @PostMapping("/user/assignRole")
+    @PreAuthorize("hasAuthority('ums:admin:assignRole')")
+    public ApiRestResponse assignRole(@RequestParam Long adminId, @RequestParam Long roleId) {
+        adminService.assignRole(adminId, roleId);
+        return ApiRestResponse.success();
+    }
 }

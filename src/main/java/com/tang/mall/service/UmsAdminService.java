@@ -27,4 +27,6 @@ public interface UmsAdminService {
     void update(UmsAdminUpdateParam umsAdminUpdateParam);
 
     void delete(Integer[] ids);
+
+    void assignRole(Long userId, Long roleId);
 }
